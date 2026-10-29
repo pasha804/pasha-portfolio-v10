@@ -1,0 +1,1313 @@
+================================================================================
+PASHA DEV STUDIO  -  ARCHITECTURAL, TECHNICAL & COMPONENT SPECIFICATION
+================================================================================
+DOCUMENT NAME       : detail.txt
+TARGET SYSTEM       : Pasha Dev Studio (Awwwards-Caliber AI Full Stack Portfolio)
+DEVELOPER & CREATOR : Muhammad Mubashar (Pasha Dev)
+OFFICIAL BRAND      : Pasha Dev (@pasha_dev_)
+POSITIONING         : AI Full Stack Developer & Systems Architect
+TARGET FRAMEWORK    : TanStack Start (SSR) + React 19 + TypeScript + Tailwind CSS v4
+DEPLOYMENT TARGET   : Nitro Engine / Cloudflare Pages / Edge CDN
+DOCUMENT PURPOSE    : Exhaustive, 1000+ Lines In-Depth System & Codebase Documentation
+================================================================================
+
+--------------------------------------------------------------------------------
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1.  EXECUTIVE SUMMARY & SYSTEM MISSION
+    1.1 Developer Identity & Brand Positioning
+    1.2 Philosophy: Engineered Systems vs Simple Assembly
+    1.3 High-Level Technical Snapshot
+
+2.  COMPLETE PROJECT FILE TAXONOMY & DIRECTORY MAP
+    2.1 Root Configuration & Tooling Files
+    2.2 Source Structure (src/) Breakdown
+    2.3 Component Taxonomy (Domain Components vs UI Primitives)
+    2.4 Data Models & Persistence Layers (src/data/)
+    2.5 Assets & Media Pipeline (src/assets/ & public/)
+
+3.  DEPENDENCIES, PACKAGE OVERRIDES & RUNTIME ENVIRONMENT
+    3.1 Core Production Dependencies Explained
+    3.2 Development Dependencies & Build Tooling
+    3.3 Package Overrides (Rolldown & Bun/Node Compatibility)
+    3.4 Bunfig & Package Configuration
+
+4.  THE TANSTACK START & SSR RUNTIME PIPELINE
+    4.1 Server-Side Rendering (SSR) Architecture
+    4.2 Server Entry Point (src/server.ts) & Disaster Recovery
+    4.3 Normalizing Catastrophic SSR Failures & h3 Swallowed Errors
+    4.4 TanStack Start Request Middleware & CSRF Protection (src/start.ts)
+    4.5 Router Context & QueryClient Injection (src/router.tsx)
+    4.6 Fail-Safe Standalone Error Template (src/lib/error-page.ts)
+    4.7 Lovable Error Reporting & Telemetry (src/lib/lovable-error-reporting.ts)
+
+5.  ROUTING, METADATA & SCHEMA.ORG SEO ENGINE
+    5.1 Root Shell & Layout Boundary (src/routes/__root.tsx)
+    5.2 Google Fonts Preloading & Resource Hints
+    5.3 Dynamic Head Management (OpenGraph, Twitter Cards, Theme Color)
+    5.4 Schema.org JSON-LD Person Structured Data
+    5.5 Index Route Component Pipeline (src/routes/index.tsx)
+    5.6 TanStack Router Code-Generated Tree (src/routeTree.gen.ts)
+
+6.  DESIGN SYSTEM, OKLCH COLOR TOKENS & STYLES SPECIFICATION
+    6.1 Tailwind CSS v4 Theme Architecture & Source Directives
+    6.2 OKLCH Color Space & Semantic Tokens
+    6.3 Glassmorphism Physics (@utility glass & glass-strong)
+    6.4 Typography Hierarchy (Manrope, Space Grotesk, Inter)
+    6.5 Custom Keyframe Animations (float-panel, pulse-ring, btn-shimmer, neon-pulse-glow, scanline-sweep)
+    6.6 Responsive Layout Breakpoints & Media Query Overrides
+
+7.  PROCEDURAL AUDIO SYNTHESIZER & WEB AUDIO API ENGINE
+    7.1 Web Audio API Integration in CinematicIntro.tsx
+    7.2 Audio Context Initialization & Browser State Resume Handling
+    7.3 Frequency-Modulated Sine Oscillator (playBlip)
+    7.4 Multi-Frequency Triangle Harmonic Chord Progression (playChord)
+    7.5 White Noise Buffer & Exponential Biquad Bandpass Filter (playWhoosh)
+    7.6 Mute Controller, Safe Silent Fallback & Telemetry
+
+8.  WEBGL LIVING SHADER PIPELINE (OGL & GLSL ES 3.0)
+    8.1 OGL WebGL 2.0 Renderer & Canvas DOM Lifecycle in GhostFibers.tsx
+    8.2 Vertex Shader Analysis (Screen-Filling Normalized Triangle)
+    8.3 Fragment Shader Deep Dive (Raymarching, Polar Math, Wave Distortions)
+    8.4 Multi-Octave Hash Noise & Film Grain Synthesis
+    8.5 Uniform Bindings & React Prop Reactive Synchronization
+    8.6 WebGL Context Loss Recovery & Battery-Saving Inactive Halting
+
+9.  MATHEMATICAL 3D ORBITAL MECHANICS (OrbitingTechBadges.tsx)
+    9.1 Parametric Elliptical Trajectory Formulation
+    9.2 2D Rotational Matrix & Angular Incline Physics
+    9.3 Depth-Driven Z-Index Sorting, Scale, Blur & Opacity Dynamics
+    9.4 Responsive Real-Time Orbital Radii Computation
+    9.5 60FPS Delta-Time requestAnimationFrame Loop
+    9.6 Interactive Hover State, Pause Mechanics & Beacon Dots
+
+10. EXHAUSTIVE COMPONENT-BY-COMPONENT SPECIFICATION
+    10.1  CinematicIntro.tsx  -  Boot Sequence, Sound Synth & HUD
+    10.2  CinematicSection.tsx  -  Viewport Scroll Interpolation & Transforms
+    10.3  GlobalBackground.tsx  -  Seamless Video Loop & Contrast Overlays
+    10.4  ScrollProgress.tsx  -  Spring-Damped Reading Progress Bar
+    10.5  Cursor.tsx  -  Fine Pointer Detection, Dual Rings & Ambient Glow
+    10.6  Navbar.tsx  -  Dynamic Scroll Hiding/Revealing & Navigation Mesh
+    10.7  Hero.tsx  -  Interactive 3D Card Tilt, Availability Radar & Metrics
+    10.8  OrbitingTechBadges.tsx  -  Multi-Axis Orbiting Satellite Badges
+    10.9  About.tsx  -  Bento Grid, Live Code Terminal & Skill Progress Telemetry
+    10.10 TechStack.tsx  -  Category Filtering, Brand Grid & Infinite Marquee
+    10.11 Projects.tsx  -  Filterable Showcase, Dynamic Counters & Stats Strip
+    10.12 ProjectCard.tsx  -  Feature vs Split Layouts & Blueprint Trigger
+    10.13 ProjectModal.tsx  -  Architecture Deep-Dive Blueprint Modal
+    10.14 Hackathons.tsx  -  Lablab.ai IBM Bob 2.0 Hackathon & Verified Certs
+    10.15 Services.tsx  -  Two-Tier Capability Matrix & Technical Specs
+    10.16 Certificates.tsx  -  5 Verified Accreditations & Modal Inspector
+    10.17 FAQ.tsx  -  Fuzzy Search, Filter Pills & Consultation Hub
+    10.18 Contact.tsx  -  Command Bridge, PKT Clock, Dispatcher & 5 Socials
+    10.19 Footer.tsx  -  Brand Identity, Split Navigation & Social Grid
+    10.20 BackToTop.tsx  -  Smooth Scrolling Navigation Trigger
+    10.21 ProfileImage.tsx  -  Cyber Avatar Container & Fallback Monogram
+    10.22 Typewriter.tsx  -  Cyclic Role Animation with Reduced-Motion Guard
+    10.23 SectionHeading.tsx  -  Standardized Section Title & Eyebrow Layout
+    10.24 Ambient.tsx  -  Background Particles, Twinkling Stars & Data Streaks
+    10.25 Intro.tsx  -  Minimalist Session-Stored Loading Fallback
+    10.26 TechIcons.tsx  -  Complete Library of 27 Custom SVG Brand Icons
+
+11. DOMAIN DATA MODELS & STATIC KNOWLEDGE STORES
+    11.1 src/data/projects.ts  -  Selected Products & Experiments
+    11.2 src/data/hackathons.ts  -  Global Hackathons & Verified Awards
+    11.3 src/data/faq.ts  -  Technical Directives & Verified Certificates
+    11.4 src/data/skills.ts  -  Skill Categorization & Developer Journey
+    11.5 src/data/socials.ts  -  Identity, Navigation Mesh & Social Handles
+
+12. CUSTOM HOOKS & SHARED UTILITY LIBRARIES
+    12.1 src/hooks/useActiveSection.ts  -  IntersectionObserver Scroll Spy
+    12.2 src/hooks/usePointerFine.ts  -  Desktop Pointer Precision Detector
+    12.3 src/hooks/use-mobile.tsx  -  Responsive Mobile Breakpoint Hook
+    12.4 src/lib/motion.ts  -  Framer Motion Animation Variants & Cubic Béziers
+    12.5 src/lib/utils.ts  -  Tailwind Merge & Conditional Classnames (cn)
+
+13. RADIX UI PRIMITIVES & COMPONENT LIBRARY ARCHITECTURE
+    13.1 Button Component & Variants (default, neon, outlineNeon, nav)
+    13.2 Radix Dialog, Sheet, Drawer & Overlay Primitives
+    13.3 Form Controls (Input, Textarea, Select, Checkbox, Slider, Switch)
+    13.4 Navigation Components (DropdownMenu, Menubar, NavigationMenu)
+    13.5 Feedback Components (Alert, AlertDialog, Progress, Sonner, Tooltip)
+
+14. ACCESSIBILITY, REDUCED MOTION & SECURITY POSTURE
+    14.1 WCAG AA Compliance & Contrast Ratio Adherence
+    14.2 prefers-reduced-motion Global Disabling & Fallbacks
+    14.3 Keyboard Navigation, Escape Key Traps & Focus-Visible Rings
+    14.4 CSRF Protection & Server Function Sanitization
+
+15. PRODUCTION BUILD, DEPLOYMENT & PERFORMANCE OPTIMIZATIONS
+    15.1 Build Pipeline & Vite/Nitro Output Structure
+    15.2 Deploying to Cloudflare Pages & Netlify Edge CDN
+    15.3 Core Web Vitals Optimization (LCP, FID/INP, CLS)
+    15.4 Asset Compression & CDN Caching Directives
+================================================================================
+
+================================================================================
+1. EXECUTIVE SUMMARY & SYSTEM MISSION
+================================================================================
+
+1.1 DEVELOPER IDENTITY & BRAND POSITIONING
+Muhammad Mubashar, known professionally as Pasha Dev (@pasha_dev_), is an AI
+Full Stack Developer operating from Pakistan and building for global clients.
+Unlike traditional portfolio websites that rely on off-the-shelf templates,
+static portfolio builders, or standard component libraries, Pasha Dev Studio
+was engineered from the ground up as an Awwwards-caliber, cinematic web application.
+
+The core identity of Pasha Dev bridges two critical worlds:
+1. High-Performance Modern Frontend Engineering:
+   Building 60fps GPU-accelerated, motion-choreographed interfaces in React 19,
+   TypeScript, and Tailwind CSS v4 with glassmorphism, responsive micro-interactions,
+   and bespoke WebGL shader animations.
+2. Intelligent Autonomous Backend Systems:
+   Architecting asynchronous, high-concurrency microservices with Python, FastAPI,
+   PostgreSQL, and Redis, integrated with autonomous AI agents, multi-turn LLM
+   pipelines, Retrieval-Augmented Generation (RAG), and vector embeddings.
+
+1.2 PHILOSOPHY: ENGINEERED SYSTEMS VS SIMPLE ASSEMBLY
+The core design philosophy is summarized in the portfolio's central manifesto:
+"I don't just build websites. I build intelligent, interactive digital products."
+
+In a market saturated with generic developer portfolios that feature flat cards,
+standard CSS templates, and static content, Pasha Dev Studio demonstrates technical
+competence through the code of the portfolio itself:
+- Zero external audio files: Sound effects are synthesized on-the-fly using
+  the browser's Web Audio API oscillators and noise buffers.
+- Zero heavyweight 3D model bloat: 3D orbital tech badges and shader backgrounds
+  are rendered via lightweight WebGL shaders (OGL) and pure trigonometric math.
+- True Server-Side Rendering (SSR): Powered by TanStack Start and Nitro, delivering
+  instant initial HTML with pre-baked JSON-LD SEO schemas and OpenGraph cards.
+- Strict Type Safety: 100% TypeScript with zero implicit 'any', strict component
+  interfaces, and validated domain models.
+
+1.3 HIGH-LEVEL TECHNICAL SNAPSHOT
+- Runtime: Node.js 22+ / Bun Runtime
+- Build Framework: Vite 8.1.5 with @lovable.dev/vite-tanstack-config
+- SSR Engine: TanStack Start 1.168.32 with Nitro 3.0 server engine
+- UI Library: React 19.2.0 (React Server Components compatible)
+- Routing: TanStack Router 1.170.18 with file-based routing and code generation
+- State & Query: TanStack React Query 5.101.1 with queryClient context
+- Styling: Tailwind CSS v4.2.1 using OKLCH semantic color tokens
+- Animation: Motion (motion/react 13.3.0) with cubic Bézier easing curves
+- 3D Graphics: OGL 1.0.11 WebGL 2.0 minimal shader engine
+- Audio: Native Web Audio API procedural synthesizer
+- Icons: Lucide React 0.575.0 + 27 bespoke vector brand icons
+================================================================================
+
+================================================================================
+2. COMPLETE PROJECT FILE TAXONOMY & DIRECTORY MAP
+================================================================================
+
+The repository layout follows a modern TanStack Start full-stack structure.
+Below is the comprehensive file-by-file inventory:
+
+D:\PASHA-DEV-STUDIO-MAIN\PASHA-DEV-STUDIO-MAIN
+│
+├── .gitignore                   # Ignores node_modules, .output, dist, .wrangler, and cache
+├── .prettierignore              # Ignores build artifacts and bundle chunks from formatting
+├── .prettierrc                  # Prettier formatting rules (trailing comma, tabs, semicolons)
+├── bun.lock                     # Bun dependency lockfile for reproducible fast installs
+├── bunfig.toml                  # Bun runtime configuration and package manager settings
+├── components.json              # shadcn/ui configuration file (New York style, slate base, aliases)
+├── eslint.config.js             # ESLint flat config with React Hooks, Refresh, and Prettier rules
+├── implementation_plan.md       # Historical engineering log and visual enhancement plan
+├── package.json                 # Core NPM dependencies, overrides, scripts, and project metadata
+├── package-lock.json            # NPM deterministic dependency tree lockfile
+├── README.md                    # Master build prompt and developer documentation
+├── tsconfig.json                # TypeScript compiler configuration with @/* path aliases
+├── vite.config.ts               # Vite configuration extending @lovable.dev/vite-tanstack-config
+│
+├── public/                      # Static assets served at domain root
+│   ├── favicon.ico              # Browser icon
+│   ├── robots.txt               # Search engine crawler permissions and sitemap link
+│   └── images/
+│       ├── anime_dev.jpg        # High-res anime developer avatar image
+│       ├── anime_dev.png        # Transparent PNG anime developer avatar image
+│       └── certificates/        # High-resolution verified certificate images
+│           ├── cert-ai-engineering.jpg     # DeepLearning.AI GenAI Systems Specialist
+│           ├── cert-cloud-devops.jpg       # AWS & Cloud Native Computing Docker Cert
+│           ├── cert-lablab-ibm-bob.jpg     # Lablab.ai IBM Bob 2.0 Hackathon Award
+│           ├── cert-meta-fullstack.jpg     # Meta Professional Full Stack Developer Cert
+│           ├── cert-python-backend.jpg     # Python Institute Systems Engineering Cert
+│           └── cert-uiux-creative.jpg      # Google UX & Web Performance Engineering Cert
+│
+├── src/                         # Application source code
+│   ├── router.tsx               # Factory creating TanStack Router instance with QueryClient
+│   ├── routeTree.gen.ts         # Automatically generated type-safe route tree from src/routes/
+│   ├── server.ts                # Server entry point with catastrophic SSR error normalization
+│   ├── start.ts                 # TanStack Start instance with server error and CSRF middleware
+│   ├── styles.css               # Global Tailwind CSS v4 stylesheet, OKLCH variables, animations
+│   │
+│   ├── assets/                  # Bundled static assets processed by Vite
+│   │   ├── bg-video.mp4         # Atmospheric background looping video
+│   │   ├── developer-portrait.png # Transparent cut-out portrait of Muhammad Mubashar
+│   │   ├── freebuff.png         # Freebuff platform logo
+│   │   ├── neon-mountains.jpg   # Poster fallback image for background video
+│   │   └── projects/            # Project showcase cover images
+│   │       ├── cinematic.jpg    # Cover for Cinematic Web Experiences
+│   │       ├── nexora.jpg       # Cover for Nexora AI skill platform
+│   │       ├── pasha-tools.jpg  # Cover for Pasha Tools developer utilities
+│   │       ├── wishora.jpg      # Cover for Wishora personalized greeting cards
+│   │       └── zoro.jpg         # Cover for Zoro 2.0 desktop assistant
+│   │
+│   ├── components/              # React UI components
+│   │   ├── About.tsx            # Bento grid, developer story, code terminal & milestones
+│   │   ├── Ambient.tsx          # Living background particles, twinkling stars, and data streaks
+│   │   ├── BackToTop.tsx        # Scroll-to-top floating button with spring transition
+│   │   ├── Certificates.tsx     # Filterable verified industry certifications & modal preview
+│   │   ├── CinematicIntro.tsx   # Boot sequence, Web Audio API synth, SVG gauge & HUD
+│   │   ├── CinematicSection.tsx # Scroll-progress viewport tracker with entrance/exit transforms
+│   │   ├── Contact.tsx          # Command bridge, live PKT clock, email directive dispatcher
+│   │   ├── Cursor.tsx           # Custom dual-ring mouse cursor & ambient trailing glow
+│   │   ├── FAQ.tsx              # Interactive searchable FAQ accordion with category filters
+│   │   ├── Footer.tsx           # Brand column, multi-column navigation mesh & social channels
+│   │   ├── GhostFibers.css      # CSS styling for WebGL shader canvas container
+│   │   ├── GhostFibers.tsx      # OGL WebGL 2.0 living animated fiber shader component
+│   │   ├── GlobalBackground.tsx # High-performance video background with contrast overlays
+│   │   ├── Hackathons.tsx       # Lablab.ai IBM Bob 2.0 showcase with verified modal inspector
+│   │   ├── Hero.tsx             # Hero grid, availability radar, 3D tilt portrait & metrics
+│   │   ├── Intro.tsx            # Fallback introductory screen with sessionStorage guard
+│   │   ├── Navbar.tsx           # Sticky auto-hiding navbar with active section indicator
+│   │   ├── OrbitingTechBadges.tsx # 3D tilted orbiting satellite tech badges
+│   │   ├── ProfileImage.tsx     # Developer avatar component with status checking & fallback
+│   │   ├── ProjectCard.tsx      # Individual project card supporting feature and split layouts
+│   │   ├── ProjectModal.tsx     # Full-screen project blueprint & architecture inspection modal
+│   │   ├── Projects.tsx         # Filterable project gallery, dynamic counters & stat strip
+│   │   ├── ScrollProgress.tsx   # Top-edge spring-damped reading progress bar
+│   │   ├── SectionHeading.tsx   # Standardized section title, eyebrow, and description header
+│   │   ├── Services.tsx         # 2-Tier architecture capability matrix (Flagships + Pillars)
+│   │   ├── TechIcons.tsx        # Library of 27 custom vector brand logos (React, Python, etc.)
+│   │   ├── TechStack.tsx        # Battle-tested tech stack with filter pills and marquee ribbon
+│   │   ├── Typewriter.tsx       # Cyclic role animation with typing and backspacing delays
+│   │   │
+│   │   └── ui/                  # 46 shadcn/ui and Radix UI primitive wrappers
+│   │       ├── accordion.tsx    # Radix Accordion primitive wrapper
+│   │       ├── alert-dialog.tsx # Radix Alert Dialog modal wrapper
+│   │       ├── alert.tsx        # Informational alert banner component
+│   │       ├── aspect-ratio.tsx # Radix AspectRatio container wrapper
+│   │       ├── avatar.tsx       # Radix Avatar component wrapper
+│   │       ├── badge.tsx        # Stylized status badge with semantic variants
+│   │       ├── breadcrumb.tsx   # Accessible breadcrumb navigation trail
+│   │       ├── button.tsx       # Enhanced Button component with neon and outlineNeon variants
+│   │       ├── calendar.tsx     # React Day Picker calendar integration
+│   │       ├── card.tsx         # Standard card header, title, description, content container
+│   │       ├── carousel.tsx     # Embla Carousel React integration wrapper
+│   │       ├── chart.tsx        # Recharts accessible SVG wrapper
+│   │       ├── checkbox.tsx     # Radix Checkbox control
+│   │       ├── collapsible.tsx  # Radix Collapsible toggle container
+│   │       ├── command.tsx      # cmdk search palette integration
+│   │       ├── context-menu.tsx # Radix ContextMenu desktop right-click menu
+│   │       ├── dialog.tsx       # Radix Dialog accessibility-compliant modal
+│   │       ├── drawer.tsx       # Vaul mobile bottom drawer integration
+│   │       ├── dropdown-menu.tsx# Radix DropdownMenu popover menu
+│   │       ├── form.tsx         # React Hook Form + Radix form validation wrapper
+│   │       ├── hover-card.tsx   # Radix HoverCard cursor preview wrapper
+│   │       ├── input-otp.tsx    # One-Time-Password segmented input component
+│   │       ├── input.tsx        # Standard HTML input styled for dark mode
+│   │       ├── label.tsx        # Radix Label component
+│   │       ├── menubar.tsx      # Radix Menubar desktop application menu
+│   │       ├── navigation-menu.tsx # Radix NavigationMenu interactive navbar
+│   │       ├── pagination.tsx   # Pagination link controls
+│   │       ├── popover.tsx      # Radix Popover floating panel
+│   │       ├── progress.tsx     # Radix Progress bar indicator
+│   │       ├── radio-group.tsx  # Radix RadioGroup selector
+│   │       ├── resizable.tsx    # react-resizable-panels split panel integration
+│   │       ├── scroll-area.tsx  # Radix ScrollArea custom scrollbar container
+│   │       ├── select.tsx       # Radix Select dropdown selector
+│   │       ├── separator.tsx    # Radix Separator hairline divider
+│   │       ├── sheet.tsx        # Radix Sheet slide-out side panel
+│   │       ├── sidebar.tsx      # Multi-level responsive sidebar system
+│   │       ├── skeleton.tsx     # Animated pulse placeholder skeleton loader
+│   │       ├── slider.tsx       # Radix Slider continuous range control
+│   │       ├── sonner.tsx       # Sonner toast notifications provider
+│   │       ├── switch.tsx       # Radix Switch toggle component
+│   │       ├── table.tsx        # Clean HTML table wrapper
+│   │       ├── tabs.tsx         # Radix Tabs segmented view switcher
+│   │       ├── textarea.tsx     # Standard multi-line textarea styled for dark mode
+│   │       ├── toggle-group.tsx # Radix ToggleGroup segmented button bar
+│   │       ├── toggle.tsx       # Radix Toggle two-state button
+│   │       └── tooltip.tsx      # Radix Tooltip hover hint wrapper
+│   │
+│   ├── data/                    # Type-safe structured static data sources
+│   │   ├── faq.ts               # 9 technical FAQs and 5 industry certifications
+│   │   ├── hackathons.ts        # 3 global hackathons (Lablab.ai, Llama 3.1, Agents Summit)
+│   │   ├── projects.ts          # 5 flagship projects (Nexora, Pasha Tools, Wishora, Zoro, etc.)
+│   │   ├── skills.ts            # 4 skill categories, 5 journey milestones, 8 core services
+│   │   └── socials.ts           # Developer identity, 5 official social channels, navigation links
+│   │
+│   ├── hooks/                   # Custom reusable React hooks
+│   │   ├── use-mobile.tsx       # Detects screen width < 768px with resize listener
+│   │   ├── useActiveSection.ts  # IntersectionObserver hook detecting active visible section
+│   │   └── usePointerFine.ts    # Window matchMedia hook detecting fine pointer (mouse)
+│   │
+│   ├── lib/                     # Core system utilities and runtime helpers
+│   │   ├── error-capture.ts     # Out-of-band error recorder recovering swallowed SSR stacks
+│   │   ├── error-page.ts        # Standalone HTML string fallback for catastrophic 500 errors
+│   │   ├── lovable-error-reporting.ts # Client error telemetry dispatcher for editor runtime
+│   │   ├── motion.ts            # Motion animation variants (fadeUp, reveal) and cubic Bézier
+│   │   └── utils.ts             # Tailwind CSS merge utility (cn) combining clsx and twMerge
+│   │
+│   └── routes/                  # TanStack Router file-based route definitions
+│       ├── __root.tsx           # Root route shell with HTML wrapper, SEO head, and QueryClient
+│       ├── index.tsx            # Main single-page application orchestrating all sections
+│       └── README.md            # TanStack Router conventions and documentation
+================================================================================
+
+================================================================================
+3. DEPENDENCIES, PACKAGE OVERRIDES & RUNTIME ENVIRONMENT
+================================================================================
+
+3.1 CORE PRODUCTION DEPENDENCIES EXPLAINED
+The package.json specifies a modern, high-performance stack curated for
+speed, type safety, and rich visual presentation:
+
+- @tanstack/react-start (v1.168.32):
+  Full-stack React framework providing server-side rendering, streaming HTML,
+  server function execution, and seamless client hydration.
+- @tanstack/react-router (v1.170.18):
+  100% type-safe routing with built-in search params validation, automatic code
+  splitting, preload caching, and route tree generation.
+- @tanstack/react-query (v5.101.1):
+  Asynchronous state management, query caching, background refetching, and
+  synchronous SSR hydration context.
+- react & react-dom (v19.2.0):
+  The latest React 19 stable release utilizing new compiler features, Actions,
+  improved hydration algorithms, and native HTML head tag hoisting.
+- tailwindcss & @tailwindcss/vite (v4.2.1):
+  Tailwind CSS v4 engine built on native Lightning CSS, featuring lightning-fast
+  compilation, inline @theme directives, and zero postcss configuration requirement.
+- tw-animate-css (v1.3.4):
+  CSS keyframe animation library providing smooth hardware-accelerated transitions.
+- motion (v13.3.0):
+  The official Framer Motion evolution (motion/react), providing spring-based
+  physics, GPU transforms, gesture tracking, and layout animations.
+- ogl (v1.0.11):
+  An ultra-lightweight WebGL 2.0 library (~7KB) written by Colin van Eenige,
+  used instead of Three.js for rendering living mathematical shader backgrounds
+  with zero overhead.
+- lucide-react (v0.575.0):
+  Tree-shakeable, clean, minimalist SVG icon library.
+- @radix-ui/* (Accordion, Dialog, Sheet, DropdownMenu, Tooltip, Slider, etc.):
+  Unstyled, fully accessible (WAI-ARIA compliant) headless UI primitives.
+- class-variance-authority (v0.7.1) & clsx & tailwind-merge (v3.5.0):
+  Type-safe component variant generators and conflict-free classname merging.
+- embla-carousel-react (v8.6.0):
+  Lightweight, buttery-smooth touch-enabled carousel engine.
+- recharts (v2.15.4):
+  Composable charting library built on React components and SVG.
+- sonner (v2.0.7):
+  An opinionated, elegant toast notification manager.
+- zod (v3.25.76):
+  TypeScript-first schema declaration and runtime data validation.
+
+3.2 DEVELOPMENT DEPENDENCIES & BUILD TOOLING
+- vite (v8.1.5):
+  Next-generation frontend tooling providing sub-millisecond Hot Module Replacement (HMR).
+- @lovable.dev/vite-tanstack-config (v2.20.0):
+  Comprehensive preset bundling TanStack Start devtools, Nitro integration,
+  Tailwind CSS, TypeScript paths, React deduplication, and sandbox detection.
+- nitro (v3.0.260603-beta):
+  The universal web server engine powering Nuxt and TanStack Start, compiling
+  the application for Cloudflare Workers, Node.js, Vercel, Netlify, or Bun.
+- typescript (v5.8.3):
+  Latest TypeScript compiler offering strict type checking and rapid emit.
+- eslint (v9.32.0) & typescript-eslint (v8.56.1):
+  Flat-config linting ensuring code quality, React hooks rules, and formatting.
+
+3.3 PACKAGE OVERRIDES & ROLLDOWN INTEGRATION
+The package.json contains an explicit override:
+"overrides": {
+  "rolldown": "1.2.1"
+}
+Rolldown is the Rust-based bundler developed by the Vite core team intended to
+replace Rollup and esbuild. Pinning Rolldown to v1.2.1 ensures deterministic
+compilation speed without unexpected breaking changes in upstream build hooks.
+
+3.4 BUNFIG & PACKAGE CONFIGURATION
+The project includes a bunfig.toml file configuring Bun as a first-class package
+manager and test runner, while maintaining full compatibility with npm and pnpm.
+================================================================================
+
+================================================================================
+4. THE TANSTACK START & SSR RUNTIME PIPELINE
+================================================================================
+
+4.1 SERVER-SIDE RENDERING (SSR) ARCHITECTURE
+Pasha Dev Studio operates as a full Server-Side Rendered application using
+TanStack Start backed by the Nitro engine. The application renders initial HTML
+on the server edge, delivering zero-layout-shift content to the client browser,
+followed by seamless React 19 hydration.
+
+4.2 SERVER ENTRY POINT (src/server.ts) & DISASTER RECOVERY
+In standard TanStack Start deployments, unhandled server-side exceptions inside
+Nitro/h3 handlers can lead to opaque failures. src/server.ts implements an
+engineered safety wrapper:
+
+Key features of src/server.ts:
+1. Dynamic Lazy Loading of Server Entry:
+   let serverEntryPromise: Promise<ServerEntry> | undefined;
+   async function getServerEntry(): Promise<ServerEntry> {
+     if (!serverEntryPromise) {
+       serverEntryPromise = import("@tanstack/react-start/server-entry").then(
+         (m) => (m.default ?? m) as ServerEntry,
+       );
+     }
+     return serverEntryPromise;
+   }
+   This prevents circular initialization during cold starts.
+
+2. Catastrophic SSR Error Normalization:
+   h3 swallows in-handler throws into a normal 500 Response with body:
+   {"unhandled":true,"message":"HTTPError"}
+   Standard try/catch blocks never catch these swallowed errors.
+   normalizeCatastrophicSsrResponse() inspects outgoing responses:
+   - If response status >= 500 and content-type is application/json
+   - Inspects body for isH3SwallowedErrorBody()
+   - Consumes the last captured out-of-band error from error-capture.ts
+   - Replaces the raw JSON error with a beautiful, user-facing HTML fallback page
+     rendered by renderErrorPage().
+
+4.3 OUT-OF-BAND ERROR CAPTURE (src/lib/error-capture.ts)
+Because h3 strips error stack traces before serializing HTTPError, error-capture.ts
+monkey-patches console.error and hooks global unhandledrejection and error events:
+- Retains errors in a temporary cache with a 5,000ms TTL.
+- Expands Error cause chains up to 5 levels deep (CAUSE_DEPTH_LIMIT).
+- Truncates error descriptions to 8,000 characters to protect memory.
+- Allows server.ts to call consumeLastCapturedError() to log the actual original
+  stack trace before returning the user-friendly recovery page.
+
+4.4 REQUEST MIDDLEWARE & CSRF PROTECTION (src/start.ts)
+src/start.ts configures the TanStack Start instance with critical server middlewares:
+1. errorMiddleware:
+   Intercepts next() handler calls. If an error contains a statusCode (expected
+   HTTP redirect or 404), it rethrows it. For unexpected server crashes, it
+   logs to console.error and returns renderErrorPage() with status 500.
+2. csrfMiddleware:
+   createCsrfMiddleware({ filter: (ctx) => ctx.handlerType === "serverFn" })
+   Protects server functions from Cross-Site Request Forgery (CSRF) by
+   validating Origin and Referer headers against the host origin.
+
+4.5 ROUTER FACTORY & CONTEXT INJECTION (src/router.tsx)
+The getRouter() function in src/router.tsx initializes:
+- A new QueryClient instance from @tanstack/react-query.
+- createRouter({ routeTree, context: { queryClient }, scrollRestoration: true })
+- defaultPreloadStaleTime: 0, ensuring that client hover preloading always
+  validates fresh route assets.
+================================================================================
+
+================================================================================
+5. ROUTING, METADATA & SCHEMA.ORG SEO ENGINE
+================================================================================
+
+5.1 ROOT SHELL & LAYOUT BOUNDARY (src/routes/__root.tsx)
+The root route serves as the foundational HTML document shell.
+Key responsibilities:
+1. HTML Skeleton & Script Injection:
+   RootShell renders <html lang="en">, <head> containing <HeadContent />, and
+   <body> containing {children} and <Scripts />.
+2. Global QueryClient Provider:
+   RootComponent wraps the application with <QueryClientProvider client={queryClient}>
+   and renders <Outlet /> to mount child routes.
+3. Accessible 404 Not Found Boundary:
+   NotFoundComponent provides a clean, responsive fallback with a 7xl "404" heading,
+   clarifying text, and a primary button linking back to "/".
+4. Application Error Boundary:
+   ErrorComponent intercepts unhandled client-side render exceptions, logs them to
+   reportLovableError(), and displays a recovery card with "Try again" (which calls
+   router.invalidate() and reset()) and "Go home".
+
+5.2 GOOGLE FONTS PRELOADING & RESOURCE HINTS
+To eliminate typography flash (FOUT) and maximize Core Web Vitals scores:
+- Preconnects to https://fonts.googleapis.com
+- Preconnects to https://fonts.gstatic.com with crossOrigin="anonymous"
+- Loads Manrope (400, 500, 600, 700, 800), Space Grotesk (400, 500, 600, 700),
+  and Inter (300, 400, 500, 600) stylesheets.
+
+5.3 DYNAMIC HEAD MANAGEMENT & SOCIAL GRAPH
+In src/routes/index.tsx, the createFileRoute("/") head definition exports:
+- Meta Title: "Pasha Dev  -  AI Full Stack Developer"
+- Meta Description: "Muhammad Mubashar (Pasha Dev) is an AI Full Stack Developer building intelligent web applications with React, TypeScript, Python, FastAPI and interactive web experiences."
+- Theme Color: "#05070D" (matches the cinematic dark background)
+- OpenGraph: og:title, og:description, og:type="website", og:url="/"
+- Twitter: twitter:card="summary_large_image", twitter:title, twitter:description
+- Canonical Link: rel="canonical", href="/"
+
+5.4 SCHEMA.ORG JSON-LD STRUCTURED DATA
+To enable Google Rich Snippets and Knowledge Graph indexing, an application/ld+json
+script tag is injected directly into the HTML document:
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Muhammad Mubashar",
+  "alternateName": "Pasha Dev",
+  "jobTitle": "AI Full Stack Developer",
+  "url": "https://pasha-portfolio-v6.netlify.app/",
+  "sameAs": [
+    "https://github.com/pasha804",
+    "https://www.linkedin.com/in/pasha-dev/",
+    "https://www.tiktok.com/@pasha_dev_"
+  ],
+  "knowsAbout": [
+    "React",
+    "TypeScript",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "AI integrations"
+  ]
+}
+
+5.5 INDEX ROUTE COMPONENT PIPELINE (src/routes/index.tsx)
+The Index component acts as the master orchestrator, mounting components in a
+carefully structured cinematic visual hierarchy:
+1. <CinematicIntro onComplete={() => setIntroFinished(true)} />
+2. <GlobalBackground />
+3. <ScrollProgress />
+4. <Cursor />
+5. <Navbar />
+6. <Hero introFinished={introFinished} />
+7. <main>
+     <CinematicSection id="about"><About /></CinematicSection>
+     <CinematicSection id="skills"><TechStack /></CinematicSection>
+     <CinematicSection id="projects"><Projects /></CinematicSection>
+     <CinematicSection id="hackathons"><Hackathons /></CinematicSection>
+     <CinematicSection id="services"><Services /></CinematicSection>
+     <CinematicSection id="certificates"><Certificates /></CinematicSection>
+     <CinematicSection id="faq"><FAQ /></CinematicSection>
+     <CinematicSection id="contact" fadeExit={false}><Contact /></CinematicSection>
+   </main>
+8. <Footer />
+9. <BackToTop />
+================================================================================
+
+================================================================================
+6. DESIGN SYSTEM, OKLCH COLOR TOKENS & STYLES SPECIFICATION
+================================================================================
+
+6.1 TAILWIND CSS V4 THEME ARCHITECTURE & SOURCE DIRECTIVES
+src/styles.css adopts the new Tailwind CSS v4 engine format:
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+By specifying source(none) and explicitly configuring @source "../src", the compiler
+scans exclusively the React components inside src/, ensuring maximum build speeds
+and zero phantom utility generation.
+
+6.2 OKLCH COLOR SPACE & SEMANTIC TOKENS
+Unlike standard sRGB or HSL color spaces, Pasha Dev Studio utilizes OKLCH
+(Oklab Lightness, Chroma, Hue). OKLCH is perceptually uniform, meaning equal numerical
+changes result in equal visual changes in human perception, eliminating color
+banding in dark gradients and guaranteeing consistent luminance.
+
+Key OKLCH Semantic Color Tokens in :root:
+- --background: oklch(0.075 0.025 252) -> Deep cosmic slate-black (#05070D)
+- --foreground: oklch(0.94 0.04 240)  -> Crisp high-contrast moonlight white
+- --surface:    oklch(0.11 0.035 255)  -> Base elevated panel surface
+- --surface-2:  oklch(0.15 0.045 255)  -> Higher-level card highlight
+- --primary:    oklch(0.67 0.23 254)   -> Electric cyber cyan accent
+- --glow:       oklch(0.73 0.2 238)    -> High-chroma cyan luminescence
+- --cyan:       oklch(0.73 0.2 238)    -> Neon cyan highlight
+- --violet:     oklch(0.68 0.2 300)    -> Neon purple/violet secondary accent
+- --border:     oklch(0.45 0.16 251 / 35%) -> Subtle glass perimeter border
+- --border-strong: oklch(0.45 0.16 251 / 55%) -> Focused interactive border
+- --panel:      oklch(0.12 0.05 255 / 58%) -> 58% translucent glass panel
+- --panel-strong: oklch(0.16 0.08 258 / 86%) -> 86% frosted command bridge panel
+- --hero-action: linear-gradient(105deg, oklch(0.72 0.2 222), oklch(0.56 0.25 281))
+  -> Cyan-to-violet signature gradient
+
+6.3 GLASSMORPHISM PHYSICS & CUSTOM UTILITIES
+- @utility glass:
+  background: var(--glass-bg);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 0 oklch(1 0 0 / 6%), var(--shadow-elevate);
+- @utility glass-strong:
+  backdrop-filter: blur(24px);
+  box-shadow: inset 0 1px 0 0 oklch(1 0 0 / 8%);
+- @utility text-gradient:
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+- @utility section-shell:
+  padding-inline: 1.25rem; padding-block: 6rem (sm/md: 2.5rem / 8.5rem)
+- @utility hairline:
+  Subtle gradient divider tapering to transparent at the edges.
+
+6.4 TYPOGRAPHY HIERARCHY
+- Display Typography: "Manrope", "Space Grotesk", sans-serif. Letter spacing -0.02em.
+- Body Typography: "Manrope", "Inter", sans-serif.
+- Monospace / Telemetry: ui-monospace, SFMono-Regular, Menlo, monospace. Used for
+  status badges, timestamp clocks, terminal outputs, and system specs.
+
+6.5 CUSTOM KEYFRAME ANIMATIONS
+- float-panel: Gentle vertical hovering (translateY 0 to -7px) over 5 seconds.
+- pulse-ring: Continuous breathing opacity effect for orbital rings (0.65 to 1).
+- btn-shimmer: High-velocity light beam sweeping across buttons at a 20deg skew.
+- neon-pulse-glow: Rhythmic expansion of cyan and violet drop-shadow luminescence.
+- scanline-sweep: Cybernetic CRT vertical scanline travelling down the viewport.
+
+6.6 RESPONSIVE BREAKPOINTS & MEDIA QUERY OVERRIDES
+Styles are calibrated for four core screen bands:
+- Desktop Large (> 1200px): Wide dual-column hero grid, 91% container width, full topbar navigation.
+- Desktop Medium (900px - 1200px): Adjusted topbar gap, 68% metrics container.
+- Tablet (560px - 900px): Single-column hero layout, topbar transforms into brand + mobile drawer button, metrics convert into a 2x2 grid.
+- Mobile (< 560px): Compact typography, stacked hero CTAs, touch-optimized cards, portrait height clamped to 550px.
+================================================================================
+
+================================================================================
+7. PROCEDURAL SYNTHESIZER & WEB AUDIO API ENGINE
+================================================================================
+
+7.1 ZERO EXTERNAL ASSET AUDIO ARCHITECTURE
+A common flaw in multimedia-heavy websites is downloading megabytes of MP3/WAV
+sound effects, introducing latency, network bottlenecks, and potential 404 errors.
+In src/components/CinematicIntro.tsx, Pasha Dev Studio implements createAudioEngine(),
+a procedural synthesizer that generates all interface sound effects directly inside
+the browser using the native Web Audio API.
+
+7.2 AUDIO CONTEXT INITIALIZATION & BROWSER RESUME
+Browsers enforce strict Autoplay Policies: an AudioContext created prior to user
+interaction starts in a 'suspended' state.
+The getCtx() method resolves this seamlessly:
+const getCtx = () => {
+  if (!ctx && typeof window !== "undefined") {
+    const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+    if (AudioCtx) ctx = new AudioCtx();
+  }
+  if (ctx && ctx.state === "suspended") {
+    ctx.resume().catch(() => {});
+  }
+  return ctx;
+};
+
+7.3 FREQUENCY-MODULATED SINE OSCILLATOR (playBlip)
+Invoked during telemetry boot log streaming:
+- Generates a pure sine wave (osc.type = "sine").
+- Sets frequency to freq (default 880Hz, dynamically scaling from 700Hz + prev * 80Hz).
+- Sets initial gain to 0.04 (subtle, non-jarring volume).
+- Applies an exponential decay ramp:
+  gain.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + duration);
+- Automatically stops the oscillator and disconnects the gain node after 30-40ms.
+
+7.4 MULTI-FREQUENCY TRIANGLE HARMONIC CHORD PROGRESSION (playChord)
+Invoked when loading reaches 100%:
+- Plays a sophisticated harmonic major arpeggio across four musical frequencies:
+  C5 (523.25Hz), E5 (659.25Hz), G5 (783.99Hz), and C6 (1046.50Hz).
+- Uses warm triangle oscillators (osc.type = "triangle").
+- Staggers note triggers by 60ms increments (i * 0.06).
+- Sustains each tone for 350ms with an exponential decay, creating a futuristic,
+  ceremonial "system online" chime.
+
+7.5 WHITE NOISE BUFFER & EXPONENTIAL BIQUAD BANDPASS FILTER (playWhoosh)
+Invoked when the user clicks "ENTER STUDIO" or skips the intro:
+- Allocates an audio buffer filled with pure mathematical white noise:
+  const bufferSize = audio.sampleRate * 0.4;
+  for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+- Passes the noise through a BiquadFilterNode configured as a bandpass filter:
+  filter.type = "bandpass";
+- Sweeps filter frequency exponentially from 300Hz up to 3,500Hz over 400ms:
+  filter.frequency.setValueAtTime(300, audio.currentTime);
+  filter.frequency.exponentialRampToValueAtTime(3500, audio.currentTime + 0.4);
+- Produces a realistic, aerodynamic holographic warp-speed whoosh.
+
+7.6 MUTE CONTROLLER & SILENT ERROR HANDLING
+Every audio method is wrapped in a silent try/catch block. If the client device
+lacks sound hardware, runs in headless automated testing, or restricts audio, the
+application continues running at 60fps without throwing uncaught exceptions.
+Users can toggle the sound anytime via the "AUDIO ON" / "MUTED" header button.
+================================================================================
+
+================================================================================
+8. WEBGL LIVING SHADER PIPELINE (OGL & GLSL ES 3.0)
+================================================================================
+
+8.1 OGL WEBGL 2.0 RENDERER & CANVAS DOM LIFECYCLE
+In src/components/GhostFibers.tsx, ambient background illumination is achieved
+through raw GPU compute via OGL (Minimal WebGL Library).
+- Uses WebGL 2.0 context with 32-bit floating point precision:
+  const renderer = new Renderer({ webgl: 2, alpha: false, antialias: false, dpr: 1 });
+- Attaches an accessible canvas to the DOM with aria-hidden="true".
+- Leverages a single Triangle geometry (Triangle(gl)) that covers the entire clip
+  space from (-1, -1) to (3, 3), eliminating diagonal seam artifacts common in
+  quad-based screen meshes.
+
+8.2 VERTEX SHADER SPECIFICATION
+#version 300 es
+in vec2 position;
+void main() {
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+The vertex shader is ultra-minimal, passing coordinates directly to the rasterizer.
+
+8.3 FRAGMENT SHADER MATHEMATICAL DEEP DIVE
+The fragment shader executes complex procedural raymarching and wave mathematics
+for every single pixel at 60 frames per second:
+1. Coordinate Normalization & Aspect Ratio Correction:
+   vec2 uv = (2.0 * gl_FragCoord.xy - resolution) / resolution.y;
+   Centers (0,0) at viewport midpoint and preserves square aspect ratio.
+2. 2D Coordinate Rotation:
+   p = rotate2d(radians(uRotation) + time * uRotationSpeed) * p;
+3. Multi-Layer Fiber Synthesis Loop (up to 10 layers):
+   for (int index = 0; index < MAX_LAYERS; index++) {
+     float fi = float(index) + 1.0;
+     p += uWaveAmplitude * sin(p.yx * fi * uWaveFrequency + time * (uWaveSpeed + fi * uLayerSpeed));
+     float radius = length(p);
+     float polarAngle = atan(p.y, p.x);
+     polarAngle += sin(radius * uTwistFrequency - time * uTwistSpeed + fi) * uTwist;
+     p = vec2(cos(polarAngle), sin(polarAngle)) * radius;
+     float lines = abs(sin(p.x * (uLineFrequency + fi * uLineSpacing) + sin(p.y * 3.0 + time)));
+     lines = pow(max(0.0, 1.0 - lines), uLineSharpness);
+     fiberField += lines / fi;
+     color += uLineColor * lines / fi;
+     float glow = exp(-uGlowFalloff * abs(sin(p.x * 3.0 + time + fi)));
+     color += uGlowColor * glow * uGlowIntensity / (fi * 2.0);
+   }
+   This creates living, twisting cosmic neon fibers resembling quantum strings.
+4. Vignette & Exposure Tone Mapping:
+   color = 1.0 - exp(-color * uBrightness);
+   Prevents oversaturation blow-out while maintaining radiant neon core intensity.
+
+8.4 MULTI-OCTAVE HASH NOISE & FILM GRAIN
+To eliminate color banding in 8-bit displays, layeredGrain() introduces 5 octaves
+of animated procedural hash grain:
+float grainHash(vec2 point) {
+  point = floor(point);
+  return fract(52.9829189 * fract(dot(point, vec2(0.065, 0.005))));
+}
+The resulting organic film grain texture gives the background a physical, cinematic depth.
+
+8.5 WEAKMAP CONTEXT PERSISTENCE & REACT PROP REACTIVITY
+The component maintains a WeakMap<HTMLElement, Context> associating container DOM
+nodes with their compiled WebGL state. When React props change (such as speed, scale,
+or colors), the component updates uniform values directly without re-compiling the
+GLSL shader program or recreating the canvas.
+
+8.6 PERFORMANCE & BATTERY OPTIMIZATION
+- IntersectionObserver: Halts the requestAnimationFrame loop when the canvas is
+  scrolled off-screen.
+- Document visibilitychange: Suspends rendering when the browser tab is hidden.
+- prefers-reduced-motion: Pauses rendering when user prefers reduced motion.
+- WebGL Context Loss Handling: Cleans up textures and calls loseContext() on unmount.
+================================================================================
+
+================================================================================
+9. MATHEMATICAL 3D ORBITAL MECHANICS (OrbitingTechBadges.tsx)
+================================================================================
+
+9.1 ELLIPTICAL PARAMETRIC FORMULATION
+In src/components/OrbitingTechBadges.tsx, six technology badges orbit the developer's
+portrait in an interactive 3D diagonal trajectory.
+The mathematical foundation models an ellipse in a 2D parametric plane:
+u = rx * cos(badgeAngle)
+v = ry * sin(badgeAngle)
+where:
+- rx: Semi-major radius (horizontal radius)
+- ry: Semi-minor radius (vertical radius)
+- badgeAngle: Angular position in radians:
+  badgeAngle = (angle + (idx * 2 * PI) / N) % (2 * PI)
+  with N = 6 badges spaced evenly at 60-degree (PI/3) intervals.
+
+9.2 2D ROTATIONAL MATRIX & ANGULAR INCLINE PHYSICS
+To prevent the orbit from looking like a flat, boring carousel, the ellipse is
+tilted diagonally across both axes:
+TILT_ANGLE = -0.32 radians (~ -18.3 degrees)
+The coordinates (u, v) are transformed via standard 2D rotational matrix mathematics:
+x = u * cos(TILT_ANGLE) - v * sin(TILT_ANGLE)
+y = u * sin(TILT_ANGLE) + v * cos(TILT_ANGLE)
+
+9.3 DEPTH-DRIVEN Z-INDEX SORTING, BLUR & OPACITY
+The apparent third dimension (Z-depth) is derived directly from sin(badgeAngle):
+depth = sin(badgeAngle)
+- When depth >= 0 (Front Hemisphere):
+  - Badge is passing in FRONT of the developer portrait card.
+  - zIndex = 30 (hover = 40)
+  - scale = 0.92 + depth * 0.16 (scales up to 1.08x at closest point)
+  - opacity = 1.0
+  - blur = 0px
+  - Active pulsing ping beacon is displayed.
+- When depth < 0 (Back Hemisphere):
+  - Badge is passing BEHIND the developer portrait card.
+  - zIndex = 5
+  - scale down to 0.76x
+  - opacity smoothly decreases to 0.58
+  - filter: blur(|depth| * 1.2px) creates physical optical depth of field.
+
+9.4 DYNAMIC RESPONSIVE ORBITAL RADII COMPUTATION
+An automated ResizeObserver recalculates the radii based on container width:
+- width < 450px (Mobile): rx = 145px, ry = 95px
+- 450px <= width < 640px (Tablet): rx = 180px, ry = 115px
+- width >= 640px (Desktop): rx = 225px, ry = 140px
+This guarantees that badges never collide with text columns or clip outside the viewport.
+
+9.5 60FPS DELTA-TIME ANIMATION LOOP
+The loop runs continuously via requestAnimationFrame with delta-time calculation:
+const delta = (currentTime - lastTime) / 1000;
+setAngle((prev) => (prev + (delta * Math.PI * 2) / 22) % (Math.PI * 2));
+One full revolution takes exactly 22.0 seconds regardless of whether the user's
+monitor runs at 60Hz, 120Hz, or 144Hz.
+
+9.6 INTERACTIVE HOVER FREEZE & HIGHLIGHT PHYSICS
+When a user hovers over any orbiting badge:
+- isPaused becomes true: the animation loop freezes in place.
+- The hovered badge immediately scales up to 1.18x.
+- Its border shifts to its brand color with a 25px glow.
+- Resumes motion smoothly when the cursor leaves.
+================================================================================
+
+================================================================================
+10. EXHAUSTIVE COMPONENT-BY-COMPONENT SPECIFICATION
+================================================================================
+
+10.1 CinematicIntro.tsx
+- Purpose: Full-screen opening ceremony establishing high-tech command center aesthetic.
+- Key State:
+  - active (boolean): Controls rendering of the intro portal.
+  - progress (0 to 100): Percentage counter driven by performance.now().
+  - logIndex (0 to 6): Current active telemetry log from BOOT_LOGS.
+  - soundEnabled (boolean): Mute/unmute toggle state.
+  - phase ('boot' | 'gauge' | 'reveal' | 'exit'): State machine controlling UI transitions.
+- Internal Features:
+  - Body Scroll Lock: Sets document.body.style.overflow = "hidden" while active.
+  - Replay Event Listener: Listens for window event "pasha:replay-intro" to re-trigger.
+  - Holographic Cyber Grid & Ambient Radial Flares: Background depth layers.
+  - Letter Stagger Typography: PASHA DEV split into animated motion.span elements.
+  - Circular SVG Progress Ring: strokeDashoffset dynamically computed: 390 - (390 * progress) / 100.
+  - Equalizer Frequency Bars: 12 animated gradient bars simulating live audio processing.
+  - Exit Animation: Scales up to 1.08x, blurs by 20px, fades to opacity 0 over 750ms.
+
+10.2 CinematicSection.tsx
+- Purpose: Wraps page sections in viewport-aware scroll transformations.
+- Implementation:
+  - Uses useScroll({ target: containerRef, offset: ["start 0.95", "end 0.05"] }).
+  - Maps scrollYProgress to opacity [0.15 -> 1 -> 1 -> 0.25].
+  - Maps scrollYProgress to scale [0.96 -> 1 -> 1 -> 0.97].
+  - Maps scrollYProgress to vertical translation Y [30px -> 0px -> 0px -> -20px].
+  - Adds will-change-transform and will-change-opacity for GPU rendering.
+
+10.3 GlobalBackground.tsx
+- Purpose: Renders seamless atmospheric backdrop throughout the entire page.
+- Implementation:
+  - Autoplaying, looping, muted, inline video element referencing bg-video.mp4.
+  - Fallback poster set to neon-mountains.jpg.
+  - Triple-layered contrast overlays:
+    1. Black tint (bg-black/30)
+    2. Vertical gradient (from-black/40 via-black/25 to-[#05070D]/85)
+    3. Radial ellipse mask vignette (radial-gradient(ellipse_at_center...))
+
+10.4 ScrollProgress.tsx
+- Purpose: Top-pinned reading progress indicator.
+- Implementation:
+  - Reads scrollYProgress via useScroll().
+  - Applies physics damping with useSpring(scrollYProgress, { stiffness: 120, damping: 30 }).
+  - Renders 1px hairline bar scaled horizontally via style={{ scaleX: width }}.
+
+10.5 Cursor.tsx
+- Purpose: Custom desktop mouse cursor and ambient spotlight.
+- Implementation:
+  - Checks usePointerFine() and useReducedMotion(); returns null on mobile/touch.
+  - Tracks mouse coordinates with useMotionValue(x, y).
+  - Smooths trailing ring and background glow with useSpring (stiffness 260, damping 26).
+  - Detects hover over interactive targets via target.closest("a, button, [data-cursor-hot]").
+  - Renders a 500px radial glow spotlight behind the cursor in the background layer (-z-10).
+
+10.6 Navbar.tsx
+- Purpose: Sticky, auto-hiding top navigation bar.
+- Implementation:
+  - Scroll direction tracking: Scrolling down hides the navbar (-translate-y-24); scrolling up reveals it.
+  - Active section spy: useActiveSection(SECTION_IDS) highlights current section.
+  - Brand identity: Displays developer portrait avatar with cyan border and glowing title.
+  - Replay intro button: Dispatches custom event "pasha:replay-intro" to re-run opening ceremony.
+  - Responsive mobile drawer: Animated slide-down drawer with full navigation links and CTA.
+
+10.7 Hero.tsx
+- Purpose: High-impact hero section showcasing title, role, and developer showcase stage.
+- Implementation:
+  - Availability radar badge with pulsing emerald green beacon.
+  - Headline: "AI Full Stack Developer" with gradient background clip on "Developer".
+  - Role strip displaying Full Stack, AI Engineer, Python Developer, Creative Developer.
+  - 3D Interactive Card Tilt: Tracks mouse coordinates over card, computes rotateX and rotateY (-18deg to 18deg), and renders dynamic specular glare reflection.
+  - Dual rotating dashed orbit rings behind portrait card.
+  - Metrics ticker strip: 10+ Apps Live, 99.9% Uptime, < 15ms Latency, 100% Craft.
+
+10.8 OrbitingTechBadges.tsx
+- Purpose: 3D tilted orbiting satellite tech badges revolving around hero portrait.
+- Technologies featured: React 19, Python, FastAPI, TypeScript, PostgreSQL, AI Agents.
+- Mathematical formulation: Described in Section 9.
+
+10.9 About.tsx
+- Purpose: Bento grid architecture presenting developer narrative and technical credentials.
+- Left Card (7 cols):
+  - Developer avatar with status indicator and timezone (UTC+5 // PKT).
+  - Narrative bio explaining frontend performance and backend intelligence.
+  - Interactive 3-Tab Architecture Blueprint Code Terminal:
+    - AgenticFlow.ts (AI Core: Vector search & Claude agent runtime)
+    - FastAPICore.py (Backend: Concurrency, async transaction, Redis cache)
+    - CinematicUI.tsx (Frontend: 60fps reactive streaming interface)
+    - Live "Copy Code" button with clipboard API feedback.
+  - Metrics summary (10+ Products, Full Stack, AI Native, 100% Craft).
+- Right Card (5 cols):
+  - Animated progress telemetry meters: Autonomous AI (98%), Frontend Architecture (96%), Python Core (94%), Production Systems (92%).
+  - Trajectory timeline milestones: 2024-Present (AI Systems), 2023-2024 (Python Microservices), 2022-2023 (React Engineering).
+- Bottom Cards:
+  - 3 Pillars of Craft: Cinematic Frontend, Robust Python Core, Applied AI Systems.
+
+10.10 TechStack.tsx
+- Purpose: Comprehensive categorized catalog of skills and tools.
+- Categories: All Technologies (23), Frontend (7), Backend (6), AI & ML (4), Tools & DevOps (8).
+- Implementation:
+  - Animated category filter pills with spring layoutId indicator.
+  - Grid of 23 technology cards featuring authentic official vector brand icons.
+  - Dynamic Infinite Brand Marquee Ticker translating horizontally via continuous loop.
+
+10.11 Projects.tsx
+- Purpose: Filterable selected projects showcase.
+- Filter Categories: ALL, AI, FULL STACK, CREATIVE, TOOLS.
+- Implementation:
+  - Animated number counters for project statistics (10+ Projects, 5+ AI systems, Multiple Deployments, ∞ Ideas).
+  - AnimatePresence layout animations when switching filters.
+  - Mounts ProjectModal for architecture inspection.
+
+10.12 ProjectCard.tsx
+- Purpose: Individual project card renderer.
+- Supports two layout modes:
+  - feature: 2-column span with horizontal layout, image on left, highlights on right.
+  - split: 1-column span with vertical card layout.
+- Displays project cover image with hover zoom, status badge, category chip, tech pills, and "Inspect Blueprint" action.
+
+10.13 ProjectModal.tsx
+- Purpose: Deep-dive architecture inspection modal.
+- Implementation:
+  - Controlled by Escape key listener and backdrop click.
+  - Locks document.body.style.overflow = "hidden".
+  - Displays high-resolution banner image, system highlights, full tech stack, and telemetry metrics (60 FPS, Online, Encrypted).
+
+10.14 Hackathons.tsx
+- Purpose: Showcases competitive AI hackathons and global sprints.
+- Featured Sprint: Lablab.ai x IBM Bob 2.0 Global Hackathon (September 2026).
+  - Project: Pasha DevPilot (Autonomous AI Software Engineer).
+  - Metrics: 48-Hour Sprint, Innovation Distinction, 94.6% Auto-Fix Rate, 128k Context Window.
+  - Includes interactive certificate trigger opening full-screen verified credential.
+- Secondary Sprints: Meta Llama 3.1 Global Sprint (Nexora Arena), Autonomous Agents Summit (Zoro 2.0).
+
+10.15 Services.tsx
+- Purpose: Two-tier capability matrix defining what Pasha Dev builds.
+- Tier 1 (Dual Flagships):
+  - Autonomous AI & Agentic Applications (Streaming UI, Tool Calling, RAG, Multi-Agent Loops)
+  - Full-Stack Digital Platforms (React 19, FastAPI Core, PostgreSQL, Docker CI/CD)
+- Tier 2 (Four Specialized Pillars):
+  - Python & FastAPI Backends (AsyncIO, Pydantic, Redis, JWT)
+  - Vector Search & RAG (HNSW Embeddings, Chroma, Hybrid Search)
+  - 60FPS Cinematic Web (Framer Motion, Glassmorphism, Micro-UX)
+  - Developer Tools & Automation (CLI Suites, Docker, GitHub Actions)
+
+10.16 Certificates.tsx
+- Purpose: Filterable gallery of 5 verified industry certifications.
+- Filter Categories: All, AI & Agents, Full Stack & React, Python & Backend, Cloud & DevOps, Creative UI/UX.
+- Features: Image zoom on hover, verified badge, cryptographic credential ID, and high-resolution inspection modal.
+
+10.17 FAQ.tsx
+- Purpose: Technical knowledge matrix and direct consultation hub.
+- Left Column: Consultation hub with < 2h average response time, key commitments, and instant email copy button.
+- Right Column:
+  - Real-time search input filtering questions, answers, and tags.
+  - 5 category filter pills (All, AI & Agents, Full Stack, Python & DevOps, Hiring & Timeline).
+  - Smooth animated accordion expand/collapse using AnimatePresence.
+
+10.18 Contact.tsx
+- Purpose: Interactive command bridge for initiating projects.
+- Features:
+  - Live ticking UTC+5 (PKT) digital clock.
+  - Direct developer email card with one-click clipboard copy.
+  - Interactive Project Directive Dispatcher form:
+    1. Select architecture focus (Autonomous AI, Full-Stack MVP, FastAPI Backend, Cinematic Web, Audit)
+    2. Select target velocity (Rapid Sprint 1-2 wks, Production MVP 3-4 wks, Retainer)
+    3. Input client name and email
+    4. Input project specifications
+    5. Dispatches formatted mailto link with structured metadata.
+  - Official Social Links Grid: GitHub, LinkedIn, Instagram, TikTok, Threads.
+
+10.19 Footer.tsx
+- Purpose: Elegant site closure and navigation mesh.
+- Features: Brand identity, status badge, split Explore and Architecture navigation columns, social links, and 2026 copyright notice.
+
+10.20 BackToTop.tsx
+- Purpose: Floating circular button appearing when window.scrollY > 900px, triggering smooth scroll to top.
+
+10.21 ProfileImage.tsx
+- Purpose: Developer avatar loader with image error boundary and MM monogram fallback.
+
+10.22 Typewriter.tsx
+- Purpose: Types and backspaces through 6 professional roles with reduced-motion support.
+
+10.23 SectionHeading.tsx
+- Purpose: Reusable section header component ensuring consistent typography, accent bar, and eyebrow styling.
+
+10.24 Ambient.tsx
+- Purpose: Living canvas combining OGL GhostFibers WebGL background, 24 twinkling stars, 36 drifting sparks, and 4 shooting stars.
+
+10.25 Intro.tsx
+- Purpose: Minimalist session-stored initial loading screen with progress bar and skip button.
+
+10.26 TechIcons.tsx
+- Purpose: Custom SVG brand vector definitions for 27 technologies, including React, TypeScript, Python, FastAPI, Docker, Antigravity, Kiro, Freebuff, and OpenCode.
+================================================================================
+
+================================================================================
+11. DOMAIN DATA MODELS & STATIC KNOWLEDGE STORES
+================================================================================
+
+11.1 src/data/projects.ts
+Defines the Project and ProjectCategory types and exports 5 flagship projects:
+1. Nexora (AI / Full Stack):
+   Social and skill development platform combining professional feeds, community
+   spaces, and AI-refereed skill PvP competitions.
+   Tech: React, TypeScript, Vite, Tailwind, FastAPI, PostgreSQL, Redis, Docker.
+2. Pasha Tools (Tools / Productivity):
+   All-in-one developer command center providing PDF/video utilities, JSON/JWT tools,
+   Base64 conversion, hashing, regex, and text-to-speech.
+   Tech: React, TypeScript, Tailwind, Python, FastAPI.
+3. Wishora (Full Stack / Creative):
+   Digital greeting card studio with real-time editing, photo upload, and animated cards.
+   Tech: Next.js, TypeScript, Tailwind, Framer Motion.
+4. Zoro 2.0 (AI / Desktop):
+   Jarvis-style native workstation copilot with local voice interaction, Roman Urdu
+   NLP, memory recall, and desktop computer automation.
+   Tech: Tauri, React, Python, Local Voice Models.
+5. Cinematic Web Experiences (Creative):
+   Curated series of motion-led storytelling experiments (A Little Galaxy, Eternal
+   Garden, Aura Protocol) built with canvas and scroll choreography.
+
+11.2 src/data/hackathons.ts
+Defines HackathonItem and HackathonCertificate types and exports 3 major sprints:
+1. IBM Bob 2.0 Hackathon (Lablab.ai x IBM):
+   Pasha DevPilot  -  Autonomous AI Software Engineer for Full-Stack Systems.
+   Winner of Innovation & Excellence Distinction.
+   Credential: LABLAB-IBM-BOB2-2026-MUBASHAR.
+2. Meta Llama 3.1 Global Sprint (Lablab.ai Community):
+   Nexora Arena & AI Coach  -  Low-latency WebSocket PvP arena with real-time AI referee.
+   Credential: LABLAB-LLAMA-2026-NEXORA.
+3. Autonomous Agents & Workflow Summit:
+   Zoro 2.0 Core Agent  -  Local voice assistant supporting Roman Urdu programming commands.
+   Credential: LABLAB-AGENTS-2026-ZORO.
+
+11.3 src/data/faq.ts
+Contains 9 comprehensive FAQ items covering:
+- Tech Stack and architectural choices.
+- Applied AI and autonomous agent workflows.
+- Full-stack capabilities from scratch.
+- 60fps cinematic web performance.
+- Python and FastAPI backend rationale.
+- Non-breaking incremental AI integration into legacy products.
+- Sprint-based delivery workflows and timelines (1-4 weeks).
+- Cloud hosting, Docker containerization, and DevOps.
+- Flexible contract, freelance, and dedicated engagement models.
+Also exports 5 verified industry certifications:
+- Generative AI & LLM Systems Specialist (DeepLearning.AI)
+- Professional Full Stack & React Developer (Meta)
+- Python Software & Systems Engineering (Python Institute)
+- Cloud DevOps & Docker Containerization (AWS / CNCF)
+- Creative UI/UX & High-Performance Web Engineering (Google)
+
+11.4 src/data/skills.ts
+Defines skill groups (Frontend, Backend, AI, Tools & DevOps), the 5-stage
+developer journey (Started Building -> Full Stack -> AI Engineering -> Creative
+Web -> Building Products), and 8 core client services.
+
+11.5 src/data/socials.ts
+Defines developer identity constants, navigation section IDs, and 5 official social
+channels:
+- GitHub: https://github.com/pasha804 (handle: pasha804)
+- LinkedIn: https://www.linkedin.com/in/pasha-dev/ (handle: pasha-dev)
+- Instagram: https://instagram.com/pasha_dev_ (handle: @pasha_dev_)
+- TikTok: https://www.tiktok.com/@pasha_dev_ (handle: @pasha_dev_)
+- Threads: https://www.threads.net/@pasha_dev_ (handle: @pasha_dev_)
+================================================================================
+
+================================================================================
+12. CUSTOM HOOKS & SHARED UTILITY LIBRARIES
+================================================================================
+
+12.1 src/hooks/useActiveSection.ts
+- Purpose: High-performance scroll spy tracking which section is currently active.
+- Implementation:
+  - Maps an array of element IDs to DOM elements.
+  - Creates an IntersectionObserver with rootMargin: "-45% 0px -45% 0px".
+    This 10% viewport center-strip ensures that a section only activates when it
+    occupies the prominent focal area of the user's screen.
+  - Sorts intersecting entries by intersectionRatio and updates the active state.
+  - Cleans up observer connections on unmount or ID change.
+
+12.2 src/hooks/usePointerFine.ts
+- Purpose: Detects whether the current device uses a precise pointing device (mouse)
+  or touch.
+- Implementation:
+  - Uses window.matchMedia("(hover: hover) and (pointer: fine)").
+  - Defaults to false during SSR to avoid hydration mismatch.
+  - Listens for media query changes (e.g., hybrid laptop transitioning between tablet
+    and desktop mode) and updates state accordingly.
+
+12.3 src/hooks/use-mobile.tsx
+- Purpose: Detects whether the screen width is below the 768px tablet breakpoint.
+- Implementation:
+  - Uses window.matchMedia("(max-width: 767px)").
+  - Listens to change events and synchronizes React state.
+
+12.4 src/lib/motion.ts
+- Purpose: Centralized animation variants and timing curves.
+- Standard Cubic Bézier Easing Curve:
+  export const EASE = [0.22, 1, 0.36, 1]; (Awwwards-standard smooth deceleration).
+- Exported Variants:
+  - fadeUp: Hidden at y: 28, opacity: 0; transitions to y: 0, opacity: 1 over 0.8s.
+  - fadeIn: Simple smooth opacity fade over 1.0s.
+  - reveal: Blur reveal from y: 40, filter: "blur(10px)" to y: 0, blur(0px).
+  - scaleIn: Gentle zoom entrance from scale: 0.94.
+  - slideLeft / slideRight: Lateral directional sliding transitions.
+  - staggerContainer: Staggers child variant animations by 0.09s increments.
+  - viewportOnce: Standard viewport trigger configuration: { once: true, amount: 0.25 }.
+
+12.5 src/lib/utils.ts
+- Purpose: Conditional classname merging utility.
+- Implementation:
+  export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+  }
+  Combines clsx (handling conditional logic, arrays, and objects) with tailwind-merge
+  (resolving conflicting Tailwind utility classes such as px-4 overriding px-6).
+================================================================================
+
+================================================================================
+13. RADIX UI PRIMITIVES & COMPONENT LIBRARY ARCHITECTURE
+================================================================================
+
+The src/components/ui/ directory houses 46 modular component wrappers built on
+top of Radix UI primitives and styled according to the shadcn/ui New York specification.
+Every component has been adapted to the cinematic OKLCH dark design system.
+
+Key Highlights of the UI Layer:
+
+1. Button (src/components/ui/button.tsx):
+   Built using class-variance-authority (cva) with custom variants:
+   - default: High-contrast primary button with subtle elevation.
+   - neon: Gradient background (bg-hero-action) with shadow-neon cyan glow and
+     an animated btn-shimmer sheen travelling across the button on hover.
+   - outlineNeon: Frosted glass panel with cyan border and soft neon glow.
+   - nav: Optimized for topbar actions with backdrop blur.
+   - Supports asChild via Radix Slot for polymorphic rendering (e.g., rendering as
+     an <a> tag while retaining full button styles and animations).
+
+2. Dialog & Project Modal (src/components/ui/dialog.tsx):
+   Accessible modal dialog built on @radix-ui/react-dialog:
+   - Focus management: Traps focus within modal while open.
+   - Screen reader support: Accessible DialogTitle and DialogDescription.
+   - Backdrop blur: Dark overlay with backdrop-blur-xl.
+   - Escape key and outside click listeners for effortless dismissal.
+
+3. Form System (src/components/ui/form.tsx):
+   Integrates react-hook-form with Radix Label and custom input controls:
+   - FormField, FormItem, FormLabel, FormControl, FormMessage.
+   - Automatic aria-describedby and aria-invalid attribute synchronization.
+
+4. Accordion (src/components/ui/accordion.tsx):
+   Built on @radix-ui/react-accordion, providing animated expand/collapse states
+   with clean chevron rotation and accessible keyboard arrow navigation.
+
+5. Sheet & Drawer (src/components/ui/sheet.tsx & drawer.tsx):
+   - Sheet: Slide-out panels from left, right, top, or bottom.
+   - Drawer: Mobile-first touch-draggable drawer powered by Vaul.
+
+6. Tooltip (src/components/ui/tooltip.tsx):
+   Built on @radix-ui/react-tooltip with delayed hover appearance, collision
+   detection, and animated scale entrance.
+================================================================================
+
+================================================================================
+14. ACCESSIBILITY, REDUCED MOTION & SECURITY POSTURE
+================================================================================
+
+14.1 WCAG AA COMPLIANCE & CONTRAST RATIO ADHERENCE
+Despite the high-tech, glowing cyber aesthetics, Pasha Dev Studio adheres strictly
+to Web Content Accessibility Guidelines (WCAG 2.1 AA):
+- Text Contrast: All body text uses oklch(0.94 0.04 240) against the dark background,
+  achieving a contrast ratio of over 14.5:1 (far exceeding the 4.5:1 requirement).
+- Muted Text Contrast: Secondary labels and muted text maintain a minimum 5.2:1
+  contrast ratio.
+- Semantic HTML: Uses <header>, <nav>, <main>, <article>, <section>, and <footer> tags.
+
+14.2 PREFERS-REDUCED-MOTION GLOBAL HANDLING
+Users with vestibular disorders or motion sensitivities are fully accommodated:
+- In src/styles.css:
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+- In components: Cursor.tsx, Ambient.tsx, Typewriter.tsx, and Intro.tsx check
+  useReducedMotion(). When true, complex floating particles, shooting stars,
+  WebGL fibers, and mouse tracking are disabled or set to static safe states.
+
+14.3 KEYBOARD NAVIGATION & FOCUS RINGS
+- Focus Indicators: Interactive elements feature custom :focus-visible rings:
+  outline: 2px solid var(--color-glow); outline-offset: 3px;
+- Modals & Drawers: Trap keyboard focus and close automatically on Escape.
+- Cursor Hot Zones: Interactive cards and buttons carry data-cursor-hot, allowing
+  keyboard-focused users to navigate with complete visual feedback.
+
+14.4 CSRF PROTECTION & SECURITY HEADERS
+- Cross-Site Request Forgery (CSRF) Middleware:
+  All server functions are protected via createCsrfMiddleware() in src/start.ts,
+  preventing malicious cross-origin requests.
+- Content Security: No dynamic eval() or unsanitized innerHTML injections.
+================================================================================
+
+================================================================================
+15. PRODUCTION BUILD, DEPLOYMENT & PERFORMANCE OPTIMIZATIONS
+================================================================================
+
+15.1 BUILD PIPELINE & NITRO OUTPUT STRUCTURE
+Running 'npm run build' or 'bun run build' executes:
+1. TypeScript Typecheck: Validates all component types, route definitions, and data models.
+2. Vite Client Bundling: Compiles React 19 components, extracts CSS via Lightning CSS,
+   minifies JavaScript chunks, and copies public assets.
+3. Nitro Server Compilation: Bundles src/server.ts into an optimized edge server handler.
+Output directory structure (.output/):
+- .output/public/: Contains all client bundles, hashed JS/CSS, images, and video.
+- .output/server/: Contains nitro server entry (index.mjs) and cloud configuration.
+
+15.2 DEPLOYMENT TARGETS
+- Cloudflare Pages / Workers:
+  Native Nitro support compiles the server into a lightweight V8 worker running on
+  Cloudflare's global edge network (< 10ms cold start).
+- Netlify Edge:
+  Deploys static assets to Netlify CDN edge nodes while executing server functions
+  on Netlify Edge Functions.
+- Docker & VPS:
+  Can be packaged into a lightweight Alpine Node container for self-hosted deployment.
+
+15.3 CORE WEB VITALS OPTIMIZATION
+- Largest Contentful Paint (LCP):
+  Optimized by preloading fonts, using compressed WebP/JPG images, and prioritizing
+  initial SSR HTML render.
+- Interaction to Next Paint (INP):
+  Kept under 50ms by leveraging React 19 concurrent transitions, separating heavy
+  animations into isolated requestAnimationFrame loops, and using CSS transforms.
+- Cumulative Layout Shift (CLS):
+  Zero CLS achieved by declaring explicit width and height dimensions on images,
+  aspect-ratio wrappers, and reserving layout space for dynamic elements.
+
+15.4 CDN CACHING DIRECTIVES
+A _headers file in the public root specifies immutable cache headers for hashed
+Vite bundles (max-age=31536000, immutable) and short TTL for HTML documents,
+guaranteeing instant updates upon new deployments.
+
+================================================================================
+END OF SPECIFICATION // PASHA DEV STUDIO V6.0
+Engineered with React 19, TypeScript, TanStack Start & Framer Motion
+Author: Muhammad Mubashar (Pasha Dev)
+================================================================================
