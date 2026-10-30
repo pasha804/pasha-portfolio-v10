@@ -95,7 +95,7 @@ export function Services() {
                   <Zap className="size-3 text-cyan" />
                   <span>STACK: OpenAI • LangChain • Python • FastAPI</span>
                 </div>
-                <span className="text-cyan font-bold tracking-wider">LATENCY: &lt; 15MS</span>
+                <span className="text-cyan font-bold tracking-wider">PIPELINE: STREAMING SSE</span>
               </div>
             </motion.div>
 
@@ -158,7 +158,7 @@ export function Services() {
                   <Code2 className="size-3 text-violet" />
                   <span>STACK: React • TypeScript • FastAPI • PostgreSQL</span>
                 </div>
-                <span className="text-violet font-bold tracking-wider">UPTIME: 99.9%</span>
+                <span className="text-violet font-bold tracking-wider">ARCHITECTURE: ASYNC MICROSERVICES</span>
               </div>
             </motion.div>
           </div>

@@ -84,8 +84,8 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
             </span>
           </div>
 
-          <h1 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1]">
-            I Build Intelligent <br />
+          <h1 className="mt-3.5 font-display text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-foreground leading-[1.15]">
+            I Build Intelligent <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,229,255,0.4)]">
               Digital Experiences.
             </span>
@@ -198,14 +198,14 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
           {/* Animated Neon Rotating Orbit Rings behind portrait */}
           <motion.div
             animate={{ rotate: 360 }}
-            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            className="pointer-events-none absolute left-[18%] top-[1%] h-[88%] w-[58%] rounded-[48%_48%_30px_30px] border-2 border-dashed border-cyan/40"
+            transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+            className="pointer-events-none absolute h-[500px] w-[340px] rounded-[48%_48%_28px_28px] border-2 border-dashed border-cyan/40"
             style={{ filter: "drop-shadow(0 0 16px rgba(0,229,255,0.35))" }}
           />
           <motion.div
             animate={{ rotate: -360 }}
-            transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
-            className="pointer-events-none absolute left-[14%] top-[-2%] h-[94%] w-[66%] rounded-[50%_50%_36px_36px] border border-violet/35"
+            transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
+            className="pointer-events-none absolute h-[530px] w-[370px] rounded-[50%_50%_32px_32px] border border-violet/35"
             style={{ filter: "drop-shadow(0 0 20px rgba(189,52,254,0.3))" }}
           />
 
@@ -239,7 +239,7 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
               width={1024}
               height={1280}
               alt="Muhammad Mubashar, AI full stack developer"
-              className="relative z-0"
+              className="relative z-0 h-full w-full object-cover object-[center_12%]"
             />
           </motion.div>
 

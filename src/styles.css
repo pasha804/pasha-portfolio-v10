@@ -395,17 +395,18 @@
 
 .hero-grid {
   width: min(89%, 1460px);
-  margin: 45px auto 0;
+  margin: 25px auto 0;
   display: grid;
-  grid-template-columns: 0.94fr 1.06fr;
-  min-height: 640px;
+  grid-template-columns: 1fr 1fr;
+  min-height: 580px;
   align-items: center;
+  gap: 32px;
 }
 
 .hero-copy {
   align-self: center;
   z-index: 2;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
 }
 
 .availability {
@@ -441,9 +442,9 @@
 
 .hero-copy h1 {
   margin: 0;
-  font-size: clamp(66px, 6.1vw, 100px);
-  line-height: 0.91;
-  letter-spacing: 0;
+  font-size: clamp(38px, 4.4vw, 58px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
   font-weight: 800;
 }
 
@@ -528,21 +529,25 @@
 
 .portrait-stage {
   position: relative;
-  height: 610px;
-  align-self: end;
+  height: 560px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -15px;
 }
 
 .portrait-frame {
-  position: absolute;
-  left: 22%;
-  top: 4%;
-  width: 51%;
-  height: 83%;
+  position: relative;
+  left: auto;
+  top: auto;
+  width: min(320px, 78%);
+  height: 480px;
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--glow) 50%, transparent);
-  border-radius: 42% 42% 20px 20px;
+  border-radius: 46% 46% 24px 24px;
   background: linear-gradient(155deg, color-mix(in oklab, var(--primary) 14%, transparent), color-mix(in oklab, var(--panel-strong) 72%, transparent));
-  box-shadow: inset 0 0 42px color-mix(in oklab, var(--primary) 28%, transparent), 0 0 28px color-mix(in oklab, var(--primary) 35%, transparent);
+  box-shadow: inset 0 0 42px color-mix(in oklab, var(--primary) 28%, transparent), 0 0 35px color-mix(in oklab, var(--primary) 35%, transparent);
 }
 
 .portrait-frame:before {
@@ -557,11 +562,12 @@
 .portrait-frame img {
   position: absolute;
   z-index: 1;
-  left: -5%;
-  bottom: -13%;
-  width: 108%;
-  height: 107%;
-  object-fit: contain;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
 }
 
 .orbit {
@@ -635,31 +641,33 @@
 .cursor-note {
   position: absolute;
   z-index: 4;
-  right: 23%;
-  top: 0;
+  right: 6%;
+  top: 4%;
   color: var(--glow);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
 }
 
 .cursor-shape {
-  font-size: 55px;
+  font-size: 24px;
   transform: rotate(12deg);
   text-shadow: 0 0 10px var(--primary);
 }
 
 .cursor-note small {
-  margin-top: 25px;
-  font-size: 10px;
+  margin-top: 0;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
 }
 
 .hover-chip {
   position: absolute;
   z-index: 4;
-  right: 20%;
-  bottom: 23%;
-  padding: 11px 20px;
+  right: 6%;
+  bottom: 8%;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -667,7 +675,8 @@
   border-radius: 999px;
   background: color-mix(in oklab, var(--panel-strong) 84%, transparent);
   color: var(--muted-foreground);
-  font-size: 10px;
+  font-size: 11px;
+  backdrop-filter: blur(12px);
 }
 
 .hover-chip svg {
@@ -676,20 +685,24 @@
 
 .nameplate {
   position: absolute;
-  z-index: 4;
-  bottom: 8%;
-  left: 25%;
-  width: 44%;
-  min-width: 300px;
-  height: 82px;
-  padding: 0 22px;
+  z-index: 20;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  min-width: 260px;
+  max-width: 90%;
+  height: 64px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   border: 1px solid var(--glow);
   border-radius: 14px;
-  background: color-mix(in oklab, var(--panel-strong) 92%, transparent);
-  box-shadow: 0 0 25px color-mix(in oklab, var(--primary) 18%, transparent);
+  background: color-mix(in oklab, var(--panel-strong) 94%, transparent);
+  box-shadow: 0 0 30px color-mix(in oklab, var(--primary) 28%, transparent);
+  backdrop-filter: blur(16px);
 }
 
 .nameplate span {
@@ -770,7 +783,7 @@
   .hero-grid { width: 91%; grid-template-columns: 1fr 1fr; }
   .tech-card { width: 130px; }
   .metrics { width: 68%; }
-  .hero-copy h1 { font-size: 66px; }
+  .hero-copy h1 { font-size: clamp(34px, 3.8vw, 48px); line-height: 1.15; }
 }
 
 @media (max-width: 900px) {
@@ -780,24 +793,24 @@
   .mobile-menu { display: block; }
   .brand { min-width: 0; }
   .avatar { width: 46px; height: 46px; }
-  .hero-grid { display: flex; flex-direction: column; margin-top: 35px; }
+  .hero-grid { display: flex; flex-direction: column; margin-top: 20px; }
   .hero-copy { width: 100%; padding-bottom: 0; }
-  .hero-copy h1 { font-size: clamp(52px, 12vw, 76px); }
+  .hero-copy h1 { font-size: clamp(32px, 7vw, 44px); line-height: 1.18; }
   .summary { font-size: 16px; }
   .role-strip { overflow: auto; border-radius: 12px; }
   .hero-actions { gap: 12px; }
   .hero-actions a { padding-inline: 22px; }
-  .portrait-stage { width: 100%; height: 650px; margin-top: 45px; }
-  .portrait-frame { left: 22%; width: 56%; }
+  .portrait-stage { width: 100%; height: 500px; margin-top: 20px; align-self: center; }
+  .portrait-frame { width: min(290px, 80%); height: 420px; }
   .react-card { left: 4%; }
   .python-card { left: 0; }
   .fast-card { left: 3%; }
   .ts-card { right: 0; }
   .db-card { right: 0; }
   .ai-card { right: 2%; }
-  .nameplate { left: 27%; width: 48%; }
+  .nameplate { left: 50%; transform: translateX(-50%); width: min(320px, 90%); }
   .scroll-cue { display: none; }
-  .metrics { position: relative; bottom: auto; margin: 40px auto 20px; width: 90%; grid-template-columns: repeat(2, 1fr); height: 150px; }
+  .metrics { position: relative; bottom: auto; margin: 30px auto 20px; width: 90%; grid-template-columns: repeat(2, 1fr); height: 150px; }
   .metrics > div:nth-child(2) { border-right: 0; }
   .metrics > div { border-bottom: 1px solid var(--border); }
   .metrics > div:nth-child(3), .metrics > div:nth-child(4) { border-bottom: 0; }
@@ -807,17 +820,17 @@
   .topbar { padding: 0 14px; }
   .brand strong { font-size: 15px; }
   .brand small { font-size: 9px; }
-  .hero-grid { width: 88%; margin-top: 28px; }
+  .hero-grid { width: 92%; margin-top: 15px; }
   .intro { font-size: 15px; }
-  .hero-copy h1 { font-size: 50px; line-height: 0.94; }
+  .hero-copy h1 { font-size: 28px; line-height: 1.2; }
   .desktop-break { display: none; }
   .summary { font-size: 14px; }
   .role-strip { gap: 12px; font-size: 9px; padding: 11px 13px; }
   .role-strip span:nth-of-type(n+2), .role-strip i:nth-of-type(n+2) { display: none; }
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions a { width: 100%; }
-  .portrait-stage { height: 550px; margin-top: 24px; }
-  .portrait-frame { left: 13%; width: 74%; height: 79%; }
+  .portrait-stage { height: 440px; margin-top: 15px; }
+  .portrait-frame { width: 250px; height: 360px; }
   .tech-card { width: auto; min-width: 105px; height: 52px; padding: 0 10px; gap: 8px; font-size: 10px; }
   .tech-icon svg { width: 18px; }
   .atom { font-size: 26px; }
@@ -830,10 +843,10 @@
   .ai-card { right: -2%; top: 65%; }
   .cursor-note { display: none; }
   .hover-chip { right: 7%; bottom: 18%; }
-  .nameplate { left: 10%; bottom: 1%; min-width: 0; width: 80%; height: 68px; padding: 0 14px; }
+  .nameplate { left: 50%; transform: translateX(-50%); bottom: 1%; min-width: 0; width: 90%; height: 60px; padding: 0 14px; }
   .nameplate strong { font-size: 11px; }
   .nameplate em { font-size: 16px; }
-  .metrics { bottom: auto; margin: 30px auto 20px; width: 92%; }
+  .metrics { bottom: auto; margin: 25px auto 15px; width: 92%; }
   .metrics svg { width: 24px; }
   .metrics strong { font-size: 13px; }
   .metrics small { font-size: 7px; }

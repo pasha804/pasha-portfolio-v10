@@ -42,7 +42,7 @@ const PRESET_QUERIES = [
   },
   {
     q: "How does he architect AI agents?",
-    a: "Pasha builds applied AI systems with multi-step tool/function calling, vector embeddings with RAG knowledge grounding, dynamic prompt directives, and autonomous agent loops designed for low latency (< 15ms streaming).",
+    a: "Pasha builds applied AI systems with multi-step tool/function calling, vector embeddings with RAG knowledge grounding, dynamic prompt directives, and autonomous agent loops designed for real-time streaming interfaces.",
     links: [{ label: "Explore What I Build", href: "#services" }],
   },
 ];

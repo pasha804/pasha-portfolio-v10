@@ -1,242 +1,547 @@
-import { useState, useRef } from "react";
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Sparkles,
   ArrowUpRight,
   Code2,
   BrainCircuit,
   Database,
-  Rocket,
-  ShieldCheck,
-  Zap,
-  CheckCircle2,
   Terminal,
   Activity,
   Cpu,
   Layers,
   Check,
   Copy,
+  Play,
+  ShieldCheck,
+  CheckCircle2,
+  FileText,
+  MapPin,
+  Clock,
+  Compass,
+  Flame,
+  Zap,
 } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
 import portrait from "@/assets/developer-portrait.png";
-import { EASE, fadeUp, staggerContainer } from "@/lib/motion";
+import { EASE } from "@/lib/motion";
+import { sound } from "@/lib/sound";
 
 const PILLARS = [
   {
     icon: Sparkles,
-    title: "Cinematic Frontend",
+    title: "Cinematic 60fps Frontend",
     description:
-      "Crafting hyper-responsive interfaces using React 19, TypeScript, and modern CSS with 60fps GPU acceleration and fluid micro-interactions.",
+      "Crafting fluid, GPU-accelerated web experiences with React 19, TypeScript, Tailwind CSS, and Framer Motion with sub-frame micro-interactions and zero jank.",
     accent: "text-cyan",
     laser: "via-cyan",
-    borderGlow: "hover:border-cyan/60 hover:shadow-[0_0_35px_rgba(0,229,255,0.22)]",
-    telemetry: "REACT 19 • 60FPS UX • ZERO JANK",
+    borderGlow: "hover:border-cyan/60 hover:shadow-[0_0_40px_rgba(0,229,255,0.25)]",
+    telemetry: "REACT 19 • GPU MOTION • TYPED CONTRACTS",
   },
   {
     icon: Database,
-    title: "Robust Python Core",
+    title: "High-Throughput Python Core",
     description:
-      "Designing scalable asynchronous APIs with FastAPI, Python, PostgreSQL, and Redis built for heavy production workloads.",
-    accent: "text-[#3776AB]",
-    laser: "via-[#3776AB]",
-    borderGlow: "hover:border-[#3776AB]/60 hover:shadow-[0_0_35px_rgba(55,118,171,0.25)]",
-    telemetry: "FASTAPI • ASYNCIO • POSTGRES",
+      "Engineering asynchronous backend microservices with Python, FastAPI, Redis, and PostgreSQL designed for resilience and heavy concurrent workloads.",
+    accent: "text-[#38bdf8]",
+    laser: "via-[#38bdf8]",
+    borderGlow: "hover:border-[#38bdf8]/60 hover:shadow-[0_0_40px_rgba(56,189,248,0.25)]",
+    telemetry: "FASTAPI • ASYNCIO • REDIS • POSTGRES",
   },
   {
     icon: BrainCircuit,
-    title: "Applied AI Systems",
+    title: "Autonomous AI & Agentic Systems",
     description:
-      "Integrating state-of-the-art LLMs, autonomous agentic loops, RAG, and custom prompt directives directly into real products.",
-    accent: "text-[#BD34FE]",
-    laser: "via-[#BD34FE]",
-    borderGlow: "hover:border-[#BD34FE]/60 hover:shadow-[0_0_35px_rgba(189,52,254,0.25)]",
-    telemetry: "LLMS • RAG SEARCH • MULTI-AGENT",
+      "Architecting multi-agent loops, AST verification pipelines, RAG retrieval, and specialized model integrations to build genuine software agents.",
+    accent: "text-[#bd34fe]",
+    laser: "via-[#bd34fe]",
+    borderGlow: "hover:border-[#bd34fe]/60 hover:shadow-[0_0_40px_rgba(189,52,254,0.25)]",
+    telemetry: "LLM REASONING • AST PARSER • MULTI-AGENT",
   },
 ];
 
 const HIGHLIGHTS = [
-  { value: "10+", label: "Verified Projects Built" },
-  { value: "Full Stack", label: "React + Python Core" },
-  { value: "AI Native", label: "Autonomous SDLC & Agents" },
-  { value: "100%", label: "Real Code & Repositories" },
+  { value: "10+", label: "Verified Products", sub: "Shipped & Documented" },
+  { value: "Full Stack", label: "React + Python", sub: "End-to-End Core" },
+  { value: "Autonomous", label: "AI & Agentic SDLC", sub: "AST & LLM Loops" },
+  { value: "100%", label: "Real Codebases", sub: "Zero Fabrications" },
 ];
 
 const CODE_TABS = [
   {
     id: "ai",
-    label: "AgenticSDLC.ts",
-    badge: "AI CORE",
-    code: `// Pasha DevPilot — Autonomous AST Analysis & Verification
-export async function executeAgentWorkflow(repoContext: RepositoryContext) {
-  const defects = await astScanner.analyzeSyntaxTree(repoContext.files);
-  const patchPlan = await ibmBob.generateRemediationPlan({
-    defects,
-    constraints: ["bounded_repair_loop", "strict_typing"],
+    label: "DevPilot-Agent.ts",
+    badge: "AUTONOMOUS AI",
+    runtime: "TypeScript / Node 22",
+    code: `// Pasha DevPilot — Autonomous AST Analysis & Multi-Agent Verification
+import { parseAST, traverseAST } from "@babel/parser";
+import { AgentSupervisor, SandboxRunner } from "@pasha/pilot-core";
+
+export async function executeAutonomousRemediation(repoContext: RepositoryContext) {
+  // 1. Static AST syntax analysis for defect isolation
+  const syntaxTree = parseAST(repoContext.sourceCode, { plugins: ["typescript", "jsx"] });
+  const defectPoints = await traverseAST(syntaxTree, { target: "async_race_conditions" });
+
+  // 2. Multi-turn reasoning agent generates bounded patch
+  const patchDirective = await AgentSupervisor.generateBoundedPatch({
+    defects: defectPoints,
+    context: repoContext.manifest,
+    constraints: ["strict_null_checks", "zero_runtime_regression"]
   });
-  const verified = await testSandbox.runPytestSuite(patchPlan.files);
-  return { status: verified.allPassed ? "READY_FOR_PR" : "REPAIR_REQUIRED", patchPlan };
+
+  // 3. Isolated sandbox execution before auto-committing PR
+  const testResults = await SandboxRunner.executePytestSuite(patchDirective.sandboxFiles);
+  return {
+    verified: testResults.exitCode === 0,
+    patch: patchDirective.diff,
+    telemetry: { durationMs: testResults.duration, status: "READY_FOR_PR" }
+  };
 }`,
   },
   {
     id: "backend",
     label: "FastAPICore.py",
-    badge: "BACKEND",
-    code: `# High-Concurrency Asynchronous FastAPI Microservice
-@router.post("/v1/tasks/dispatch", response_model=TaskResult)
-async def dispatch_task(payload: TaskPayload, redis: Redis = Depends(get_redis)):
-    async with db.transaction():
-        cached = await redis.get(f"task:{payload.id}")
-        if cached:
-            return TaskResult.parse_raw(cached)
-        result = await worker_pool.execute_async(payload)
-        await redis.setex(f"task:{payload.id}", 3600, result.json())
-        return result`,
+    badge: "CONCURRENT BACKEND",
+    runtime: "Python 3.12 / FastAPI",
+    code: `# Pasha Dev Studio — High-Concurrency Async Microservice Pipeline
+from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
+from redis.asyncio import Redis
+from pydantic import BaseModel, Field
+
+router = APIRouter(prefix="/v1/pipeline", tags=["Agent Operations"])
+
+class TaskPayload(BaseModel):
+    task_id: str = Field(..., regex=r"^[a-zA-Z0-9_-]{8,64}$")
+    operation: str
+    parameters: dict
+
+@router.post("/dispatch", response_model=dict)
+async def dispatch_pipeline(payload: TaskPayload, redis: Redis = Depends(get_redis)):
+    # Concurrent cache check with TTL lock
+    cache_key = f"pipeline:{payload.task_id}"
+    if await redis.exists(cache_key):
+        return {"status": "CACHED", "data": await redis.get(cache_key)}
+
+    # Asynchronous task delegation to worker pool
+    job = await worker_pool.enqueue_async(payload.operation, payload.parameters)
+    await redis.setex(cache_key, 3600, job.id)
+    return {"status": "DISPATCHED", "job_id": job.id, "engine": "FastAPI+AsyncIO"}`,
   },
   {
     id: "frontend",
-    label: "CinematicUI.tsx",
-    badge: "FRONTEND",
-    code: `// 60FPS Reactive Interface & Strict Type Contracts
-export function CinematicStreamUI({ streamData }: StreamProps) {
+    label: "CinematicUX.tsx",
+    badge: "60FPS INTERACTION",
+    runtime: "React 19 / Vite",
+    code: `// Pasha Dev Studio — 60fps GPU Accelerated Motion & Type Safety
+import { motion, useSpring, useTransform } from "motion/react";
+import { sound } from "@/lib/sound";
+
+export function HolographicCard({ title, telemetry }: CardProps) {
+  const x = useSpring(0, { stiffness: 220, damping: 20 });
+  const y = useSpring(0, { stiffness: 220, damping: 20 });
+  const rotateX = useTransform(y, [-0.5, 0.5], ["14deg", "-14deg"]);
+  const rotateY = useTransform(x, [-0.5, 0.5], ["-14deg", "14deg"]);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="glassmorphic-terminal border border-cyan/40"
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      onMouseEnter={() => sound.playBlip(1080, 0.03)}
+      className="glassmorphic-hud rounded-3xl border border-cyan/40 p-6 backdrop-blur-2xl"
     >
-      <StreamingResponse content={streamData} fps={60} />
+      <div className="flex items-center justify-between font-mono text-[10px] text-cyan">
+        <span>// STATUS: ACTIVE</span>
+        <span>{telemetry.fps} FPS</span>
+      </div>
+      <h3 className="mt-3 font-display text-xl font-bold">{title}</h3>
     </motion.div>
   );
 }`,
   },
 ];
 
-const COMPETENCY_DOMAINS = [
+const COMPETENCIES = [
   {
     domain: "Autonomous AI & Multi-Agent Loops",
     evidence: "Pasha DevPilot & Nexora Arena",
-    tech: "IBM Bob 2.0 • LangChain • Vector Grounding • AST Parsers",
-    focus: "Production Agent Workflows",
+    tech: "LangChain • Vector Grounding • AST Parsers • Prompt Orchestration",
+    focus: "Self-Healing Workflows & Code Diagnostics",
+    status: "PRODUCTION AGENT",
   },
   {
-    domain: "Modern Full-Stack Frontend",
+    domain: "Modern Full-Stack Web Applications",
     evidence: "GuestNexa & Wishora",
-    tech: "React 19 • TypeScript • Next.js • Tailwind CSS • Framer Motion",
-    focus: "60fps Cinematic Interfaces",
+    tech: "React 19 • TypeScript • Next.js 15 • Tailwind CSS • Framer Motion",
+    focus: "Cinematic, High-Performance Interactive Products",
+    status: "60FPS SHIPPED",
   },
   {
     domain: "High-Throughput Python Core",
     evidence: "Pasha Tools & DevPilot REST API",
-    tech: "FastAPI • AsyncIO • Redis Queue • Pydantic Validation",
-    focus: "Microservices & Asynchronous Tasks",
+    tech: "FastAPI • AsyncIO • Redis Queue • Pydantic v2 • PostgreSQL",
+    focus: "Low-Latency Microservices & Concurrency",
+    status: "HIGH CONCURRENCY",
   },
   {
     domain: "Cloud & DevOps Architecture",
-    evidence: "Railway & Vercel Production Deployments",
-    tech: "Docker • GitHub Actions • PostgreSQL • Edge CDNs",
-    focus: "Continuous Delivery & Zero Downtime",
+    evidence: "Railway, Vercel Edge & Docker Containers",
+    tech: "Docker • GitHub Actions CI/CD • Edge Caching • Micro-frontends",
+    focus: "Automated Deployments & Zero Downtime",
+    status: "LIVE PRODUCTION",
+  },
+];
+
+const TIMELINE = [
+  {
+    year: "2024 — PRESENT",
+    title: "Autonomous AI Systems & Full-Stack Architectures",
+    description:
+      "Engineering Pasha DevPilot, multi-turn LLM reasoning engines, AST syntax verification, and Next.js 15 production platforms.",
+    active: true,
+  },
+  {
+    year: "2023 — 2024",
+    title: "Python Microservices & Developer Utilities",
+    description:
+      "Built high-concurrency FastAPI backends, Pasha Tools suite (PDF, media, JSON, JWT, text-to-speech), and Redis caching pipelines.",
+    active: false,
+  },
+  {
+    year: "2022 — 2023",
+    title: "React & Creative Web Engineering",
+    description:
+      "Crafted interactive WebGL experiences, storytelling websites (A Little Galaxy, Eternal Garden), and modular design systems.",
+    active: false,
   },
 ];
 
 export function About() {
-  const [activeTab, setActiveTab] = useState<"ai" | "backend" | "frontend">("ai");
+  const [activeMode, setActiveMode] = useState<"dossier" | "architecture" | "competencies" | "trajectory">("dossier");
+  const [activeCodeTab, setActiveCodeTab] = useState<"ai" | "backend" | "frontend">("ai");
   const [copiedCode, setCopiedCode] = useState(false);
+  const [diagnosticsRunning, setDiagnosticsRunning] = useState(false);
+  const [diagnosticLogs, setDiagnosticLogs] = useState<string[]>([]);
 
-  const activeSnippet = CODE_TABS.find((t) => t.id === activeTab) ?? CODE_TABS[0];
+  const activeSnippet = CODE_TABS.find((t) => t.id === activeCodeTab) ?? CODE_TABS[0];
 
   const handleCopySnippet = () => {
+    sound.playClick();
     navigator.clipboard.writeText(activeSnippet.code);
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
+  const handleRunDiagnostics = () => {
+    sound.playCommandOpen();
+    setDiagnosticsRunning(true);
+    setDiagnosticLogs([
+      "INITIALIZING AST SYNTAX PARSER...",
+      "SCANNING REPOSITORY CONTEXT: 10 PACKAGES DETECTED",
+      "CHECKING FASTAPI ASYNCIO WORKER POOL... [OK]",
+      "VERIFYING REACT 19 GPU PIPELINE... [60 FPS STABLE]",
+      "AI AGENT SYSTEM SUPERVISOR: STATUS OPERATIONAL",
+    ]);
+
+    setTimeout(() => {
+      sound.playChirp();
+      setDiagnosticLogs((prev) => [...prev, ">> ARCHITECTURE STATUS: 100% HEALTHY & READY"]);
+      setDiagnosticsRunning(false);
+    }, 1800);
+  };
+
   return (
-    <section id="about" className="section-shell relative">
+    <section id="about" className="section-shell relative overflow-hidden">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="About Pasha Dev"
-          title="Engineering Meets Intelligence."
-          lead="Muhammad Mubashar — Pasha Dev — is an AI Full Stack Developer engineering modern web applications, Python backends, and intelligent AI-powered digital products."
+          eyebrow="Inside Pasha Dev Studio"
+          title="Engineering Meets Cinematic Intelligence."
+          lead="Muhammad Mubashar — Pasha Dev — is an AI Full Stack Developer and Systems Architect engineering intelligent digital products, high-throughput Python backends, and award-grade web experiences."
         />
 
-        {/* Bento Grid Layout */}
-        <div className="mt-14 grid gap-6 lg:grid-cols-12">
-          {/* Main Story & Profile Bento Card (7 cols) */}
-          <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_94%,transparent)] p-7 sm:p-9 shadow-2xl backdrop-blur-2xl transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_40px_rgba(0,229,255,0.2)] lg:col-span-7">
-            {/* Corner tech marks */}
-            <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-            <span className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
-            <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-            <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
+        {/* Futuristic Mode Switcher Bar */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+          {[
+            { id: "dossier", label: "System Dossier", icon: FileText },
+            { id: "architecture", label: "Live Architecture Lab", icon: Code2 },
+            { id: "competencies", label: "Competency Matrix", icon: ShieldCheck },
+            { id: "trajectory", label: "Verified Trajectory", icon: Compass },
+          ].map((mode) => {
+            const Icon = mode.icon;
+            const isActive = activeMode === mode.id;
+            return (
+              <button
+                key={mode.id}
+                type="button"
+                onClick={() => {
+                  sound.playBlip(980, 0.03);
+                  setActiveMode(mode.id as any);
+                }}
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 font-mono text-xs font-bold transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? "bg-cyan/20 text-cyan border border-cyan/60 shadow-[0_0_20px_rgba(0,229,255,0.3)]"
+                    : "border border-white/10 bg-black/40 text-muted-foreground hover:bg-white/5 hover:text-foreground hover:border-white/20"
+                }`}
+              >
+                <Icon className={`size-3.5 transition-colors ${isActive ? "text-cyan" : "group-hover:text-cyan"}`} />
+                <span>{mode.label}</span>
+              </button>
+            );
+          })}
+        </div>
 
-            {/* Glowing Laser Top Accent */}
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(500px_circle_at_top_left,rgba(0,229,255,0.12),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {/* Dynamic Mode Content Canvas */}
+        <div className="mt-8">
+          <AnimatePresence mode="wait">
+            {/* MODE 1: SYSTEM DOSSIER */}
+            {activeMode === "dossier" && (
+              <motion.div
+                key="dossier"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="grid gap-6 lg:grid-cols-12"
+              >
+                {/* Main Profile & Philosophy Hologram (7 cols) */}
+                <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan/30 bg-black/70 p-7 sm:p-9 shadow-2xl backdrop-blur-2xl lg:col-span-7">
+                  {/* Neon HUD Corner Marks */}
+                  <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/40">⌜</span>
+                  <span className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/40">⌝</span>
+                  <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/40">⌞</span>
+                  <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/40">⌟</span>
 
-            <div>
-              {/* Telemetry Header */}
-              <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                <span className="font-mono text-[10px] font-bold tracking-[0.22em] text-cyan uppercase flex items-center gap-1.5">
-                  <Terminal className="size-3 text-cyan" />
-                  IDENTIFIER // DEV.01
-                </span>
-                <span className="font-mono text-[10px] text-muted-foreground flex items-center gap-1.5">
-                  <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
-                  STATUS: OPERATIONAL
-                </span>
-              </div>
+                  {/* Top Ambient Laser Line */}
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-80" />
 
-              {/* Header inside card: Avatar + Info */}
-              <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="relative size-16 overflow-hidden rounded-2xl border-2 border-cyan/60 bg-[var(--panel-strong)] shadow-[0_0_25px_rgba(0,229,255,0.4)] ring-2 ring-cyan/20 transition-transform duration-300 group-hover:scale-105">
-                    <img
-                      src={portrait}
-                      alt="Muhammad Mubashar"
-                      className="h-full w-full object-cover object-top"
-                    />
-                  </div>
                   <div>
-                    <h3 className="font-display text-xl font-bold text-foreground">
-                      Muhammad Mubashar
-                    </h3>
-                    <p className="text-xs font-semibold text-cyan tracking-wider uppercase">
-                      Pasha Dev • AI Full Stack Developer
-                    </p>
+                    {/* Header Telemetry */}
+                    <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                      <div className="flex items-center gap-2">
+                        <Terminal className="size-3.5 text-cyan" />
+                        <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-cyan uppercase">
+                          DOSSIER // IDENTITY &amp; CORE STACK
+                        </span>
+                      </div>
+                      <span className="font-mono text-[10px] text-emerald-400 font-semibold flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-0.5 rounded-full">
+                        <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
+                        OPERATIONAL // READY
+                      </span>
+                    </div>
+
+                    {/* Developer Info Card */}
+                    <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <div className="relative size-16 overflow-hidden rounded-2xl border-2 border-cyan/60 bg-[var(--panel-strong)] shadow-[0_0_25px_rgba(0,229,255,0.4)] ring-2 ring-cyan/20">
+                          <img
+                            src={portrait}
+                            alt="Muhammad Mubashar"
+                            className="h-full w-full object-cover object-top"
+                          />
+                        </div>
+                        <div>
+                          <h3 className="font-display text-2xl font-extrabold text-foreground tracking-tight">
+                            Muhammad Mubashar
+                          </h3>
+                          <p className="text-xs font-semibold text-cyan tracking-wider uppercase flex items-center gap-1.5 mt-0.5">
+                            <span>Pasha Dev</span>
+                            <span>•</span>
+                            <span>AI Full Stack Developer</span>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-1.5 sm:items-end">
+                        <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-muted-foreground">
+                          <MapPin className="size-3 text-cyan" />
+                          <span>Pakistan // UTC+05:00</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 font-mono text-[10px] text-emerald-400">
+                          <Clock className="size-3" />
+                          <span>Immediate Client &amp; Contract Availability</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Factual Core Narrative */}
+                    <div className="mt-6 space-y-3.5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      <p>
+                        I don&apos;t just build static websites. I build{" "}
+                        <strong className="text-foreground font-semibold">
+                          intelligent, interactive digital products
+                        </strong>{" "}
+                        that solve complex engineering challenges and create lasting impressions.
+                      </p>
+                      <p>
+                        My work unites high-throughput Python backends (FastAPI, Redis, PostgreSQL),
+                        state-of-the-art AI integration (multi-agent loops, AST verification, LLM reasoning),
+                        and 60fps GPU-accelerated frontend engineering with React 19 and TypeScript.
+                      </p>
+                    </div>
+
+                    {/* Core Tech Stack Badges */}
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {[
+                        "React 19",
+                        "TypeScript",
+                        "Python",
+                        "FastAPI",
+                        "AI Agents",
+                        "PostgreSQL",
+                        "Redis",
+                        "Next.js 15",
+                        "Tailwind CSS",
+                        "Docker",
+                        "AST Parsers",
+                        "LangChain",
+                      ].map((tech) => (
+                        <span
+                          key={tech}
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-mono font-medium text-foreground transition-all duration-200 hover:border-cyan/50 hover:text-cyan hover:bg-cyan/10"
+                        >
+                          <span className="size-1.5 rounded-full bg-cyan shadow-[0_0_6px_#00e5ff]" />
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Metrics Row */}
+                  <div className="mt-8 grid grid-cols-2 gap-3 border-t border-white/10 pt-6 sm:grid-cols-4">
+                    {HIGHLIGHTS.map((h, i) => (
+                      <div
+                        key={i}
+                        className="group/stat relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-3.5 transition-all duration-300 hover:border-cyan/40 hover:bg-cyan/[0.05] hover:shadow-[0_0_20px_rgba(0,229,255,0.15)]"
+                      >
+                        <span className="font-display text-2xl font-black text-cyan drop-shadow-[0_0_12px_rgba(0,229,255,0.5)]">
+                          {h.value}
+                        </span>
+                        <span className="mt-1 block font-mono text-[11px] font-bold text-foreground">
+                          {h.label}
+                        </span>
+                        <span className="block font-mono text-[9px] text-muted-foreground">
+                          {h.sub}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-muted-foreground">
-                  <Activity className="size-3 text-emerald-400" />
-                  <span>UTC+5 // PKT</span>
+                {/* Right Side: Philosophy & Mindset Hologram (5 cols) */}
+                <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan/30 bg-black/70 p-7 sm:p-8 shadow-2xl backdrop-blur-2xl lg:col-span-5">
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-violet to-transparent opacity-80" />
+
+                  <div>
+                    <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                      <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-cyan uppercase flex items-center gap-1.5">
+                        <Flame className="size-3.5 text-cyan" />
+                        ENGINEERING PRINCIPLES
+                      </span>
+                      <span className="font-mono text-[10px] text-cyan font-bold">
+                        ZERO PLACEHOLDERS
+                      </span>
+                    </div>
+
+                    <h3 className="mt-5 font-display text-xl font-bold text-foreground">
+                      How I Build Software
+                    </h3>
+
+                    <div className="mt-4 space-y-3.5">
+                      {[
+                        {
+                          title: "Evidence Over Claims",
+                          desc: "Every project in this portfolio is backed by working repositories, live production URLs, or verified prototypes. No fabricated clients or fake numbers.",
+                          icon: ShieldCheck,
+                        },
+                        {
+                          title: "Full-Stack Autonomy",
+                          desc: "Capable of taking an idea from raw concept through architecture, database schemas, API design, frontend craftsmanship, and automated deployment.",
+                          icon: Cpu,
+                        },
+                        {
+                          title: "Autonomous AI Integration",
+                          desc: "Embedding AI where it creates real utility: AST syntax correction, contextual code repair, semantic search, and multi-agent workflows.",
+                          icon: BrainCircuit,
+                        },
+                        {
+                          title: "60fps Craftsmanship",
+                          desc: "Performance and aesthetics aren't opposites. Interfaces should feel fluid, magnetic, and tactile without sacrificing speed or accessibility.",
+                          icon: Zap,
+                        },
+                      ].map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                          <div
+                            key={idx}
+                            className="rounded-2xl border border-white/10 bg-white/[0.02] p-3.5 transition-all duration-300 hover:border-cyan/40 hover:bg-cyan/[0.04]"
+                          >
+                            <div className="flex items-center gap-2">
+                              <Icon className="size-4 text-cyan" />
+                              <h4 className="font-display text-xs font-bold text-foreground">
+                                {item.title}
+                              </h4>
+                            </div>
+                            <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                              {item.desc}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+                    <span className="font-mono text-[10px] text-muted-foreground">
+                      AUDITED &amp; VERIFIED // 2026
+                    </span>
+                    <Button variant="neon" size="sm" asChild onClick={() => sound.playChirp()}>
+                      <a href="#projects" className="flex items-center gap-1.5">
+                        <span>Explore Projects</span>
+                        <ArrowUpRight className="size-3.5" />
+                      </a>
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
+            )}
 
-              {/* Truthful Bio Narrative as requested in Section 9 */}
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                I&apos;m Muhammad Mubashar, the developer behind Pasha Dev. I build web applications,
-                AI-powered products, developer tools, and interactive digital experiences. My work
-                combines frontend engineering, Python-based backend development, and practical AI
-                integration to turn ideas into useful, high-impact software.
-              </p>
+            {/* MODE 2: LIVE ARCHITECTURE LAB */}
+            {activeMode === "architecture" && (
+              <motion.div
+                key="architecture"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="overflow-hidden rounded-3xl border border-cyan/40 bg-black/85 shadow-2xl backdrop-blur-2xl"
+              >
+                {/* Terminal Header */}
+                <div className="flex flex-wrap items-center justify-between border-b border-white/10 bg-white/[0.03] px-5 py-3">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="size-3 rounded-full bg-red-500/80 inline-block" />
+                      <span className="size-3 rounded-full bg-yellow-500/80 inline-block" />
+                      <span className="size-3 rounded-full bg-emerald-500/80 inline-block" />
+                    </div>
+                    <span className="ml-3 font-mono text-xs font-bold text-cyan">
+                      PASHA-DEV // ARCHITECTURE-ENGINE
+                    </span>
+                  </div>
 
-              {/* Interactive Architecture Blueprint Code Terminal */}
-              <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-black/70 shadow-xl backdrop-blur-md">
-                {/* Terminal Tab Bar */}
-                <div className="flex items-center justify-between border-b border-white/5 bg-white/[0.03] px-3.5 py-2">
+                  {/* Tabs */}
                   <div className="flex items-center gap-1.5">
                     {CODE_TABS.map((tab) => {
-                      const isActive = activeTab === tab.id;
+                      const isActive = activeCodeTab === tab.id;
                       return (
                         <button
                           key={tab.id}
                           type="button"
-                          onClick={() => setActiveTab(tab.id as any)}
-                          className={`rounded-lg px-2.5 py-1 font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+                          onClick={() => {
+                            sound.playBlip(1040, 0.03);
+                            setActiveCodeTab(tab.id as any);
+                          }}
+                          className={`rounded-lg px-3 py-1 font-mono text-xs font-semibold transition-all cursor-pointer ${
                             isActive
-                              ? "bg-cyan/15 text-cyan ring-1 ring-cyan/40 shadow-[0_0_10px_rgba(0,229,255,0.2)]"
+                              ? "bg-cyan/20 text-cyan border border-cyan/40 shadow-[0_0_12px_rgba(0,229,255,0.25)]"
                               : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                           }`}
                         >
@@ -246,15 +551,22 @@ export function About() {
                     })}
                   </div>
 
+                  {/* Actions */}
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-[9px] text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
-                      LIVE SPEC
-                    </span>
+                    <button
+                      type="button"
+                      onClick={handleRunDiagnostics}
+                      disabled={diagnosticsRunning}
+                      className="flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 cursor-pointer disabled:opacity-50"
+                    >
+                      <Play className="size-3" />
+                      <span>{diagnosticsRunning ? "DIAGNOSING..." : "TEST RUN"}</span>
+                    </button>
+
                     <button
                       type="button"
                       onClick={handleCopySnippet}
-                      className="flex items-center gap-1 rounded-md bg-white/5 px-2 py-0.5 font-mono text-[10px] text-muted-foreground hover:bg-cyan/15 hover:text-cyan transition-colors cursor-pointer"
-                      title="Copy code"
+                      className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-muted-foreground hover:text-cyan hover:border-cyan/40 transition-colors cursor-pointer"
                     >
                       {copiedCode ? <Check className="size-3 text-emerald-400" /> : <Copy className="size-3" />}
                       <span>{copiedCode ? "COPIED" : "COPY"}</span>
@@ -262,190 +574,142 @@ export function About() {
                   </div>
                 </div>
 
-                {/* Code Body with Smooth Transition */}
-                <div className="p-4 overflow-x-auto font-mono text-xs text-foreground/90 leading-relaxed max-h-52 no-scrollbar bg-black/50">
+                {/* Code Window with Syntax Highlighting */}
+                <div className="p-6 font-mono text-xs leading-relaxed max-h-[420px] overflow-x-auto no-scrollbar bg-black/60">
+                  <div className="mb-3 flex items-center justify-between text-[11px] text-muted-foreground border-b border-white/5 pb-2">
+                    <span className="text-cyan font-bold">// RUNTIME: {activeSnippet.runtime}</span>
+                    <span className="font-semibold text-emerald-400">{activeSnippet.badge}</span>
+                  </div>
+
                   <motion.pre
-                    key={activeTab}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-cyan/90 selection:bg-cyan/20"
+                    key={activeCodeTab}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-cyan/90 selection:bg-cyan/30"
                   >
                     <code>{activeSnippet.code}</code>
                   </motion.pre>
                 </div>
-              </div>
 
-              {/* Pillars chips */}
-              <div className="mt-6 flex flex-wrap gap-2">
-                {[
-                  "React 19",
-                  "TypeScript",
-                  "Python",
-                  "FastAPI",
-                  "PostgreSQL",
-                  "IBM Bob 2.0",
-                  "AI Agents",
-                  "Tailwind CSS",
-                  "Docker",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="glass inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-xs font-medium text-foreground/90 transition-all hover:border-cyan/50 hover:text-cyan"
-                  >
-                    <span className="size-1.5 rounded-full bg-cyan" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+                {/* Diagnostics Log Console */}
+                {diagnosticLogs.length > 0 && (
+                  <div className="border-t border-cyan/30 bg-black/90 p-4 font-mono text-[11px] text-emerald-400 space-y-1">
+                    <div className="text-cyan font-bold text-[10px] mb-1">
+                      // LIVE DIAGNOSTIC TRACE:
+                    </div>
+                    {diagnosticLogs.map((log, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <span className="text-cyan/60">&gt;&gt;</span>
+                        <span>{log}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            )}
 
-            {/* Metrics Ticker inside card */}
-            <div className="mt-8 grid grid-cols-2 gap-3 border-t border-white/5 pt-6 sm:grid-cols-4">
-              {HIGHLIGHTS.map((h, i) => (
-                <div
-                  key={i}
-                  className="group/stat relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-3.5 transition-all duration-300 hover:border-cyan/40 hover:bg-cyan/[0.04] hover:shadow-[0_0_20px_rgba(0,229,255,0.15)]"
-                >
-                  <span className="font-display text-2xl font-black text-cyan drop-shadow-[0_0_12px_rgba(0,229,255,0.4)]">
-                    {h.value}
-                  </span>
-                  <span className="mt-1 block font-mono text-[10px] font-medium leading-tight text-muted-foreground">
-                    {h.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Core Competency & Project Evidence Matrix Bento Card (5 cols) */}
-          <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_94%,transparent)] p-7 sm:p-8 shadow-2xl backdrop-blur-2xl transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_40px_rgba(0,229,255,0.2)] lg:col-span-5">
-            {/* Tech Corner Crosshairs */}
-            <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-            <span className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
-            <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-            <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
-
-            {/* Top laser accent line */}
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-            <div>
-              {/* Header */}
-              <div className="flex items-center justify-between border-b border-white/5 pb-3.5">
-                <span className="font-mono text-[10px] font-bold tracking-[0.22em] text-cyan uppercase">
-                  COMPETENCIES // EVIDENCE
-                </span>
-                <span className="font-mono text-[10px] text-emerald-400 font-semibold flex items-center gap-1.5">
-                  <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
-                  VERIFIED
-                </span>
-              </div>
-
-              <h3 className="mt-4 font-display text-xl font-bold text-foreground">
-                Domain Competency Matrix
-              </h3>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Backed by real production repositories and verifiable deployments.
-              </p>
-
-              {/* Realistic Project-Grounded Competency Cards */}
-              <div className="mt-5 space-y-3">
-                {COMPETENCY_DOMAINS.map((c) => (
+            {/* MODE 3: COMPETENCY MATRIX */}
+            {activeMode === "competencies" && (
+              <motion.div
+                key="competencies"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="grid gap-4 sm:grid-cols-2"
+              >
+                {COMPETENCIES.map((comp) => (
                   <div
-                    key={c.domain}
-                    className="rounded-2xl border border-white/10 bg-black/40 p-3.5 transition-all duration-300 hover:border-cyan/40 hover:bg-white/[0.03]"
+                    key={comp.domain}
+                    className="group relative overflow-hidden rounded-3xl border border-white/10 bg-black/70 p-6 shadow-xl backdrop-blur-2xl transition-all duration-300 hover:border-cyan/50 hover:shadow-[0_0_35px_rgba(0,229,255,0.2)]"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-display text-xs font-bold text-foreground">
-                        {c.domain}
+                      <span className="font-mono text-[10px] font-bold text-cyan bg-cyan/10 border border-cyan/20 px-2.5 py-0.5 rounded-full">
+                        {comp.status}
                       </span>
-                      <span className="font-mono text-[9px] font-semibold text-cyan uppercase px-2 py-0.5 rounded bg-cyan/10 border border-cyan/20">
-                        {c.focus}
+                      <span className="flex items-center gap-1 font-mono text-[10px] text-emerald-400 font-semibold">
+                        <CheckCircle2 className="size-3 text-emerald-400" />
+                        VERIFIED
                       </span>
                     </div>
-                    <p className="mt-1 font-mono text-[10px] text-emerald-400 flex items-center gap-1">
-                      <CheckCircle2 className="size-3 text-emerald-400" />
-                      Evidence: {c.evidence}
+
+                    <h3 className="mt-4 font-display text-lg font-bold text-foreground">
+                      {comp.domain}
+                    </h3>
+
+                    <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                      {comp.focus}
                     </p>
-                    <p className="mt-1 font-mono text-[9px] text-muted-foreground">
-                      {c.tech}
-                    </p>
+
+                    <div className="mt-4 border-t border-white/10 pt-3">
+                      <p className="font-mono text-[11px] text-emerald-400 font-semibold">
+                        Repository Evidence: {comp.evidence}
+                      </p>
+                      <p className="mt-1 font-mono text-[10px] text-muted-foreground">
+                        Technologies: {comp.tech}
+                      </p>
+                    </div>
                   </div>
                 ))}
-              </div>
+              </motion.div>
+            )}
 
-              {/* Trajectory Timeline Rail */}
-              <div className="mt-6 border-t border-white/5 pt-4">
-                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
-                  TRAJECTORY // KEY MILESTONES
-                </span>
-                <div className="mt-3 space-y-3">
-                  {[
-                    {
-                      period: "2024 — PRESENT",
-                      title: "Autonomous SDLC & AI Full Stack Systems",
-                      desc: "Engineering Pasha DevPilot, multi-turn LLM reasoning, AST verification, and Next.js 15 architectures.",
-                      active: true,
-                    },
-                    {
-                      period: "2023 — 2024",
-                      title: "Python Microservices & Developer Utilities",
-                      desc: "Constructing high-concurrency FastAPI backends, Pasha Tools, and Redis caching layers.",
-                      active: false,
-                    },
-                    {
-                      period: "2022 — 2023",
-                      title: "React & Creative Engineering",
-                      desc: "Crafting fluid interactive digital experiences, component design systems, and responsive web.",
-                      active: false,
-                    },
-                  ].map((m) => (
-                    <div key={m.title} className="relative pl-5 text-xs">
+            {/* MODE 4: VERIFIED TRAJECTORY */}
+            {activeMode === "trajectory" && (
+              <motion.div
+                key="trajectory"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="rounded-3xl border border-cyan/30 bg-black/75 p-7 sm:p-9 shadow-2xl backdrop-blur-2xl"
+              >
+                <div className="border-b border-white/10 pb-4 flex items-center justify-between">
+                  <span className="font-mono text-xs font-bold text-cyan uppercase tracking-widest">
+                    // CHRONOLOGICAL MILESTONES
+                  </span>
+                  <span className="font-mono text-[11px] text-emerald-400 font-semibold">
+                    100% FACTUAL ROADMAP
+                  </span>
+                </div>
+
+                <div className="mt-6 space-y-6">
+                  {TIMELINE.map((item, idx) => (
+                    <div key={idx} className="relative pl-7 text-sm">
                       <span
-                        className={`absolute left-0 top-1.5 size-2 rounded-full ${
-                          m.active
-                            ? "bg-cyan shadow-[0_0_10px_rgba(0,229,255,0.9)] animate-pulse"
+                        className={`absolute left-0 top-1 size-3 rounded-full ${
+                          item.active
+                            ? "bg-cyan shadow-[0_0_12px_#00e5ff] animate-pulse"
                             : "bg-white/20 border border-white/30"
                         }`}
                       />
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] text-cyan font-bold">
-                          {m.period}
+                        <span className="font-mono text-xs font-bold text-cyan">
+                          {item.year}
                         </span>
-                        {m.active && (
-                          <span className="rounded-full bg-cyan/15 px-2 py-0.2 font-mono text-[9px] font-semibold text-cyan">
-                            CURRENT
+                        {item.active && (
+                          <span className="rounded-full bg-cyan/15 px-2 py-0.2 font-mono text-[9px] font-semibold text-cyan border border-cyan/30">
+                            CURRENT FOCUS
                           </span>
                         )}
                       </div>
-                      <p className="mt-0.5 font-semibold text-foreground/90">{m.title}</p>
-                      <p className="text-[11px] text-muted-foreground leading-relaxed">{m.desc}</p>
+                      <h4 className="mt-1 font-display text-base font-bold text-foreground">
+                        {item.title}
+                      </h4>
+                      <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Bottom Card Strip */}
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--border)] pt-4">
-              <div className="flex items-center gap-2">
-                <span className="size-2 rounded-full bg-cyan animate-pulse shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
-                <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider">
-                  STATUS: VERIFIED WORKSPACE
-                </span>
-              </div>
-
-              <Button variant="neon" size="sm" asChild>
-                <a href="#projects">
-                  Explore Work <ArrowUpRight size={14} />
-                </a>
-              </Button>
-            </div>
-          </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* 3 Pillars of Craft Cards */}
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+        {/* 3 Pillars of Craft Cards (Hard Cooked) */}
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
           {PILLARS.map((pillar) => {
             const Icon = pillar.icon;
             return (
@@ -453,30 +717,27 @@ export function About() {
                 key={pillar.title}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ duration: 0.3, ease: EASE }}
-                className={`group relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_90%,transparent)] p-7 shadow-xl backdrop-blur-xl transition-all duration-500 ${pillar.borderGlow}`}
+                className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-black/60 p-7 shadow-xl backdrop-blur-xl transition-all duration-500 ${pillar.borderGlow}`}
               >
-                {/* Tech corner crosshairs */}
-                <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-                <span className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
-                <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-                <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
-
-                {/* Laser top beam */}
-                <div className={`pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent ${pillar.laser} to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
+                {/* Laser Top Beam */}
+                <div
+                  className={`pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent ${pillar.laser} to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+                />
 
                 <div className="mb-5 inline-flex size-14 items-center justify-center rounded-2xl bg-white/5 p-3 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110">
                   <Icon className={`size-7 ${pillar.accent}`} />
                 </div>
+
                 <h4 className="font-display text-xl font-bold text-foreground">
                   {pillar.title}
                 </h4>
+
                 <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
                   {pillar.description}
                 </p>
 
-                {/* Telemetry Footer Tag */}
-                <div className="mt-6 border-t border-white/5 pt-3.5">
-                  <span className="font-mono text-[10px] font-bold tracking-wider text-cyan/80">
+                <div className="mt-6 border-t border-white/10 pt-3.5">
+                  <span className="font-mono text-[10px] font-bold tracking-wider text-cyan/90">
                     // {pillar.telemetry}
                   </span>
                 </div>

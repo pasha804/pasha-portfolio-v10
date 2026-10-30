@@ -59,7 +59,7 @@ AI Full Stack Developer | Systems Architect
 Email: pashabusiness804@gmail.com
 GitHub: https://github.com/pasha804
 LinkedIn: https://www.linkedin.com/in/pasha-dev/
-Portfolio: https://pasha-portfolio-v6.netlify.app/
+Portfolio: https://pasha-portfolio-v10.vercel.app/
 
 CORE COMPETENCIES:
 - Frontend: React 19, TypeScript, Tailwind CSS v4, Framer Motion, 60fps UX

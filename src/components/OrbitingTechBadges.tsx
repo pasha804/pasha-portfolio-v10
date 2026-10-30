@@ -144,8 +144,8 @@ export function OrbitingTechBadges() {
           </filter>
         </defs>
 
-        {/* Tilted elliptical guide ring around center (48%, 46%) */}
-        <g transform={`translate(${containerRef.current ? containerRef.current.clientWidth * 0.48 : 250}, ${containerRef.current ? containerRef.current.clientHeight * 0.46 : 280}) rotate(-18)`}>
+        {/* Tilted elliptical guide ring around center (50%, 50%) */}
+        <g transform={`translate(${containerRef.current ? containerRef.current.clientWidth * 0.5 : 250}, ${containerRef.current ? containerRef.current.clientHeight * 0.5 : 280}) rotate(-18)`}>
           <ellipse
             cx="0"
             cy="0"
@@ -210,8 +210,8 @@ export function OrbitingTechBadges() {
             }}
             className="pointer-events-auto absolute transition-transform duration-75 ease-out"
             style={{
-              left: "48%",
-              top: "46%",
+              left: "50%",
+              top: "50%",
               transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`,
               zIndex: hoveredBadge === badge.id ? 40 : zIndex,
               opacity,
