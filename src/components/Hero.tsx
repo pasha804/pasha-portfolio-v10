@@ -10,6 +10,8 @@ import {
   Layers,
   Cpu,
   FileText,
+  Github,
+  Terminal,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import portrait from "@/assets/developer-portrait.png";
@@ -64,46 +66,54 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
+          {/* Eyebrow Positioning Statement */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="font-mono text-[11px] font-bold tracking-[0.22em] text-cyan uppercase">
+              INDEPENDENT DEVELOPER · AI SYSTEMS · DIGITAL PRODUCTS
+            </span>
+          </div>
+
           {/* Availability Radar Badge */}
-          <div className="availability group relative flex items-center gap-2.5 overflow-hidden rounded-full border border-emerald-500/30 bg-black/60 px-4 py-1.5 backdrop-blur-xl shadow-[0_0_20px_rgba(52,211,153,0.15)]">
+          <div className="availability group relative mt-3 inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-emerald-500/30 bg-black/60 px-4 py-1.5 backdrop-blur-xl shadow-[0_0_20px_rgba(52,211,153,0.15)]">
             <span className="relative flex size-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex size-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" />
             </span>
             <span className="font-mono text-xs font-semibold text-emerald-400 tracking-wider">
-              Available for select projects
+              Available for select projects &amp; engineering contracts
             </span>
           </div>
 
-          <p className="intro">
-            Hi, I’m <span>Muhammad Mubashar</span>
-          </p>
-
-          <h1>
-            AI Full Stack <em>Developer</em>
+          <h1 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1]">
+            I Build Intelligent <br />
+            <span className="bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,229,255,0.4)]">
+              Digital Experiences.
+            </span>
           </h1>
 
-          <p className="summary">
-            Building intelligent digital products with modern
-            <br className="desktop-break" /> frontend, Python backends, and autonomous AI agents.
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            I&apos;m <span className="text-foreground font-semibold">Muhammad Mubashar</span>, known as{" "}
+            <span className="text-cyan font-semibold">Pasha Dev</span>. I build full-stack applications,
+            AI-powered systems, developer tools, and cinematic web experiences that combine thoughtful
+            engineering with distinctive design.
           </p>
 
           {/* Role Strip */}
-          <div className="role-strip">
+          <div className="role-strip mt-5">
             <Code2 size={18} className="text-cyan" />
-            <strong>Full Stack Developer</strong>
+            <strong>AI Full Stack Developer</strong>
             <i />
-            <span>AI Engineer</span>
+            <span>Systems Architect</span>
             <i />
-            <span>Python Developer</span>
+            <span>Python &amp; FastAPI</span>
             <i />
-            <span>Creative Developer</span>
+            <span>Creative Engineering</span>
           </div>
 
           {/* Animated Hero CTAs */}
-          <div className="hero-actions flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="hero-actions mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="relative group"
             >
@@ -114,17 +124,17 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
                 size="lg"
                 asChild
                 onClick={() => sound.playChirp()}
-                className="relative shadow-[0_0_30px_rgba(0,229,255,0.4)]"
+                className="relative shadow-[0_0_30px_rgba(0,229,255,0.4)] cursor-pointer"
               >
                 <a href="#projects" className="flex items-center gap-2 font-display tracking-wider">
-                  <span>View My Work</span>
+                  <span>Explore My Work</span>
                   <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </a>
               </Button>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="relative group"
             >
@@ -133,17 +143,17 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
                 size="lg"
                 asChild
                 onClick={() => sound.playBlip(1040, 0.04)}
-                className="relative overflow-hidden border-cyan/40 bg-black/40 backdrop-blur-xl shadow-[0_0_20px_rgba(0,229,255,0.15)] transition-all duration-300 group-hover:border-cyan group-hover:shadow-[0_0_30px_rgba(0,229,255,0.35)]"
+                className="relative overflow-hidden border-cyan/40 bg-black/40 backdrop-blur-xl shadow-[0_0_20px_rgba(0,229,255,0.15)] transition-all duration-300 group-hover:border-cyan group-hover:shadow-[0_0_30px_rgba(0,229,255,0.35)] cursor-pointer"
               >
                 <a href="#contact" className="flex items-center gap-2 font-display tracking-wider">
                   <Send size={16} className="text-cyan transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  <span>Let&apos;s Connect</span>
+                  <span>Let&apos;s Build Something</span>
                 </a>
               </Button>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="relative group"
             >
@@ -161,6 +171,18 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
                 <span>View Specs / CV</span>
               </Button>
             </motion.div>
+
+            <motion.a
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://github.com/pasha804"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View GitHub Profile"
+              className="flex size-11 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-foreground transition-all hover:border-cyan/50 hover:bg-white/10 hover:text-cyan hover:shadow-[0_0_20px_rgba(0,229,255,0.3)]"
+            >
+              <Github size={20} />
+            </motion.a>
           </div>
         </motion.div>
 
@@ -243,7 +265,7 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
         </motion.div>
       </section>
 
-      {/* Hero Metrics Strip with Real-Time Aesthetics */}
+      {/* Hero Metrics Strip: Truthful, Descriptive Capability Indicators */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -254,29 +276,29 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
         <div>
           <Code2 />
           <span>
-            <strong>10+ Apps</strong>
-            <small>Delivered &amp; Live</small>
+            <strong>10+ Products</strong>
+            <small>Shipped &amp; Documented</small>
           </span>
         </div>
         <div>
-          <Activity />
+          <Cpu />
           <span>
-            <strong>99.9%</strong>
-            <small>Production Uptime</small>
+            <strong>Full-Stack + AI</strong>
+            <small>End-to-End Architecture</small>
           </span>
         </div>
         <div>
           <Zap />
           <span>
-            <strong>&lt; 15ms</strong>
-            <small>Streaming Latency</small>
+            <strong>FastAPI &amp; Python</strong>
+            <small>High-Throughput Backends</small>
           </span>
         </div>
         <div>
-          <Sparkles />
+          <Layers />
           <span>
-            <strong>100%</strong>
-            <small>Craft &amp; Excellence</small>
+            <strong>React &amp; Modern Web</strong>
+            <small>60fps Cinematic UX</small>
           </span>
         </div>
       </motion.div>

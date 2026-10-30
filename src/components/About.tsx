@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { motion, useInView } from "motion/react";
+import { useState, useRef } from "react";
+import { motion } from "motion/react";
 import {
   Sparkles,
   ArrowUpRight,
@@ -56,25 +56,26 @@ const PILLARS = [
 ];
 
 const HIGHLIGHTS = [
-  { value: "10+", label: "Products & Apps Built" },
+  { value: "10+", label: "Verified Projects Built" },
   { value: "Full Stack", label: "React + Python Core" },
-  { value: "AI Native", label: "Autonomous Agents" },
-  { value: "100%", label: "Committed to Craft" },
+  { value: "AI Native", label: "Autonomous SDLC & Agents" },
+  { value: "100%", label: "Real Code & Repositories" },
 ];
 
 const CODE_TABS = [
   {
     id: "ai",
-    label: "AgenticFlow.ts",
+    label: "AgenticSDLC.ts",
     badge: "AI CORE",
-    code: `// Autonomous Agentic Pipeline with Vector Grounding
-export async function executeAgentWorkflow(directive: string) {
-  const context = await vectorStore.similaritySearch(directive, { k: 4 });
-  const agent = new AgentRuntime({
-    model: "claude-3-5-sonnet",
-    tools: [databaseQueryTool, codeExecTool, apiDispatcher],
+    code: `// Pasha DevPilot — Autonomous AST Analysis & Verification
+export async function executeAgentWorkflow(repoContext: RepositoryContext) {
+  const defects = await astScanner.analyzeSyntaxTree(repoContext.files);
+  const patchPlan = await ibmBob.generateRemediationPlan({
+    defects,
+    constraints: ["bounded_repair_loop", "strict_typing"],
   });
-  return agent.stream({ directive, context });
+  const verified = await testSandbox.runPytestSuite(patchPlan.files);
+  return { status: verified.allPassed ? "READY_FOR_PR" : "REPAIR_REQUIRED", patchPlan };
 }`,
   },
   {
@@ -112,60 +113,32 @@ export function CinematicStreamUI({ streamData }: StreamProps) {
   },
 ];
 
-function AnimatedMeter({
-  name,
-  pct,
-  tech,
-  color,
-  glow,
-}: {
-  name: string;
-  pct: number;
-  tech: string;
-  color: string;
-  glow: string;
-}) {
-  const [val, setVal] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
-
-  useEffect(() => {
-    if (!inView) return;
-    let start: number | null = null;
-    const duration = 1400;
-    let frameId: number;
-
-    const step = (ts: number) => {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      setVal(Math.round(ease * pct));
-      if (progress < 1) frameId = requestAnimationFrame(step);
-    };
-
-    frameId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frameId);
-  }, [inView, pct]);
-
-  return (
-    <div ref={ref} className="space-y-1.5">
-      <div className="flex items-center justify-between text-xs">
-        <span className="font-semibold text-foreground/90">{name}</span>
-        <span className="font-mono text-[11px] font-bold text-cyan">{val}%</span>
-      </div>
-      <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden relative">
-        <motion.div
-          className={`h-full rounded-full bg-gradient-to-r ${color}`}
-          initial={{ width: 0 }}
-          animate={{ width: inView ? `${pct}%` : "0%" }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
-          style={{ boxShadow: `0 0 12px ${glow}` }}
-        />
-      </div>
-      <div className="font-mono text-[9px] text-muted-foreground/70">{tech}</div>
-    </div>
-  );
-}
+const COMPETENCY_DOMAINS = [
+  {
+    domain: "Autonomous AI & Multi-Agent Loops",
+    evidence: "Pasha DevPilot & Nexora Arena",
+    tech: "IBM Bob 2.0 • LangChain • Vector Grounding • AST Parsers",
+    focus: "Production Agent Workflows",
+  },
+  {
+    domain: "Modern Full-Stack Frontend",
+    evidence: "GuestNexa & Wishora",
+    tech: "React 19 • TypeScript • Next.js • Tailwind CSS • Framer Motion",
+    focus: "60fps Cinematic Interfaces",
+  },
+  {
+    domain: "High-Throughput Python Core",
+    evidence: "Pasha Tools & DevPilot REST API",
+    tech: "FastAPI • AsyncIO • Redis Queue • Pydantic Validation",
+    focus: "Microservices & Asynchronous Tasks",
+  },
+  {
+    domain: "Cloud & DevOps Architecture",
+    evidence: "Railway & Vercel Production Deployments",
+    tech: "Docker • GitHub Actions • PostgreSQL • Edge CDNs",
+    focus: "Continuous Delivery & Zero Downtime",
+  },
+];
 
 export function About() {
   const [activeTab, setActiveTab] = useState<"ai" | "backend" | "frontend">("ai");
@@ -241,9 +214,12 @@ export function About() {
                 </div>
               </div>
 
-              {/* Bio Narrative */}
+              {/* Truthful Bio Narrative as requested in Section 9 */}
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                I bridge the boundary between <span className="text-cyan font-medium">high-performance frontend architecture</span> and <span className="text-white font-medium">asynchronous backend intelligence</span>. By combining modern React frameworks with Python, FastAPI, and autonomous AI agents, I design production systems that run at 60fps and scale effortlessly.
+                I&apos;m Muhammad Mubashar, the developer behind Pasha Dev. I build web applications,
+                AI-powered products, developer tools, and interactive digital experiences. My work
+                combines frontend engineering, Python-based backend development, and practical AI
+                integration to turn ideas into useful, high-impact software.
               </p>
 
               {/* Interactive Architecture Blueprint Code Terminal */}
@@ -308,6 +284,7 @@ export function About() {
                   "Python",
                   "FastAPI",
                   "PostgreSQL",
+                  "IBM Bob 2.0",
                   "AI Agents",
                   "Tailwind CSS",
                   "Docker",
@@ -341,7 +318,7 @@ export function About() {
             </div>
           </div>
 
-          {/* Cyber Capability & Trajectory Matrix Bento Card (5 cols) */}
+          {/* Core Competency & Project Evidence Matrix Bento Card (5 cols) */}
           <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_94%,transparent)] p-7 sm:p-8 shadow-2xl backdrop-blur-2xl transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_40px_rgba(0,229,255,0.2)] lg:col-span-5">
             {/* Tech Corner Crosshairs */}
             <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
@@ -356,67 +333,64 @@ export function About() {
               {/* Header */}
               <div className="flex items-center justify-between border-b border-white/5 pb-3.5">
                 <span className="font-mono text-[10px] font-bold tracking-[0.22em] text-cyan uppercase">
-                  CAPABILITIES // BENCHMARKS
+                  COMPETENCIES // EVIDENCE
                 </span>
                 <span className="font-mono text-[10px] text-emerald-400 font-semibold flex items-center gap-1.5">
                   <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
-                  ONLINE
+                  VERIFIED
                 </span>
               </div>
 
               <h3 className="mt-4 font-display text-xl font-bold text-foreground">
-                Core Engineering Matrix
+                Domain Competency Matrix
               </h3>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Backed by real production repositories and verifiable deployments.
+              </p>
 
-              {/* Animated Progress Telemetry Meters */}
-              <div className="mt-5 space-y-4">
-                <AnimatedMeter
-                  name="Autonomous AI & Tool Calling"
-                  pct={98}
-                  tech="LLMs • Tool Calling • RAG Pipelines"
-                  color="from-cyan to-blue-500"
-                  glow="rgba(0,229,255,0.5)"
-                />
-                <AnimatedMeter
-                  name="Modern Frontend Architecture"
-                  pct={96}
-                  tech="React 19 • TypeScript • 60fps UX"
-                  color="from-blue-500 to-cyan"
-                  glow="rgba(49,120,198,0.5)"
-                />
-                <AnimatedMeter
-                  name="High-Throughput Python Core"
-                  pct={94}
-                  tech="FastAPI • AsyncIO • Redis Cache"
-                  color="from-emerald-400 to-cyan"
-                  glow="rgba(5,150,105,0.5)"
-                />
-                <AnimatedMeter
-                  name="Production Systems & Cloud"
-                  pct={92}
-                  tech="PostgreSQL • Docker • CI/CD"
-                  color="from-violet to-cyan"
-                  glow="rgba(189,52,254,0.5)"
-                />
+              {/* Realistic Project-Grounded Competency Cards */}
+              <div className="mt-5 space-y-3">
+                {COMPETENCY_DOMAINS.map((c) => (
+                  <div
+                    key={c.domain}
+                    className="rounded-2xl border border-white/10 bg-black/40 p-3.5 transition-all duration-300 hover:border-cyan/40 hover:bg-white/[0.03]"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-display text-xs font-bold text-foreground">
+                        {c.domain}
+                      </span>
+                      <span className="font-mono text-[9px] font-semibold text-cyan uppercase px-2 py-0.5 rounded bg-cyan/10 border border-cyan/20">
+                        {c.focus}
+                      </span>
+                    </div>
+                    <p className="mt-1 font-mono text-[10px] text-emerald-400 flex items-center gap-1">
+                      <CheckCircle2 className="size-3 text-emerald-400" />
+                      Evidence: {c.evidence}
+                    </p>
+                    <p className="mt-1 font-mono text-[9px] text-muted-foreground">
+                      {c.tech}
+                    </p>
+                  </div>
+                ))}
               </div>
 
               {/* Trajectory Timeline Rail */}
-              <div className="mt-7 border-t border-white/5 pt-4">
+              <div className="mt-6 border-t border-white/5 pt-4">
                 <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
                   TRAJECTORY // KEY MILESTONES
                 </span>
-                <div className="mt-3 space-y-3.5">
+                <div className="mt-3 space-y-3">
                   {[
                     {
                       period: "2024 — PRESENT",
-                      title: "AI Full Stack Systems",
-                      desc: "Engineering autonomous agent applications, streaming LLMs, and enterprise interfaces.",
+                      title: "Autonomous SDLC & AI Full Stack Systems",
+                      desc: "Engineering Pasha DevPilot, multi-turn LLM reasoning, AST verification, and Next.js 15 architectures.",
                       active: true,
                     },
                     {
                       period: "2023 — 2024",
-                      title: "Python & Asynchronous Microservices",
-                      desc: "Constructing high-concurrency FastAPI backends, PostgreSQL schemas, and caching layers.",
+                      title: "Python Microservices & Developer Utilities",
+                      desc: "Constructing high-concurrency FastAPI backends, Pasha Tools, and Redis caching layers.",
                       active: false,
                     },
                     {
@@ -457,13 +431,13 @@ export function About() {
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-cyan animate-pulse shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
                 <span className="font-mono text-[11px] text-muted-foreground uppercase tracking-wider">
-                  SYSTEM STATUS: 100% OPERATIONAL
+                  STATUS: VERIFIED WORKSPACE
                 </span>
               </div>
 
               <Button variant="neon" size="sm" asChild>
                 <a href="#projects">
-                  View Work <ArrowUpRight size={14} />
+                  Explore Work <ArrowUpRight size={14} />
                 </a>
               </Button>
             </div>

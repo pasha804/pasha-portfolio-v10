@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://pasha-portfolio-v10.vercel.app/sitemap.xml

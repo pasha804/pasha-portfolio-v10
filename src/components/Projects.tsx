@@ -53,28 +53,8 @@ function StatCard({ stat, index }: { stat: (typeof projectStats)[number]; index:
     if (stat.value === "5+") {
       return <AnimatedCounter target={5} suffix="+" />;
     }
-    if (stat.value === "∞") {
-      return (
-        <motion.span
-          className="inline-block text-cyan"
-          animate={{
-            scale: [1, 1.15, 1],
-            rotate: [0, 8, -8, 0],
-            filter: [
-              "drop-shadow(0 0 10px rgba(0,229,255,0.4))",
-              "drop-shadow(0 0 24px rgba(189,52,254,0.8))",
-              "drop-shadow(0 0 10px rgba(0,229,255,0.4))",
-            ],
-          }}
-          transition={{
-            duration: 3.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          ∞
-        </motion.span>
-      );
+    if (stat.value === "100%") {
+      return <AnimatedCounter target={100} suffix="%" />;
     }
     return (
       <span className="bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent">
@@ -134,6 +114,11 @@ export function Projects() {
           <div className="flex flex-wrap gap-2">
             {projectFilters.map((f) => {
               const active = filter === f;
+              const count =
+                f === "ALL"
+                  ? projects.length
+                  : projects.filter((p) => p.category === f).length;
+
               return (
                 <button
                   key={f}
@@ -141,7 +126,7 @@ export function Projects() {
                   onClick={() => setFilter(f)}
                   aria-pressed={active}
                   className={cn(
-                    "relative rounded-full px-4 py-1.5 font-display text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer",
+                    "relative inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 font-display text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer",
                     active
                       ? "text-white shadow-[0_0_20px_rgba(0,229,255,0.4)]"
                       : "border border-border text-muted-foreground hover:border-border-strong hover:text-foreground hover:bg-white/5",
@@ -155,6 +140,14 @@ export function Projects() {
                     />
                   )}
                   <span>{f}</span>
+                  <span
+                    className={cn(
+                      "rounded-full px-1.5 py-0.2 font-mono text-[9px]",
+                      active ? "bg-white/20 text-white" : "bg-white/5 text-muted-foreground"
+                    )}
+                  >
+                    {count}
+                  </span>
                 </button>
               );
             })}

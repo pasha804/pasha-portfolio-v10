@@ -262,6 +262,18 @@ HONORS & AWARDS:
               </h3>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5">
+                  <h4 className="font-display text-xs font-bold text-cyan">Pasha DevPilot</h4>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">
+                    Autonomous SDLC platform with AST parsing, pytest auto-healing &amp; GitHub PR dispatch.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5">
+                  <h4 className="font-display text-xs font-bold text-foreground">GuestNexa</h4>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">
+                    High-performance SEO agency platform with 3D orbital animations &amp; AI Consultant.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5">
                   <h4 className="font-display text-xs font-bold text-foreground">Nexora</h4>
                   <p className="text-[11px] text-muted-foreground mt-0.5">
                     AI skill and social platform with competitive PvP matches judged by AI referee.
@@ -273,18 +285,6 @@ HONORS & AWARDS:
                     Developer command center with PDF, media, regex, hashing, and TTS utilities.
                   </p>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5">
-                  <h4 className="font-display text-xs font-bold text-foreground">Wishora</h4>
-                  <p className="text-[11px] text-muted-foreground mt-0.5">
-                    Personalized greeting card studio with real-time editing and animated templates.
-                  </p>
-                </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5">
-                  <h4 className="font-display text-xs font-bold text-foreground">Zoro 2.0</h4>
-                  <p className="text-[11px] text-muted-foreground mt-0.5">
-                    Local-first desktop assistant supporting English and Roman Urdu voice automation.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -293,3 +293,4 @@ HONORS & AWARDS:
     </AnimatePresence>
   );
 }
+
