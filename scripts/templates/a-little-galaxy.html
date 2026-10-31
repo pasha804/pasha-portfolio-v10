@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Little Galaxy Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1376px;
+      height: 768px;
+      overflow: hidden;
+      background: #020308;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Cosmic Deep Space Ambient */
+    .space-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 65% 40%, rgba(99, 102, 241, 0.28) 0%, transparent 55%),
+        radial-gradient(circle at 30% 70%, rgba(0, 229, 255, 0.22) 0%, transparent 50%),
+        radial-gradient(circle at 75% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 45%),
+        linear-gradient(180deg, #020308 0%, #060919 60%, #03040c 100%);
+      z-index: 1;
+    }
+
+    /* Stardust Particles */
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 4px #00e5ff);
+    }
+
+    .main-canvas {
+      position: relative;
+      z-index: 10;
+      width: 1280px;
+      height: 680px;
+      border-radius: 24px;
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      background: rgba(6, 9, 24, 0.82);
+      backdrop-filter: blur(28px);
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.9), 0 0 50px rgba(99, 102, 241, 0.2);
+      display: grid;
+      grid-template-rows: 64px 1fr 72px;
+      overflow: hidden;
+    }
+
+    /* Top Bar */
+    .app-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1, #00e5ff);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.6);
+    }
+    .brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: #fff;
+    }
+    .status-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      background: rgba(0, 229, 255, 0.12);
+      color: #00e5ff;
+    }
+
+    /* Celestial Galaxy Center */
+    .galaxy-viewport {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .celestial-rings {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border: 1px dashed rgba(0, 229, 255, 0.25);
+      border-radius: 50%;
+      box-shadow: inset 0 0 60px rgba(99, 102, 241, 0.15);
+      transform: rotate(-25deg);
+    }
+    .celestial-rings-outer {
+      position: absolute;
+      width: 640px;
+      height: 640px;
+      border: 1px solid rgba(236, 72, 153, 0.18);
+      border-radius: 50%;
+      transform: rotate(35deg);
+    }
+
+    .hero-narrative {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 760px;
+    }
+    .chapter-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #00e5ff;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .celestial-headline {
+      font-family: 'Cinzel', serif;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 60%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 35px rgba(99, 102, 241, 0.5));
+    }
+    .celestial-sub {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 560px;
+      margin-inline: auto;
+    }
+
+    /* Left telemetry HUD */
+    .hud-left {
+      position: absolute;
+      left: 36px;
+      top: 36px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .hud-val { color: #00e5ff; font-weight: 700; }
+
+    /* Right telemetry HUD */
+    .hud-right {
+      position: absolute;
+      right: 36px;
+      top: 36px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .hud-pink { color: #f472b6; font-weight: 700; }
+
+    /* Interactive Audio / Narrative Bar */
+    .player-dock {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background: rgba(0, 0, 0, 0.45);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+    .timeline-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 500px;
+    }
+    .timeline-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      position: relative;
+      overflow: hidden;
+    }
+    .timeline-progress {
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #00e5ff);
+      box-shadow: 0 0 10px #00e5ff;
+    }
+    .mode-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .mode-btn {
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .mode-btn.active {
+      border-color: #00e5ff;
+      background: rgba(0, 229, 255, 0.15);
+      color: #00e5ff;
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="space-bg"></div>
+
+  <!-- Stars -->
+  <div class="star" style="width:2px; height:2px; top:12%; left:18%;"></div>
+  <div class="star" style="width:3px; height:3px; top:28%; left:82%; box-shadow:0 0 8px #fff;"></div>
+  <div class="star" style="width:2px; height:2px; top:65%; left:12%;"></div>
+  <div class="star" style="width:4px; height:4px; top:75%; left:88%; box-shadow:0 0 10px #00e5ff;"></div>
+  <div class="star" style="width:3px; height:3px; top:15%; left:62%;"></div>
+  <div class="star" style="width:2px; height:2px; top:42%; left:28%;"></div>
+
+  <div class="main-canvas">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-title">
+        <div class="brand-badge">✨</div>
+        <div class="brand-name">A LITTLE GALAXY</div>
+      </div>
+      <div class="status-badge">
+        <span>THREE.JS COSMIC PIPELINE // 60 FPS</span>
+      </div>
+    </header>
+
+    <!-- Center Stage -->
+    <main class="galaxy-viewport">
+      <div class="celestial-rings"></div>
+      <div class="celestial-rings-outer"></div>
+
+      <div class="hud-left">
+        <div>// SYSTEM: <span class="hud-val">INTERSTELLAR STORYTELLER</span></div>
+        <div>// POSITION: <span class="hud-val">RA 18h 36m / DEC +38°47′</span></div>
+        <div>// CONSTELLATION: <span class="hud-val">CYGNUS CLUSTER</span></div>
+      </div>
+
+      <div class="hud-right">
+        <div>// AUDIO: <span class="hud-pink">SYNTHESIZED HARMONIC 432Hz</span></div>
+        <div>// CAMERA: <span class="hud-pink">DYNAMIC BEZIER CURVE</span></div>
+        <div>// RENDER: <span class="hud-pink">WEBGL2 VOLUMETRIC NOISE</span></div>
+      </div>
+
+      <div class="hero-narrative">
+        <span class="chapter-tag">// CHAPTER 01: THE STARLIGHT ODYSSEY</span>
+        <h1 class="celestial-headline">A Little Galaxy.</h1>
+        <p class="celestial-sub">
+          An emotional interactive web storytelling journey through the infinite cosmos, connecting stellar scenes with fluid typography and celestial soundscapes.
+        </p>
+      </div>
+    </main>
+
+    <!-- Player Dock -->
+    <footer class="player-dock">
+      <div class="timeline-bar">
+        <span style="color:#00e5ff; font-weight:700;">ACT II: 02:45</span>
+        <div class="timeline-track">
+          <div class="timeline-progress"></div>
+        </div>
+        <span style="color:rgba(255,255,255,0.5);">06:20</span>
+      </div>
+
+      <div class="mode-buttons">
+        <div class="mode-btn active">CINEMATIC FLYTHROUGH</div>
+        <div class="mode-btn">FREE ROAM ORBIT</div>
+        <div class="mode-btn">CONSTELLATION MAP</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
