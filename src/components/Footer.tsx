@@ -1,5 +1,4 @@
 import { navSections, socials } from "@/data/socials";
-import { ProfileImage } from "@/components/ProfileImage";
 import portrait from "@/assets/developer-portrait.png";
 
 export function Footer() {
