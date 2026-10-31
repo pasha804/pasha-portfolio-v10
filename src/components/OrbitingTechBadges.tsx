@@ -223,7 +223,7 @@ export function OrbitingTechBadges() {
                 scale: 1.18,
                 filter: `drop-shadow(0 0 25px ${badge.color})`,
               }}
-              className="group relative flex items-center gap-2.5 rounded-xl border border-white/15 bg-[#070b13]/85 px-3 py-2 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-cyan hover:bg-black/90 cursor-pointer select-none"
+              className="group relative flex items-center gap-2.5 rounded-xl border border-white/15 bg-card/85 px-3 py-2 shadow-xl backdrop-blur-xl transition-[border-color,background-color,transform] duration-300 hover:border-cyan hover:bg-black/90 cursor-pointer select-none"
               style={{
                 borderColor: hoveredBadge === badge.id ? badge.color : undefined,
               }}
@@ -231,7 +231,7 @@ export function OrbitingTechBadges() {
               {/* Pulsing beacon dot on front items */}
               {isFront && (
                 <span
-                  className="absolute -top-1 -right-1 size-2 rounded-full animate-ping"
+                  className="absolute -top-1 -right-1 size-2 rounded-full motion-safe:animate-ping"
                   style={{ backgroundColor: badge.color }}
                 />
               )}
@@ -252,7 +252,7 @@ export function OrbitingTechBadges() {
                   {badge.name}
                 </span>
                 <span
-                  className="font-mono text-[9px] font-semibold tracking-wider uppercase opacity-75"
+                  className="font-mono text-[9px] font-semibold opacity-75"
                   style={{ color: badge.color }}
                 >
                   {badge.category}

@@ -10,7 +10,7 @@ type IconProps = {
 // 1. React Official Logo
 export function ReactIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="-11.5 -10.23174 23 20.46348"
       width={size}
       height={size}
@@ -31,7 +31,7 @@ export function ReactIcon({ className = "size-8", size }: IconProps) {
 // 2. TypeScript Official Logo
 export function TypeScriptIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -50,7 +50,7 @@ export function TypeScriptIcon({ className = "size-8", size }: IconProps) {
 // 3. JavaScript Official Logo
 export function JavaScriptIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -69,7 +69,7 @@ export function JavaScriptIcon({ className = "size-8", size }: IconProps) {
 // 4. Python Official Dual-Snake Logo
 export function PythonIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 110 110"
       width={size}
       height={size}
@@ -91,7 +91,7 @@ export function PythonIcon({ className = "size-8", size }: IconProps) {
 // 5. FastAPI Official Logo
 export function FastAPIIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -110,7 +110,7 @@ export function FastAPIIcon({ className = "size-8", size }: IconProps) {
 // 6. PostgreSQL Official Elephant Logo
 export function PostgreSQLIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -129,7 +129,7 @@ export function PostgreSQLIcon({ className = "size-8", size }: IconProps) {
 // 7. Tailwind CSS Official Logo
 export function TailwindIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -149,7 +149,7 @@ export function TailwindIcon({ className = "size-8", size }: IconProps) {
 // 8. Docker Official Whale Logo
 export function DockerIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -168,7 +168,7 @@ export function DockerIcon({ className = "size-8", size }: IconProps) {
 // 9. Redis Official Logo
 export function RedisIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -189,7 +189,7 @@ export function RedisIcon({ className = "size-8", size }: IconProps) {
 // 10. Vite Official Logo
 export function ViteIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -223,7 +223,7 @@ export function ViteIcon({ className = "size-8", size }: IconProps) {
 // 11. OpenAI Official Logo
 export function OpenAIIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -242,7 +242,7 @@ export function OpenAIIcon({ className = "size-8", size }: IconProps) {
 // 12. Git Official Logo
 export function GitIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -261,7 +261,7 @@ export function GitIcon({ className = "size-8", size }: IconProps) {
 // 13. GitHub Official Octocat Logo
 export function GitHubIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -282,7 +282,7 @@ export function GitHubIcon({ className = "size-8", size }: IconProps) {
 // 14. VS Code Official Ribbon Logo
 export function VSCodeIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -301,7 +301,7 @@ export function VSCodeIcon({ className = "size-8", size }: IconProps) {
 // 15. Cursor AI Editor Icon
 export function CursorIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -325,7 +325,7 @@ export function CursorIcon({ className = "size-8", size }: IconProps) {
 // 16. HTML5 Official Shield Logo
 export function HTMLIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -345,7 +345,7 @@ export function HTMLIcon({ className = "size-8", size }: IconProps) {
 // 17. CSS3 Official Shield Logo
 export function CSSIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -365,7 +365,7 @@ export function CSSIcon({ className = "size-8", size }: IconProps) {
 // 18. AI Agents / Neural Intelligence Logo
 export function AIAgentsIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -385,7 +385,7 @@ export function AIAgentsIcon({ className = "size-8", size }: IconProps) {
 // 19. REST API Interconnected Cloud Logo
 export function RESTIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 128 128"
       width={size}
       height={size}
@@ -407,7 +407,7 @@ export function RESTIcon({ className = "size-8", size }: IconProps) {
 // 20. Google Antigravity Agentic Platform Official Brand Logo
 export function AntigravityIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 114 114"
       width={size}
       height={size}
@@ -450,7 +450,7 @@ export function AntigravityIcon({ className = "size-8", size }: IconProps) {
 // 21. Kiro AI Official Brand Mascot Logo (from kiro.dev)
 export function KiroIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 1200 1200"
       width={size}
       height={size}
@@ -493,7 +493,7 @@ export function FreebuffIcon({ className = "size-8", size }: IconProps) {
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center overflow-hidden rounded-2xl bg-[#091512] p-1.5 shadow-md ring-1 ring-emerald-500/30",
+        "relative flex items-center justify-center overflow-hidden rounded-2xl bg-emerald-950/60 p-1.5 shadow-md ring-1 ring-emerald-500/30",
         className,
       )}
       style={{ width: size, height: size }}
@@ -510,7 +510,7 @@ export function FreebuffIcon({ className = "size-8", size }: IconProps) {
 // 23. OpenCode Official Brand Square Logo (from sst/opencode)
 export function OpenCodeIcon({ className = "size-8", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       viewBox="0 0 300 300"
       width={size}
       height={size}
@@ -550,7 +550,7 @@ export function OpenCodeIcon({ className = "size-8", size }: IconProps) {
 // 24. Instagram Official Brand Vector
 export function InstagramIcon({ className = "size-6", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       role="img"
       viewBox="0 0 24 24"
       width={size}
@@ -567,7 +567,7 @@ export function InstagramIcon({ className = "size-6", size }: IconProps) {
 // 25. Threads Official Brand Vector
 export function ThreadsIcon({ className = "size-6", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       role="img"
       viewBox="0 0 24 24"
       width={size}
@@ -584,7 +584,7 @@ export function ThreadsIcon({ className = "size-6", size }: IconProps) {
 // 26. TikTok Official Brand Vector
 export function TikTokIcon({ className = "size-6", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       role="img"
       viewBox="0 0 24 24"
       width={size}
@@ -601,7 +601,7 @@ export function TikTokIcon({ className = "size-6", size }: IconProps) {
 // 27. LinkedIn Official Brand Vector
 export function LinkedInIcon({ className = "size-6", size }: IconProps) {
   return (
-    <svg
+    <svg aria-hidden="true"
       role="img"
       viewBox="0 0 24 24"
       width={size}

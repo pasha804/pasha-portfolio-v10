@@ -85,15 +85,15 @@ export function Certificates() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5 text-emerald-400">
-              <span className="size-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+              <span className="size-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
               {certificates.length} Verified Credentials
             </span>
-            <span className="hidden sm:inline text-white/20">•</span>
+            <span className="hidden sm:inline text-white/20" aria-hidden="true">•</span>
             <span className="flex items-center gap-1.5 text-cyan">
-              <Sparkles className="size-3.5" />
-              AI Native & Full Stack
+              <Sparkles className="size-3.5" aria-hidden="true" />
+              AI Native &amp; Full Stack
             </span>
           </div>
         </motion.div>
@@ -120,15 +120,15 @@ export function Certificates() {
               <button
                 key={cat.id}
                 onClick={() => setActiveFilter(cat.id)}
-                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-300 cursor-pointer ${
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
                   isActive
-                    ? "bg-[var(--hero-action)] text-white shadow-[0_0_20px_rgba(0,229,255,0.35)] scale-102"
+                    ? "bg-[var(--hero-action)] text-white shadow-sm shadow-cyan/40"
                     : "glass text-muted-foreground hover:text-foreground hover:border-cyan/40"
                 }`}
               >
                 <span>{cat.label}</span>
                 <span
-                  className={`rounded-full px-1.5 py-0.5 text-[10px] font-mono ${
+                  className={`rounded-full px-1.5 py-0.5 text-[10px] ${
                     isActive ? "bg-white/20 text-white" : "bg-surface-2 text-muted-foreground"
                   }`}
                 >
@@ -158,7 +158,7 @@ export function Certificates() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35, ease: EASE }}
                 data-cursor-hot
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel)_90%,transparent)] shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-cyan/60 hover:shadow-[0_0_35px_rgba(0,229,255,0.22)]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel)_90%,transparent)] shadow-2xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-cyan/60 hover:shadow-xl hover:shadow-cyan/20"
               >
                 {/* Image Container with Hover Zoom and Click to Inspect */}
                 <div
@@ -170,26 +170,26 @@ export function Certificates() {
                     alt={`${cert.title} — ${cert.issuer}`}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                    className="h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105"
                   />
                   {/* Subtle Gradient Veil */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent opacity-75 transition-opacity duration-500 group-hover:opacity-40" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent opacity-75 transition-opacity duration-300 group-hover:opacity-40" aria-hidden="true" />
 
                   {/* Top Floating Badge */}
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                    <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-black/60 px-3 py-1 text-[11px] font-semibold text-emerald-400 backdrop-blur-md">
-                      <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]" />
+                    <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-black/60 px-3 py-1 text-xs font-semibold text-emerald-400 backdrop-blur-md">
+                      <span className="size-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
                       Verified
                     </span>
-                    <span className="flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-mono text-cyan backdrop-blur-md">
+                    <span className="flex items-center gap-1 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-xs text-cyan backdrop-blur-md">
                       {cert.date}
                     </span>
                   </div>
 
                   {/* Hover Quick Inspect Indicator */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
-                    <span className="flex items-center gap-2 rounded-xl bg-cyan/90 px-4 py-2 text-xs font-bold text-black shadow-[0_0_20px_rgba(0,229,255,0.8)] backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
-                      <Maximize2 className="size-3.5" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <span className="flex items-center gap-2 rounded-xl bg-cyan/90 px-4 py-2 text-xs font-bold text-black shadow-md shadow-cyan/50 backdrop-blur-sm transition-transform duration-200 group-hover:scale-105">
+                      <Maximize2 className="size-3.5" aria-hidden="true" />
                       Inspect Certificate
                     </span>
                   </div>
@@ -198,7 +198,7 @@ export function Certificates() {
                 {/* Card Information */}
                 <div className="flex flex-1 flex-col justify-between p-6">
                   <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-cyan">
+                    <span className="text-xs font-semibold text-cyan">
                       {cert.issuer}
                     </span>
                     <h3 className="mt-1.5 font-display text-lg font-bold text-foreground transition-colors group-hover:text-cyan">
@@ -279,13 +279,13 @@ export function Certificates() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 15 }}
               transition={{ duration: 0.3, ease: EASE }}
-              className="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-cyan/40 bg-[color-mix(in_oklab,var(--panel-strong)_95%,transparent)] shadow-[0_0_50px_rgba(0,229,255,0.25)] backdrop-blur-2xl"
+              className="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-cyan/40 bg-background/98 shadow-2xl backdrop-blur-2xl"
             >
               {/* Header */}
               <div className="flex items-center justify-between border-b border-[var(--border)] px-6 py-4">
                 <div className="flex items-center gap-3">
                   <span className="grid size-9 place-items-center rounded-xl bg-cyan/15 text-cyan ring-1 ring-cyan/30">
-                    <ShieldCheck className="size-5" />
+                    <ShieldCheck className="size-5" aria-hidden="true" />
                   </span>
                   <div>
                     <h4 className="font-display text-sm font-bold text-foreground sm:text-base">
@@ -298,10 +298,10 @@ export function Certificates() {
                 <button
                   type="button"
                   onClick={() => setSelectedCert(null)}
-                  className="grid size-9 place-items-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground transition-all hover:border-cyan/50 hover:bg-cyan/10 hover:text-white cursor-pointer"
+                  className="grid size-9 place-items-center rounded-xl border border-white/10 bg-white/5 text-muted-foreground transition-colors duration-200 hover:border-cyan/50 hover:bg-cyan/10 hover:text-white cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                   aria-label="Close dialog"
                 >
-                  <X className="size-5" />
+                  <X className="size-5" aria-hidden="true" />
                 </button>
               </div>
 
@@ -326,8 +326,8 @@ export function Certificates() {
                       {selectedCert.description}
                     </p>
 
-                    <h5 className="mt-5 font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                      Skills & Topics Validated
+                    <h5 className="mt-5 font-display text-xs font-bold text-muted-foreground">
+                      Skills &amp; Topics Validated
                     </h5>
                     <div className="mt-2.5 flex flex-wrap gap-2">
                       {selectedCert.skills.map((skill) => (
@@ -335,7 +335,7 @@ export function Certificates() {
                           key={skill}
                           className="inline-flex items-center gap-1.5 rounded-xl border border-cyan/20 bg-cyan/10 px-3 py-1.5 text-xs font-medium text-cyan"
                         >
-                          <CheckCircle2 className="size-3 text-cyan" />
+                          <CheckCircle2 className="size-3 text-cyan" aria-hidden="true" />
                           {skill}
                         </span>
                       ))}
@@ -346,16 +346,16 @@ export function Certificates() {
                   <div className="flex flex-col justify-between rounded-2xl border border-[var(--border)] bg-black/30 p-5 backdrop-blur-sm">
                     <div className="space-y-3">
                       <div>
-                        <span className="text-[10px] font-mono uppercase text-muted-foreground">
+                        <span className="text-[10px] text-muted-foreground">
                           Credential ID
                         </span>
-                        <p className="font-mono text-xs font-semibold text-cyan">
+                        <p className="text-xs font-semibold text-cyan">
                           {selectedCert.credentialId || "VERIFIED-RECORD"}
                         </p>
                       </div>
 
                       <div>
-                        <span className="text-[10px] font-mono uppercase text-muted-foreground">
+                        <span className="text-[10px] text-muted-foreground">
                           Issue Date
                         </span>
                         <p className="text-xs font-semibold text-foreground">
@@ -364,7 +364,7 @@ export function Certificates() {
                       </div>
 
                       <div>
-                        <span className="text-[10px] font-mono uppercase text-muted-foreground">
+                        <span className="text-[10px] text-muted-foreground">
                           Recipient
                         </span>
                         <p className="text-xs font-semibold text-foreground">
@@ -373,11 +373,11 @@ export function Certificates() {
                       </div>
 
                       <div>
-                        <span className="text-[10px] font-mono uppercase text-muted-foreground">
+                        <span className="text-[10px] text-muted-foreground">
                           Verification Status
                         </span>
                         <p className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
-                          <CheckCircle2 className="size-3.5" /> 100% Cryptographically Verified
+                          <CheckCircle2 className="size-3.5" aria-hidden="true" /> 100% Cryptographically Verified
                         </p>
                       </div>
                     </div>

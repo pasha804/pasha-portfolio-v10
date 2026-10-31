@@ -57,7 +57,7 @@ function StatCard({ stat, index }: { stat: (typeof projectStats)[number]; index:
       return <AnimatedCounter target={100} suffix="%" />;
     }
     return (
-      <span className="bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent">
+      <span className="text-cyan">
         {stat.value}
       </span>
     );
@@ -66,14 +66,14 @@ function StatCard({ stat, index }: { stat: (typeof projectStats)[number]; index:
   return (
     <motion.div
       variants={fadeUp}
-      className="group relative flex flex-col items-center justify-center overflow-hidden px-6 py-9 text-center transition-all duration-500 hover:bg-white/[0.035]"
+      className="group relative flex flex-col items-center justify-center overflow-hidden px-6 py-9 text-center transition-colors duration-200 hover:bg-white/[0.035]"
     >
       {/* Top accent light bar on hover */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
 
       {/* Cyber index badge */}
-      <span className="font-mono text-[10px] tracking-[0.25em] text-muted-foreground/60 uppercase transition-colors duration-300 group-hover:text-cyan/90">
-        0{index + 1} // METRIC
+      <span className="text-xs font-semibold text-muted-foreground/60 transition-colors duration-200 group-hover:text-cyan">
+        0{index + 1} // Metric
       </span>
 
       {/* Big Animated Value */}
@@ -83,14 +83,14 @@ function StatCard({ stat, index }: { stat: (typeof projectStats)[number]; index:
 
       {/* Label */}
       <div className="mt-3 flex items-center justify-center gap-2">
-        <span className="size-1.5 rounded-full bg-cyan/50 transition-all duration-300 group-hover:scale-125 group-hover:bg-cyan group-hover:shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
-        <span className="text-xs font-semibold tracking-[0.18em] text-muted-foreground uppercase transition-colors duration-300 group-hover:text-foreground">
+        <span className="size-1.5 rounded-full bg-cyan/50 transition-colors duration-200 group-hover:bg-cyan group-hover:shadow-sm group-hover:shadow-cyan/50" aria-hidden="true" />
+        <span className="text-xs font-semibold text-muted-foreground transition-colors duration-200 group-hover:text-foreground">
           {stat.label}
         </span>
       </div>
 
       {/* Subtle corner light highlight */}
-      <div className="pointer-events-none absolute -bottom-10 size-24 rounded-full bg-cyan/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute -bottom-10 size-24 rounded-full bg-cyan/10 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
     </motion.div>
   );
 }
@@ -126,9 +126,9 @@ export function Projects() {
                   onClick={() => setFilter(f)}
                   aria-pressed={active}
                   className={cn(
-                    "relative inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 font-display text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer",
+                    "relative inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan",
                     active
-                      ? "text-white shadow-[0_0_20px_rgba(0,229,255,0.4)]"
+                      ? "text-white shadow-sm shadow-cyan/40"
                       : "border border-border text-muted-foreground hover:border-border-strong hover:text-foreground hover:bg-white/5",
                   )}
                 >
@@ -142,7 +142,7 @@ export function Projects() {
                   <span>{f}</span>
                   <span
                     className={cn(
-                      "rounded-full px-1.5 py-0.2 font-mono text-[9px]",
+                      "rounded-full px-1.5 py-0.5 text-[10px]",
                       active ? "bg-white/20 text-white" : "bg-white/5 text-muted-foreground"
                     )}
                   >
@@ -180,19 +180,19 @@ export function Projects() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="relative mt-16 overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_88%,transparent)] shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
+          className="relative mt-16 overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_88%,transparent)] shadow-2xl backdrop-blur-2xl"
         >
           {/* Cyber crosshairs on corners */}
-          <div className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/40 select-none">
+          <div className="pointer-events-none absolute top-3 left-3 text-[10px] text-cyan/40 select-none" aria-hidden="true">
             +
           </div>
-          <div className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/40 select-none">
+          <div className="pointer-events-none absolute top-3 right-3 text-[10px] text-cyan/40 select-none" aria-hidden="true">
             +
           </div>
-          <div className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/40 select-none">
+          <div className="pointer-events-none absolute bottom-3 left-3 text-[10px] text-cyan/40 select-none" aria-hidden="true">
             +
           </div>
-          <div className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/40 select-none">
+          <div className="pointer-events-none absolute bottom-3 right-3 text-[10px] text-cyan/40 select-none" aria-hidden="true">
             +
           </div>
 

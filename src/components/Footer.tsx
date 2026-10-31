@@ -13,7 +13,7 @@ export function Footer() {
           {/* Left: Brand Identity & Logo (Unchanged position) */}
           <div className="max-w-sm">
             <div className="flex items-center gap-3">
-              <span className="relative size-11 overflow-hidden rounded-xl border border-cyan/40 bg-[var(--panel-strong)] shadow-[0_0_15px_rgba(0,229,255,0.25)]">
+              <span className="relative size-11 overflow-hidden rounded-xl border border-cyan/40 bg-[var(--panel-strong)] shadow-sm shadow-cyan/30">
                 <img src={portrait} alt="Pasha Dev" className="h-full w-full object-cover object-top" />
               </span>
               <div>
@@ -22,10 +22,10 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-              Muhammad Mubashar — engineering intelligent web applications, Python backends, and autonomous AI systems with cinematic precision.
+              Muhammad Mubashar: engineering intelligent web applications, Python backends, and autonomous AI systems with cinematic precision.
             </p>
             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-400">
-              <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span className="size-1.5 rounded-full bg-emerald-400 motion-safe:animate-ping" />
               <span>Available for Select Engagements</span>
             </div>
           </div>
@@ -34,7 +34,7 @@ export function Footer() {
           <div className="flex flex-wrap items-start justify-start gap-10 sm:gap-14 lg:justify-end lg:ml-auto">
             {/* Column 1: Core Navigation */}
             <div>
-              <p className="font-mono text-[10px] font-bold tracking-[0.2em] text-cyan uppercase">
+              <p className="font-mono text-xs font-bold text-cyan">
                 Explore
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -42,7 +42,7 @@ export function Footer() {
                   <li key={s.id}>
                     <a
                       href={`#${s.id}`}
-                      className="text-xs font-medium text-muted-foreground transition-colors hover:text-cyan"
+                      className="text-xs font-medium text-muted-foreground transition-colors hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan rounded"
                     >
                       {s.label}
                     </a>
@@ -53,7 +53,7 @@ export function Footer() {
 
             {/* Column 2: Secondary Navigation */}
             <div>
-              <p className="font-mono text-[10px] font-bold tracking-[0.2em] text-cyan uppercase">
+              <p className="font-mono text-xs font-bold text-cyan">
                 Architecture
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -61,7 +61,7 @@ export function Footer() {
                   <li key={s.id}>
                     <a
                       href={`#${s.id}`}
-                      className="text-xs font-medium text-muted-foreground transition-colors hover:text-cyan"
+                      className="text-xs font-medium text-muted-foreground transition-colors hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan rounded"
                     >
                       {s.label}
                     </a>
@@ -72,7 +72,7 @@ export function Footer() {
 
             {/* Column 3: Social Channels */}
             <div>
-              <p className="font-mono text-[10px] font-bold tracking-[0.2em] text-cyan uppercase">
+              <p className="font-mono text-xs font-bold text-cyan">
                 Connect
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -82,7 +82,7 @@ export function Footer() {
                       href={s.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs font-medium text-muted-foreground transition-colors hover:text-cyan"
+                      className="text-xs font-medium text-muted-foreground transition-colors hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan rounded"
                     >
                       {s.label}
                     </a>

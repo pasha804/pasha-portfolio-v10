@@ -38,19 +38,19 @@ const CATEGORIES: { id: FAQCategory; label: string; icon: React.ComponentType<{ 
 function getTopicIcon(iconType: FAQItem["iconType"]) {
   switch (iconType) {
     case "ai":
-      return <BrainCircuit className="size-4 text-[#BD34FE]" />;
+      return <BrainCircuit className="size-4 text-violet" aria-hidden="true" />;
     case "fullstack":
-      return <Layers className="size-4 text-cyan" />;
+      return <Layers className="size-4 text-cyan" aria-hidden="true" />;
     case "backend":
-      return <Server className="size-4 text-[#3776AB]" />;
+      return <Server className="size-4 text-cyan" aria-hidden="true" />;
     case "motion":
-      return <Sparkles className="size-4 text-amber-400" />;
+      return <Sparkles className="size-4 text-amber-400" aria-hidden="true" />;
     case "collab":
-      return <Briefcase className="size-4 text-emerald-400" />;
+      return <Briefcase className="size-4 text-emerald-400" aria-hidden="true" />;
     case "gear":
-      return <Cpu className="size-4 text-cyan" />;
+      return <Cpu className="size-4 text-cyan" aria-hidden="true" />;
     default:
-      return <HelpCircle className="size-4 text-cyan" />;
+      return <HelpCircle className="size-4 text-cyan" aria-hidden="true" />;
   }
 }
 
@@ -95,12 +95,12 @@ export function FAQ() {
               />
 
               {/* Cyber Architecture Consultation Hub */}
-              <div className="group relative mt-8 overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_94%,transparent)] p-7 sm:p-8 shadow-2xl backdrop-blur-2xl transition-all duration-500 hover:border-cyan/50 hover:shadow-[0_0_35px_rgba(0,229,255,0.2)]">
+              <div className="group relative mt-8 overflow-hidden rounded-3xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_94%,transparent)] p-7 sm:p-8 shadow-2xl backdrop-blur-2xl transition-[border-color,box-shadow] duration-500 hover:border-cyan/50 hover:shadow-lg hover:shadow-cyan/20">
                 {/* Tech corner marks */}
-                <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-                <span className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
-                <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/30">+</span>
-                <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/30">+</span>
+                <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/30" aria-hidden="true">+</span>
+                <span className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/30" aria-hidden="true">+</span>
+                <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/30" aria-hidden="true">+</span>
+                <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/30" aria-hidden="true">+</span>
 
                 {/* Laser top accent line */}
                 <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -109,7 +109,7 @@ export function FAQ() {
                 <div className="flex items-center justify-between border-b border-white/5 pb-4">
                   <div className="flex items-center gap-2">
                     <span className="relative flex size-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                      <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-emerald-400 opacity-75" />
                       <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
                     </span>
                     <span className="font-mono text-[11px] font-semibold text-emerald-400">
@@ -117,7 +117,7 @@ export function FAQ() {
                     </span>
                   </div>
                   <div className="flex items-center gap-1 font-mono text-[10px] text-cyan">
-                    <Clock className="size-3" />
+                    <Clock className="size-3" aria-hidden="true" />
                     <span>Avg reply &lt; 2h</span>
                   </div>
                 </div>
@@ -135,39 +135,39 @@ export function FAQ() {
                 {/* Key Commitments */}
                 <div className="mt-5 space-y-2.5 font-mono text-[11px] text-foreground/85">
                   <div className="flex items-center gap-2 rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2">
-                    <CheckCircle2 className="size-3.5 text-cyan shrink-0" />
+                    <CheckCircle2 className="size-3.5 text-cyan shrink-0" aria-hidden="true" />
                     <span>Direct developer access (No agency overhead)</span>
                   </div>
                   <div className="flex items-center gap-2 rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2">
-                    <CheckCircle2 className="size-3.5 text-cyan shrink-0" />
+                    <CheckCircle2 className="size-3.5 text-cyan shrink-0" aria-hidden="true" />
                     <span>Clean Git commits &amp; strict type contracts</span>
                   </div>
                   <div className="flex items-center gap-2 rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2">
-                    <CheckCircle2 className="size-3.5 text-cyan shrink-0" />
+                    <CheckCircle2 className="size-3.5 text-cyan shrink-0" aria-hidden="true" />
                     <span>Flexible milestones &amp; fast sprint delivery</span>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="mt-6 flex flex-wrap items-center gap-2.5 border-t border-white/5 pt-5">
-                  <Button variant="neon" size="sm" asChild className="flex-1 justify-center shadow-[0_0_20px_rgba(0,229,255,0.3)]">
+                  <Button variant="neon" size="sm" asChild className="flex-1 justify-center shadow-md shadow-cyan/30">
                     <a href="#contact">
-                      Start Conversation <ArrowUpRight className="size-3.5" />
+                      Start Conversation <ArrowUpRight className="size-3.5" aria-hidden="true" />
                     </a>
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={handleCopyEmail}
-                    className="glass border border-white/10 text-xs hover:border-cyan/40 hover:text-cyan cursor-pointer"
+                    className="glass border border-white/10 text-xs hover:border-cyan/40 hover:text-cyan cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                   >
                     {copied ? (
                       <span className="flex items-center gap-1.5 text-cyan">
-                        <Check className="size-3.5 text-emerald-400" /> Copied!
+                        <Check className="size-3.5 text-emerald-400" aria-hidden="true" /> Copied!
                       </span>
                     ) : (
                       <span className="flex items-center gap-1.5">
-                        <Copy className="size-3.5" /> Copy Email
+                        <Copy className="size-3.5" aria-hidden="true" /> Copy Email
                       </span>
                     )}
                   </Button>
@@ -182,40 +182,40 @@ export function FAQ() {
             <div className="space-y-3.5">
               {/* Telemetry Indicator */}
               <div className="flex items-center justify-between border-b border-white/5 pb-2 text-[10px] font-mono">
-                <span className="text-cyan font-bold tracking-widest uppercase flex items-center gap-1.5">
-                  <Terminal className="size-3 text-cyan" />
-                  KNOWLEDGE_MATRIX // DIRECTIVES
+                <span className="text-cyan font-bold flex items-center gap-1.5">
+                  <Terminal className="size-3 text-cyan" aria-hidden="true" />
+                  Knowledge Matrix / Directives
                 </span>
                 <span className="text-emerald-400 flex items-center gap-1">
-                  <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
-                  STATUS: VERIFIED
+                  <span className="size-1.5 rounded-full bg-emerald-400 motion-safe:animate-ping" />
+                  Status: Verified
                 </span>
               </div>
 
               {/* Sleek Cyber Search Bar */}
               <div className="relative group">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-cyan/70 transition-colors group-focus-within:text-cyan" />
+                <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-cyan/70 transition-colors group-focus-within:text-cyan" aria-hidden="true" />
                 <input
                   id="faq-search"
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search questions (e.g. AI Agents, FastAPI, Pricing, Timeline)..."
-                  className="w-full rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_92%,transparent)] py-3 pl-10 pr-24 text-xs text-foreground placeholder:text-muted-foreground/60 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan transition-all backdrop-blur-xl group-hover:border-cyan/40 shadow-inner"
+                  className="w-full rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel-strong)_92%,transparent)] py-3 pl-10 pr-24 text-xs text-foreground placeholder:text-muted-foreground/60 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan focus-visible:ring-2 focus-visible:ring-cyan transition-colors backdrop-blur-xl group-hover:border-cyan/40 shadow-inner"
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
                   {searchQuery ? (
                     <button
                       type="button"
                       onClick={() => setSearchQuery("")}
-                      className="rounded-lg bg-white/5 p-1 text-muted-foreground hover:bg-cyan/10 hover:text-cyan cursor-pointer transition-colors"
+                      className="rounded-lg bg-white/5 p-1 text-muted-foreground hover:bg-cyan/10 hover:text-cyan cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                       title="Clear search"
                     >
-                      <X className="size-3.5" />
+                      <X className="size-3.5" aria-hidden="true" />
                     </button>
                   ) : (
                     <span className="hidden sm:inline-block rounded-md border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[9px] text-muted-foreground">
-                      HUD // SEARCH
+                      HUD / Search
                     </span>
                   )}
                 </div>
@@ -235,13 +235,13 @@ export function FAQ() {
                     <button
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
-                      className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-all duration-300 cursor-pointer ${
+                      className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-[border-color,background-color,color,transform] duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
                         isActive
-                          ? "bg-cyan/15 border border-cyan text-cyan shadow-[0_0_15px_rgba(0,229,255,0.3)] scale-102"
+                          ? "bg-cyan/15 border border-cyan text-cyan shadow-sm shadow-cyan/30 scale-102"
                           : "border border-white/5 bg-white/[0.03] text-muted-foreground hover:text-foreground hover:border-white/20"
                       }`}
                     >
-                      <Icon className="size-3.5" />
+                      <Icon className="size-3.5" aria-hidden="true" />
                       <span>{cat.label}</span>
                       <span
                         className={`rounded-full px-1.5 py-0.2 font-mono text-[10px] ${
@@ -268,15 +268,15 @@ export function FAQ() {
                     <article
                       key={faq.id}
                       className={cn(
-                        "group relative rounded-2xl border transition-all duration-400 overflow-hidden backdrop-blur-xl",
+                        "group relative rounded-2xl border transition-[border-color,background-color,box-shadow] duration-300 overflow-hidden backdrop-blur-xl",
                         isOpen
-                          ? "border-cyan/50 bg-[color-mix(in_oklab,var(--panel-strong)_95%,transparent)] shadow-[0_0_35px_rgba(0,229,255,0.16)]"
+                          ? "border-cyan/50 bg-[color-mix(in_oklab,var(--panel-strong)_95%,transparent)] shadow-md shadow-cyan/20"
                           : "border-[var(--border)] bg-[color-mix(in_oklab,var(--panel)_82%,transparent)] hover:border-cyan/35 hover:bg-[color-mix(in_oklab,var(--panel)_90%,transparent)]"
                       )}
                     >
                       {/* Tech corner marks */}
-                      <span className="pointer-events-none absolute top-2.5 left-2.5 font-mono text-[9px] text-cyan/30">+</span>
-                      <span className="pointer-events-none absolute top-2.5 right-2.5 font-mono text-[9px] text-cyan/30">+</span>
+                      <span className="pointer-events-none absolute top-2.5 left-2.5 font-mono text-[9px] text-cyan/30" aria-hidden="true">+</span>
+                      <span className="pointer-events-none absolute top-2.5 right-2.5 font-mono text-[9px] text-cyan/30" aria-hidden="true">+</span>
 
                       {/* Top laser line when open */}
                       {isOpen && (
@@ -288,7 +288,7 @@ export function FAQ() {
                           type="button"
                           onClick={() => setOpenId(isOpen ? null : faq.id)}
                           aria-expanded={isOpen}
-                          className="flex w-full items-center justify-between gap-4 p-5 text-left cursor-pointer"
+                          className="flex w-full items-center justify-between gap-4 p-5 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                         >
                           <div className="flex items-center gap-3.5">
                             <span
@@ -321,7 +321,7 @@ export function FAQ() {
                                 : "border-white/10 bg-white/5 text-muted-foreground group-hover:text-foreground"
                             )}
                           >
-                            <ChevronDown className="size-4" />
+                            <ChevronDown className="size-4" aria-hidden="true" />
                           </span>
                         </button>
                       </h3>
@@ -353,8 +353,8 @@ export function FAQ() {
                                   ))}
                                 </div>
                                 <span className="font-mono text-[9px] text-emerald-400/90 flex items-center gap-1">
-                                  <CheckCircle2 className="size-3 text-emerald-400" />
-                                  DOC.VERIFIED // 2026
+                                  <CheckCircle2 className="size-3 text-emerald-400" aria-hidden="true" />
+                                  Doc. Verified (2026)
                                 </span>
                               </div>
                             </div>
@@ -366,12 +366,12 @@ export function FAQ() {
                 })
               ) : (
                 <div className="flex flex-col items-center justify-center rounded-3xl border border-[var(--border)] bg-surface-2/40 p-10 text-center">
-                  <Search className="size-10 text-muted-foreground/40" />
+                  <Search className="size-10 text-muted-foreground/40" aria-hidden="true" />
                   <h4 className="mt-4 font-display text-base font-semibold text-foreground">
                     No matching questions found
                   </h4>
                   <p className="mt-1.5 max-w-sm text-xs text-muted-foreground">
-                    We couldn't find any questions matching "{searchQuery}". Try a different keyword or browse all topics.
+                    We couldn’t find any questions matching “{searchQuery}”. Try a different keyword or browse all topics.
                   </p>
                   <Button
                     variant="neon"

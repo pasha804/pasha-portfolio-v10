@@ -148,22 +148,22 @@ export function AICopilot() {
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.95 }}
           onClick={toggleOpen}
-          className="group relative flex items-center gap-3 overflow-hidden rounded-full border border-cyan/40 bg-[#070b14]/90 p-2 pr-4 shadow-[0_0_30px_rgba(0,229,255,0.35)] backdrop-blur-xl transition-all duration-300 hover:border-cyan hover:shadow-[0_0_40px_rgba(0,229,255,0.6)] cursor-pointer"
+          className="group relative flex items-center gap-3 overflow-hidden rounded-full border border-cyan/40 bg-background/90 p-2 pr-4 shadow-lg shadow-cyan/25 backdrop-blur-xl transition-colors duration-200 hover:border-cyan hover:shadow-xl hover:shadow-cyan/35 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
         >
           {/* Pulsing ring aura */}
-          <span className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-cyan via-violet to-cyan opacity-40 blur-sm group-hover:opacity-80 transition duration-300" />
+          <span className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-cyan/80 to-cyan/30 opacity-40 blur-sm group-hover:opacity-80 transition-opacity duration-300" aria-hidden="true" />
 
           <div className="relative flex size-10 shrink-0 items-center justify-center rounded-full bg-cyan/15 text-cyan ring-1 ring-cyan/40">
-            <Bot className="size-5" />
-            <span className="absolute -top-0.5 -right-0.5 size-2.5 rounded-full bg-emerald-400 border-2 border-black animate-ping" />
+            <Bot className="size-5" aria-hidden="true" />
+            <span className="absolute -top-0.5 -right-0.5 size-2.5 rounded-full bg-emerald-400 border-2 border-background motion-safe:animate-ping" />
           </div>
 
-          <div className="relative flex flex-col text-left font-mono">
-            <span className="text-[11px] font-bold text-foreground group-hover:text-cyan transition-colors">
-              PASHA AI COPILOT
+          <div className="relative flex flex-col text-left">
+            <span className="text-xs font-semibold text-foreground group-hover:text-cyan transition-colors">
+              Pasha AI Copilot
             </span>
-            <span className="text-[9px] text-emerald-400 font-semibold flex items-center gap-1">
-              <span className="size-1 rounded-full bg-emerald-400" /> ONLINE // ASK ME
+            <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
+              <span className="size-1 rounded-full bg-emerald-400" aria-hidden="true" /> Online // Ask Me
             </span>
           </div>
         </motion.button>
@@ -177,23 +177,23 @@ export function AICopilot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex h-[520px] w-[92vw] sm:w-[400px] flex-col overflow-hidden rounded-3xl border-2 border-cyan/40 bg-[#060a14]/98 shadow-[0_0_60px_rgba(0,229,255,0.3)] backdrop-blur-3xl"
+            className="flex h-[520px] w-[92vw] sm:w-[400px] flex-col overflow-hidden rounded-3xl border-2 border-cyan/40 bg-background/98 shadow-2xl shadow-cyan/20 backdrop-blur-3xl"
           >
             {/* Top Laser Accent */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent shadow-[0_0_10px_#00e5ff]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent shadow-sm shadow-cyan/50" aria-hidden="true" />
 
             {/* Header */}
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5 bg-white/[0.02]">
               <div className="flex items-center gap-2.5">
                 <div className="relative flex size-8 items-center justify-center rounded-xl bg-cyan/15 text-cyan ring-1 ring-cyan/40">
-                  <Bot className="size-4" />
+                  <Bot className="size-4" aria-hidden="true" />
                 </div>
                 <div>
                   <h4 className="font-display text-xs font-bold text-foreground">
                     Pasha DevPilot AI
                   </h4>
-                  <p className="font-mono text-[9px] text-cyan uppercase tracking-wider">
-                    AUTONOMOUS ASSISTANT v6.0
+                  <p className="text-[10px] text-cyan font-medium">
+                    Autonomous Assistant v6.0
                   </p>
                 </div>
               </div>
@@ -279,16 +279,16 @@ export function AICopilot() {
               ))}
 
               {isTyping && (
-                <div className="flex items-center gap-1.5 text-cyan text-[11px] font-mono pl-2">
-                  <span className="size-1.5 rounded-full bg-cyan animate-ping" />
-                  <span>DEVPILOT IS SYNTHESIZING RESPONSE...</span>
+                <div className="flex items-center gap-1.5 text-cyan text-xs pl-2">
+                  <span className="size-1.5 rounded-full bg-cyan motion-safe:animate-ping" />
+                  <span>DevPilot is synthesizing response…</span>
                 </div>
               )}
             </div>
 
             {/* Quick Prompt Directive Chips */}
-            <div className="border-t border-white/10 p-2.5 bg-black/40">
-              <span className="block font-mono text-[9px] text-muted-foreground uppercase px-1 mb-1.5">
+            <div className="border-t border-white/10 p-2.5 bg-card/40">
+              <span className="block text-[10px] text-muted-foreground px-1 mb-1.5">
                 Suggested Directives:
               </span>
               <div className="flex gap-1.5 overflow-x-auto pb-1 no-scrollbar">
@@ -297,7 +297,7 @@ export function AICopilot() {
                     key={preset.q}
                     type="button"
                     onClick={() => handleSend(preset.q)}
-                    className="whitespace-nowrap rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] text-muted-foreground hover:border-cyan/40 hover:bg-cyan/10 hover:text-cyan transition-colors cursor-pointer"
+                    className="whitespace-nowrap rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-muted-foreground hover:border-cyan/40 hover:bg-cyan/10 hover:text-cyan transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                   >
                     {preset.q}
                   </button>
@@ -311,21 +311,21 @@ export function AICopilot() {
                 e.preventDefault();
                 handleSend(input);
               }}
-              className="flex items-center gap-2 border-t border-white/10 p-3 bg-black/60"
+              className="flex items-center gap-2 border-t border-white/10 p-3 bg-card/60"
             >
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about tech, projects, or contracts..."
-                className="flex-1 rounded-xl border border-white/10 bg-black/40 px-3 py-2 font-mono text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan transition-all"
+                className="flex-1 rounded-xl border border-white/10 bg-background/60 px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan transition-colors"
               />
               <button
                 type="submit"
                 disabled={!input.trim() || isTyping}
-                className="flex size-9 items-center justify-center rounded-xl bg-cyan text-black font-bold shadow-[0_0_15px_rgba(0,229,255,0.4)] disabled:opacity-40 cursor-pointer transition-transform hover:scale-105"
+                className="flex size-9 items-center justify-center rounded-xl bg-cyan text-black font-bold shadow-md shadow-cyan/35 disabled:opacity-40 cursor-pointer transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
-                <Send className="size-4" />
+                <Send className="size-4" aria-hidden="true" />
               </button>
             </form>
           </motion.div>

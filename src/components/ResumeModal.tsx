@@ -98,17 +98,17 @@ HONORS & AWARDS:
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 20 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border-2 border-cyan/40 bg-[#060a14]/98 shadow-[0_0_60px_rgba(0,229,255,0.3)] backdrop-blur-3xl"
+          className="relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border-2 border-cyan/40 bg-background/98 shadow-2xl shadow-cyan/30 backdrop-blur-3xl"
         >
           {/* Top Laser Accent */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent shadow-[0_0_12px_#00e5ff]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent shadow-sm shadow-cyan/50" />
 
           {/* Header Controls */}
           <div className="flex items-center justify-between border-b border-white/10 px-6 py-4 bg-white/[0.02]">
             <div className="flex items-center gap-2.5 font-mono text-xs text-cyan">
-              <Terminal className="size-4" />
-              <span className="font-bold tracking-widest uppercase">
-                EXECUTIVE_SPECIFICATION // RESUME_V6.0
+              <Terminal className="size-4" aria-hidden="true" />
+              <span className="font-bold">
+                Executive Specification / Resume v6.0
               </span>
             </div>
 
@@ -116,29 +116,29 @@ HONORS & AWARDS:
               <button
                 type="button"
                 onClick={handleCopyResumeText}
-                className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs text-muted-foreground hover:border-cyan/40 hover:text-cyan transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs text-muted-foreground hover:border-cyan/40 hover:text-cyan transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                 title="Copy markdown text"
               >
-                {copied ? <Check className="size-3.5 text-emerald-400" /> : <Copy className="size-3.5" />}
-                <span>{copied ? "COPIED" : "COPY TEXT"}</span>
+                {copied ? <Check className="size-3.5 text-emerald-400" aria-hidden="true" /> : <Copy className="size-3.5" aria-hidden="true" />}
+                <span>{copied ? "Copied" : "Copy text"}</span>
               </button>
 
               <button
                 type="button"
                 onClick={handlePrint}
-                className="flex items-center gap-1.5 rounded-lg border border-cyan/30 bg-cyan/15 px-3 py-1.5 font-mono text-xs font-bold text-cyan hover:bg-cyan hover:text-black transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 rounded-lg border border-cyan/30 bg-cyan/15 px-3 py-1.5 font-mono text-xs font-bold text-cyan hover:bg-cyan hover:text-black transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                 title="Print or Save as PDF"
               >
-                <Printer className="size-3.5" />
-                <span>PRINT / PDF</span>
+                <Printer className="size-3.5" aria-hidden="true" />
+                <span>Print / PDF</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="rounded-lg p-1.5 text-muted-foreground hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-muted-foreground hover:bg-white/10 hover:text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
-                <X className="size-5" />
+                <X className="size-5" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -151,29 +151,29 @@ HONORS & AWARDS:
                 <h2 className="font-display text-3xl font-extrabold text-foreground tracking-tight">
                   Muhammad Mubashar
                 </h2>
-                <p className="mt-1 font-mono text-sm font-semibold text-cyan uppercase tracking-wider">
-                  Pasha Dev • AI Full Stack Developer &amp; Systems Architect
+                <p className="mt-1 font-mono text-sm font-semibold text-cyan">
+                  Pasha Dev : AI Full Stack Developer &amp; Systems Architect
                 </p>
                 <div className="mt-3 flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground">
                   <span className="flex items-center gap-1.5 text-foreground/85">
-                    <Mail className="size-3.5 text-cyan" /> pashabusiness804@gmail.com
+                    <Mail className="size-3.5 text-cyan" aria-hidden="true" /> pashabusiness804@gmail.com
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <MapPin className="size-3.5 text-cyan" /> Pakistan // Remote Worldwide
+                    <MapPin className="size-3.5 text-cyan" aria-hidden="true" /> Pakistan // Remote Worldwide
                   </span>
                 </div>
               </div>
 
               <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 font-mono text-xs text-emerald-400 flex items-center gap-2">
-                <span className="size-2 rounded-full bg-emerald-400 animate-ping" />
-                <span>AVAILABLE FOR FULL-STACK &amp; AI CONTRACTS</span>
+                <span className="size-2 rounded-full bg-emerald-400 motion-safe:animate-ping" />
+                <span>Available for full-stack &amp; AI contracts</span>
               </div>
             </div>
 
             {/* Section 1: Executive Profile */}
             <div>
-              <h3 className="font-mono text-xs font-bold tracking-widest text-cyan uppercase">
-                01 // EXECUTIVE SUMMARY
+              <h3 className="font-mono text-xs font-bold text-cyan">
+                01 / Executive Summary
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 AI Full Stack Developer engineering modern web applications, high-concurrency Python
@@ -185,30 +185,30 @@ HONORS & AWARDS:
 
             {/* Section 2: Core Engineering Matrix */}
             <div>
-              <h3 className="font-mono text-xs font-bold tracking-widest text-cyan uppercase">
-                02 // CORE ENGINEERING MATRIX
+              <h3 className="font-mono text-xs font-bold text-cyan">
+                02 / Core Engineering Matrix
               </h3>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <span className="font-mono text-xs font-bold text-cyan">FRONTEND ARCHITECTURE</span>
+                  <span className="font-mono text-xs font-bold text-cyan">Frontend Architecture</span>
                   <p className="mt-1 text-xs text-muted-foreground">
                     React 19, TypeScript, Tailwind CSS v4, Next.js, Framer Motion, WebGL (OGL), State Machines, 60fps Animation.
                   </p>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <span className="font-mono text-xs font-bold text-[#3776AB]">BACKEND &amp; CLOUD</span>
+                  <span className="font-mono text-xs font-bold text-cyan">Backend &amp; Cloud</span>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Python 3.12, FastAPI, PostgreSQL, Redis Caching, Docker, Asynchronous Concurrency, REST &amp; WebSockets.
                   </p>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <span className="font-mono text-xs font-bold text-[#BD34FE]">AI &amp; AUTONOMOUS SYSTEMS</span>
+                  <span className="font-mono text-xs font-bold text-violet">AI &amp; Autonomous Systems</span>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Autonomous Multi-Agent Loops, Tool Calling, Vector Grounding (RAG), LangChain, Prompt Directives.
                   </p>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <span className="font-mono text-xs font-bold text-emerald-400">DEV TOOLS &amp; WORKFLOWS</span>
+                  <span className="font-mono text-xs font-bold text-emerald-400">Dev Tools &amp; Workflows</span>
                   <p className="mt-1 text-xs text-muted-foreground">
                     Antigravity Platform, Kiro AI, Freebuff, OpenCode, Git, GitHub Actions CI/CD, Nitro Engine.
                   </p>
@@ -218,16 +218,16 @@ HONORS & AWARDS:
 
             {/* Section 3: Notable Awards & Hackathons */}
             <div>
-              <h3 className="font-mono text-xs font-bold tracking-widest text-cyan uppercase">
-                03 // COMPETITIVE HACKATHONS &amp; HONORS
+              <h3 className="font-mono text-xs font-bold text-cyan">
+                03 / Competitive Hackathons &amp; Honors
               </h3>
               <div className="mt-3 space-y-3">
                 <div className="rounded-xl border border-amber-400/30 bg-amber-400/5 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <Award className="size-4 text-amber-400" />
+                      <Award className="size-4 text-amber-400" aria-hidden="true" />
                       <span className="font-display text-sm font-bold text-foreground">
-                        Innovation &amp; Excellence Award — IBM Bob 2.0 Global Hackathon
+                        Innovation &amp; Excellence Award : IBM Bob 2.0 Global Hackathon
                       </span>
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">
@@ -235,21 +235,21 @@ HONORS & AWARDS:
                     </p>
                   </div>
                   <span className="font-mono text-xs font-bold text-amber-400 whitespace-nowrap">
-                    SEPT 2026 // LABLAB.AI
+                    Sept 2026 / Lablab.ai
                   </span>
                 </div>
 
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
                     <span className="font-display text-sm font-bold text-foreground">
-                      Featured AI Product — Meta Llama 3.1 Global Sprint
+                      Featured AI Product : Meta Llama 3.1 Global Sprint
                     </span>
                     <p className="mt-1 text-xs text-muted-foreground">
                       Built Nexora Arena: Real-time dual-client code challenge PvP with autonomous AI referee.
                     </p>
                   </div>
                   <span className="font-mono text-xs text-cyan whitespace-nowrap">
-                    AUG 2026 // LABLAB.AI
+                    Aug 2026 / Lablab.ai
                   </span>
                 </div>
               </div>
@@ -257,8 +257,8 @@ HONORS & AWARDS:
 
             {/* Section 4: Flagship Products */}
             <div>
-              <h3 className="font-mono text-xs font-bold tracking-widest text-cyan uppercase">
-                04 // FLAGSHIP PRODUCTS
+              <h3 className="font-mono text-xs font-bold text-cyan">
+                04 / Flagship Products
               </h3>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5">

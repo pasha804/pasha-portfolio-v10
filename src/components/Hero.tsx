@@ -67,26 +67,34 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Eyebrow Positioning Statement */}
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="font-mono text-[11px] font-bold tracking-[0.22em] text-cyan uppercase">
-              INDEPENDENT DEVELOPER · AI SYSTEMS · DIGITAL PRODUCTS
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-md border border-cyan/30 bg-cyan/10 px-2.5 py-1 text-xs font-semibold text-cyan">
+              Independent Developer
+            </span>
+            <span className="text-xs text-muted-foreground/50" aria-hidden="true">/</span>
+            <span className="rounded-md border border-violet/30 bg-violet/10 px-2.5 py-1 text-xs font-semibold text-violet">
+              AI Systems Architect
+            </span>
+            <span className="text-xs text-muted-foreground/50" aria-hidden="true">/</span>
+            <span className="rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-xs font-semibold text-foreground/80">
+              Digital Products
             </span>
           </div>
 
           {/* Availability Radar Badge */}
-          <div className="availability group relative mt-3 inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-emerald-500/30 bg-black/60 px-4 py-1.5 backdrop-blur-xl shadow-[0_0_20px_rgba(52,211,153,0.15)]">
+          <div className="availability group relative mt-3 inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-emerald-500/30 bg-background/80 px-4 py-1.5 backdrop-blur-xl shadow-sm shadow-emerald-500/20">
             <span className="relative flex size-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex size-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" />
+              <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-2.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
             </span>
-            <span className="font-mono text-xs font-semibold text-emerald-400 tracking-wider">
+            <span className="text-xs font-semibold text-emerald-400">
               Available for select projects &amp; engineering contracts
             </span>
           </div>
 
-          <h1 className="mt-3.5 font-display text-2xl sm:text-3xl lg:text-[40px] xl:text-[42px] font-extrabold tracking-tight text-foreground leading-[1.18]">
+          <h1 className="mt-3.5 font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-[1.2] [text-wrap:balance]">
             I Build Intelligent <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,229,255,0.4)]">
+            <span className="text-cyan drop-shadow-md">
               Digital Experiences.
             </span>
           </h1>
@@ -100,13 +108,13 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
 
           {/* Role Strip */}
           <div className="role-strip mt-5">
-            <Code2 size={18} className="text-cyan" />
+            <Code2 size={18} className="text-cyan" aria-hidden="true" />
             <strong>AI Full Stack Developer</strong>
-            <i />
+            <i aria-hidden="true" />
             <span>Systems Architect</span>
-            <i />
+            <i aria-hidden="true" />
             <span>Python &amp; FastAPI</span>
-            <i />
+            <i aria-hidden="true" />
             <span>Creative Engineering</span>
           </div>
 
@@ -118,17 +126,17 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
               className="relative group"
             >
               {/* Pulsing neon energy aura */}
-              <span className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-cyan via-violet to-cyan opacity-75 blur-md group-hover:opacity-100 transition duration-500 animate-pulse" />
+              <span className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-cyan to-cyan/40 opacity-75 blur-md group-hover:opacity-100 transition-opacity duration-300 motion-safe:animate-pulse" />
               <Button
                 variant="neon"
                 size="lg"
                 asChild
                 onClick={() => sound.playChirp()}
-                className="relative shadow-[0_0_30px_rgba(0,229,255,0.4)] cursor-pointer"
+                className="relative shadow-md shadow-cyan/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
                 <a href="#projects" className="flex items-center gap-2 font-display tracking-wider">
                   <span>Explore My Work</span>
-                  <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
                 </a>
               </Button>
             </motion.div>
@@ -143,10 +151,10 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
                 size="lg"
                 asChild
                 onClick={() => sound.playBlip(1040, 0.04)}
-                className="relative overflow-hidden border-cyan/40 bg-black/40 backdrop-blur-xl shadow-[0_0_20px_rgba(0,229,255,0.15)] transition-all duration-300 group-hover:border-cyan group-hover:shadow-[0_0_30px_rgba(0,229,255,0.35)] cursor-pointer"
+                className="relative overflow-hidden border-cyan/40 bg-background/60 backdrop-blur-xl shadow-sm shadow-cyan/15 transition-colors duration-200 group-hover:border-cyan group-hover:shadow-md group-hover:shadow-cyan/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
                 <a href="#contact" className="flex items-center gap-2 font-display tracking-wider">
-                  <Send size={16} className="text-cyan transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <Send size={16} className="text-cyan transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                   <span>Let&apos;s Build Something</span>
                 </a>
               </Button>
@@ -165,9 +173,9 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
                   sound.playCommandOpen();
                   window.dispatchEvent(new CustomEvent("pasha:open-resume-modal"));
                 }}
-                className="relative overflow-hidden border-white/20 bg-white/5 backdrop-blur-xl shadow-[0_0_15px_rgba(255,255,255,0.08)] transition-all duration-300 hover:border-cyan/60 hover:text-cyan hover:shadow-[0_0_25px_rgba(0,229,255,0.25)] cursor-pointer"
+                className="relative overflow-hidden border-white/20 bg-card/60 backdrop-blur-xl shadow-sm shadow-white/10 transition-colors duration-200 hover:border-cyan/60 hover:text-cyan hover:shadow-md hover:shadow-cyan/20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
-                <FileText size={16} className="text-cyan" />
+                <FileText size={16} className="text-cyan" aria-hidden="true" />
                 <span>View Specs / CV</span>
               </Button>
             </motion.div>
@@ -179,9 +187,9 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
               target="_blank"
               rel="noreferrer"
               aria-label="View GitHub Profile"
-              className="flex size-11 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-foreground transition-all hover:border-cyan/50 hover:bg-white/10 hover:text-cyan hover:shadow-[0_0_20px_rgba(0,229,255,0.3)]"
+              className="flex size-11 items-center justify-center rounded-2xl border border-white/15 bg-card/60 text-foreground transition-colors duration-200 hover:border-cyan/50 hover:bg-card hover:text-cyan hover:shadow-md hover:shadow-cyan/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
             >
-              <Github size={20} />
+              <Github size={20} aria-hidden="true" />
             </motion.a>
           </div>
         </motion.div>
@@ -226,7 +234,7 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
             transition={{
               y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
             }}
-            className="portrait-frame relative overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-[0_0_55px_rgba(0,229,255,0.45)]"
+            className="portrait-frame relative overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-2xl hover:shadow-cyan/30"
           >
             {/* Dynamic Specular Sheen Reflection */}
             <motion.div
@@ -247,12 +255,12 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
           <OrbitingTechBadges />
 
           <div className="cursor-note">
-            <span className="cursor-shape">◆</span>
+            <span className="cursor-shape" aria-hidden="true">◆</span>
             <small>Interactive 3D Tilt</small>
           </div>
 
           <div className="hover-chip">
-            <Sparkles size={13} /> Interactive 3D Tilt
+            <Sparkles size={13} aria-hidden="true" /> Interactive 3D Tilt
           </div>
 
           <div className="nameplate">
@@ -274,28 +282,28 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
         className="metrics"
       >
         <div>
-          <Code2 />
+          <Code2 aria-hidden="true" />
           <span>
             <strong>10+ Products</strong>
             <small>Shipped &amp; Documented</small>
           </span>
         </div>
         <div>
-          <Cpu />
+          <Cpu aria-hidden="true" />
           <span>
             <strong>Full-Stack + AI</strong>
             <small>End-to-End Architecture</small>
           </span>
         </div>
         <div>
-          <Zap />
+          <Zap aria-hidden="true" />
           <span>
             <strong>FastAPI &amp; Python</strong>
             <small>High-Throughput Backends</small>
           </span>
         </div>
         <div>
-          <Layers />
+          <Layers aria-hidden="true" />
           <span>
             <strong>React &amp; Modern Web</strong>
             <small>60fps Cinematic UX</small>

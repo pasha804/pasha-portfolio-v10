@@ -22,8 +22,8 @@ export function GlobalBackground() {
 
       {/* Atmospheric cyber vignette overlays to guarantee crystal-clear contrast */}
       <div className="absolute inset-0 bg-black/30" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-[#05070D]/85" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(5,7,13,0.7)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-background/90" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,black_100%)] opacity-70" />
     </div>
   );
 }

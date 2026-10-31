@@ -36,7 +36,7 @@ const PILLARS = [
       "Crafting fluid, GPU-accelerated web experiences with React 19, TypeScript, Tailwind CSS, and Framer Motion with sub-frame micro-interactions and zero jank.",
     accent: "text-cyan",
     laser: "via-cyan",
-    borderGlow: "hover:border-cyan/60 hover:shadow-[0_0_40px_rgba(0,229,255,0.25)]",
+    borderGlow: "hover:border-cyan/60 hover:shadow-xl hover:shadow-cyan/20",
     telemetry: "REACT 19 • GPU MOTION • TYPED CONTRACTS",
   },
   {
@@ -44,9 +44,9 @@ const PILLARS = [
     title: "High-Throughput Python Core",
     description:
       "Engineering asynchronous backend microservices with Python, FastAPI, Redis, and PostgreSQL designed for resilience and heavy concurrent workloads.",
-    accent: "text-[#38bdf8]",
-    laser: "via-[#38bdf8]",
-    borderGlow: "hover:border-[#38bdf8]/60 hover:shadow-[0_0_40px_rgba(56,189,248,0.25)]",
+    accent: "text-sky-400",
+    laser: "via-sky-400",
+    borderGlow: "hover:border-sky-400/60 hover:shadow-xl hover:shadow-sky-400/20",
     telemetry: "FASTAPI • ASYNCIO • REDIS • POSTGRES",
   },
   {
@@ -54,9 +54,9 @@ const PILLARS = [
     title: "Autonomous AI & Agentic Systems",
     description:
       "Architecting multi-agent loops, AST verification pipelines, RAG retrieval, and specialized model integrations to build genuine software agents.",
-    accent: "text-[#bd34fe]",
-    laser: "via-[#bd34fe]",
-    borderGlow: "hover:border-[#bd34fe]/60 hover:shadow-[0_0_40px_rgba(189,52,254,0.25)]",
+    accent: "text-violet",
+    laser: "via-violet",
+    borderGlow: "hover:border-violet/60 hover:shadow-xl hover:shadow-violet/20",
     telemetry: "LLM REASONING • AST PARSER • MULTI-AGENT",
   },
 ];
@@ -276,13 +276,13 @@ export function About() {
                   sound.playBlip(980, 0.03);
                   setActiveMode(mode.id as any);
                 }}
-                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 font-mono text-xs font-bold transition-all duration-300 cursor-pointer ${
+                className={`group flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
                   isActive
-                    ? "bg-cyan/20 text-cyan border border-cyan/60 shadow-[0_0_20px_rgba(0,229,255,0.3)]"
-                    : "border border-white/10 bg-black/40 text-muted-foreground hover:bg-white/5 hover:text-foreground hover:border-white/20"
+                    ? "bg-cyan/20 text-cyan border border-cyan/60 shadow-sm shadow-cyan/30"
+                    : "border border-white/10 bg-background/60 text-muted-foreground hover:bg-card hover:text-foreground hover:border-white/20"
                 }`}
               >
-                <Icon className={`size-3.5 transition-colors ${isActive ? "text-cyan" : "group-hover:text-cyan"}`} />
+                <Icon className={`size-3.5 transition-colors duration-200 ${isActive ? "text-cyan" : "group-hover:text-cyan"}`} aria-hidden="true" />
                 <span>{mode.label}</span>
               </button>
             );
@@ -303,35 +303,35 @@ export function About() {
                 className="grid gap-6 lg:grid-cols-12"
               >
                 {/* Main Profile & Philosophy Hologram (7 cols) */}
-                <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan/30 bg-black/70 p-7 sm:p-9 shadow-2xl backdrop-blur-2xl lg:col-span-7">
+                <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan/30 bg-background/80 p-7 sm:p-9 shadow-2xl backdrop-blur-2xl lg:col-span-7">
                   {/* Neon HUD Corner Marks */}
-                  <span className="pointer-events-none absolute top-3 left-3 font-mono text-[10px] text-cyan/40">⌜</span>
-                  <span className="pointer-events-none absolute top-3 right-3 font-mono text-[10px] text-cyan/40">⌝</span>
-                  <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] text-cyan/40">⌞</span>
-                  <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] text-cyan/40">⌟</span>
+                  <span className="pointer-events-none absolute top-3 left-3 text-[10px] text-cyan/40" aria-hidden="true">⌜</span>
+                  <span className="pointer-events-none absolute top-3 right-3 text-[10px] text-cyan/40" aria-hidden="true">⌝</span>
+                  <span className="pointer-events-none absolute bottom-3 left-3 text-[10px] text-cyan/40" aria-hidden="true">⌞</span>
+                  <span className="pointer-events-none absolute bottom-3 right-3 text-[10px] text-cyan/40" aria-hidden="true">⌟</span>
 
                   {/* Top Ambient Laser Line */}
-                  <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-80" />
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent opacity-80" aria-hidden="true" />
 
                   <div>
                     {/* Header Telemetry */}
                     <div className="flex items-center justify-between border-b border-white/10 pb-4">
                       <div className="flex items-center gap-2">
-                        <Terminal className="size-3.5 text-cyan" />
-                        <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-cyan uppercase">
-                          DOSSIER // IDENTITY &amp; CORE STACK
+                        <Terminal className="size-3.5 text-cyan" aria-hidden="true" />
+                        <span className="text-xs font-semibold text-cyan">
+                          Dossier // Identity &amp; Core Stack
                         </span>
                       </div>
-                      <span className="font-mono text-[10px] text-emerald-400 font-semibold flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-0.5 rounded-full">
-                        <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
-                        OPERATIONAL // READY
+                      <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-0.5 rounded-full">
+                        <span className="size-1.5 rounded-full bg-emerald-400 motion-safe:animate-ping" />
+                        Operational // Ready
                       </span>
                     </div>
 
                     {/* Developer Info Card */}
                     <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
                       <div className="flex items-center gap-4">
-                        <div className="relative size-16 overflow-hidden rounded-2xl border-2 border-cyan/60 bg-[var(--panel-strong)] shadow-[0_0_25px_rgba(0,229,255,0.4)] ring-2 ring-cyan/20">
+                        <div className="relative size-16 overflow-hidden rounded-2xl border-2 border-cyan/60 bg-[var(--panel-strong)] shadow-md shadow-cyan/30 ring-2 ring-cyan/20">
                           <img
                             src={portrait}
                             alt="Muhammad Mubashar"
@@ -342,7 +342,7 @@ export function About() {
                           <h3 className="font-display text-2xl font-extrabold text-foreground tracking-tight">
                             Muhammad Mubashar
                           </h3>
-                          <p className="text-xs font-semibold text-cyan tracking-wider uppercase flex items-center gap-1.5 mt-0.5">
+                          <p className="text-xs font-semibold text-cyan flex items-center gap-1.5 mt-0.5">
                             <span>Pasha Dev</span>
                             <span>•</span>
                             <span>AI Full Stack Developer</span>
@@ -351,12 +351,12 @@ export function About() {
                       </div>
 
                       <div className="flex flex-col gap-1.5 sm:items-end">
-                        <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-muted-foreground">
-                          <MapPin className="size-3 text-cyan" />
+                        <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground">
+                          <MapPin className="size-3 text-cyan" aria-hidden="true" />
                           <span>Pakistan // UTC+05:00</span>
                         </div>
-                        <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 font-mono text-[10px] text-emerald-400">
-                          <Clock className="size-3" />
+                        <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-0.5 text-xs text-emerald-400">
+                          <Clock className="size-3" aria-hidden="true" />
                           <span>Immediate Client &amp; Contract Availability</span>
                         </div>
                       </div>
@@ -396,9 +396,9 @@ export function About() {
                       ].map((tech) => (
                         <span
                           key={tech}
-                          className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-mono font-medium text-foreground transition-all duration-200 hover:border-cyan/50 hover:text-cyan hover:bg-cyan/10"
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-foreground transition-colors duration-200 hover:border-cyan/50 hover:text-cyan hover:bg-cyan/10"
                         >
-                          <span className="size-1.5 rounded-full bg-cyan shadow-[0_0_6px_#00e5ff]" />
+                          <span className="size-1.5 rounded-full bg-cyan shadow-sm shadow-cyan/50" />
                           {tech}
                         </span>
                       ))}
@@ -410,15 +410,15 @@ export function About() {
                     {HIGHLIGHTS.map((h, i) => (
                       <div
                         key={i}
-                        className="group/stat relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-3.5 transition-all duration-300 hover:border-cyan/40 hover:bg-cyan/[0.05] hover:shadow-[0_0_20px_rgba(0,229,255,0.15)]"
+                        className="group/stat relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-3.5 transition-colors duration-200 hover:border-cyan/40 hover:bg-cyan/[0.05] hover:shadow-md hover:shadow-cyan/15"
                       >
-                        <span className="font-display text-2xl font-black text-cyan drop-shadow-[0_0_12px_rgba(0,229,255,0.5)]">
+                        <span className="font-display text-2xl font-black text-cyan drop-shadow-sm">
                           {h.value}
                         </span>
-                        <span className="mt-1 block font-mono text-[11px] font-bold text-foreground">
+                        <span className="mt-1 block text-xs font-semibold text-foreground">
                           {h.label}
                         </span>
-                        <span className="block font-mono text-[9px] text-muted-foreground">
+                        <span className="block text-[10px] text-muted-foreground">
                           {h.sub}
                         </span>
                       </div>
@@ -427,17 +427,17 @@ export function About() {
                 </div>
 
                 {/* Right Side: Philosophy & Mindset Hologram (5 cols) */}
-                <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan/30 bg-black/70 p-7 sm:p-8 shadow-2xl backdrop-blur-2xl lg:col-span-5">
-                  <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-violet to-transparent opacity-80" />
+                <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan/30 bg-background/80 p-7 sm:p-8 shadow-2xl backdrop-blur-2xl lg:col-span-5">
+                  <div className="pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent via-violet to-transparent opacity-80" aria-hidden="true" />
 
                   <div>
                     <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                      <span className="font-mono text-[11px] font-bold tracking-[0.2em] text-cyan uppercase flex items-center gap-1.5">
-                        <Flame className="size-3.5 text-cyan" />
-                        ENGINEERING PRINCIPLES
+                      <span className="text-xs font-semibold text-cyan flex items-center gap-1.5">
+                        <Flame className="size-3.5 text-cyan" aria-hidden="true" />
+                        Engineering Principles
                       </span>
-                      <span className="font-mono text-[10px] text-cyan font-bold">
-                        ZERO PLACEHOLDERS
+                      <span className="text-xs text-cyan font-semibold">
+                        Zero Placeholders
                       </span>
                     </div>
 
@@ -472,10 +472,10 @@ export function About() {
                         return (
                           <div
                             key={idx}
-                            className="rounded-2xl border border-white/10 bg-white/[0.02] p-3.5 transition-all duration-300 hover:border-cyan/40 hover:bg-cyan/[0.04]"
+                            className="rounded-2xl border border-white/10 bg-white/[0.02] p-3.5 transition-colors duration-200 hover:border-cyan/40 hover:bg-cyan/[0.04]"
                           >
                             <div className="flex items-center gap-2">
-                              <Icon className="size-4 text-cyan" />
+                              <Icon className="size-4 text-cyan" aria-hidden="true" />
                               <h4 className="font-display text-xs font-bold text-foreground">
                                 {item.title}
                               </h4>
@@ -490,13 +490,13 @@ export function About() {
                   </div>
 
                   <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-                    <span className="font-mono text-[10px] text-muted-foreground">
-                      AUDITED &amp; VERIFIED // 2026
+                    <span className="text-xs text-muted-foreground">
+                      Audited &amp; Verified // 2026
                     </span>
                     <Button variant="neon" size="sm" asChild onClick={() => sound.playChirp()}>
-                      <a href="#projects" className="flex items-center gap-1.5">
+                      <a href="#projects" className="flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan">
                         <span>Explore Projects</span>
-                        <ArrowUpRight className="size-3.5" />
+                        <ArrowUpRight className="size-3.5" aria-hidden="true" />
                       </a>
                     </Button>
                   </div>
@@ -512,17 +512,17 @@ export function About() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: EASE }}
-                className="overflow-hidden rounded-3xl border border-cyan/40 bg-black/85 shadow-2xl backdrop-blur-2xl"
+                className="overflow-hidden rounded-3xl border border-cyan/40 bg-background/90 shadow-2xl backdrop-blur-2xl"
               >
                 {/* Terminal Header */}
                 <div className="flex flex-wrap items-center justify-between border-b border-white/10 bg-white/[0.03] px-5 py-3">
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5" aria-hidden="true">
                       <span className="size-3 rounded-full bg-red-500/80 inline-block" />
                       <span className="size-3 rounded-full bg-yellow-500/80 inline-block" />
                       <span className="size-3 rounded-full bg-emerald-500/80 inline-block" />
                     </div>
-                    <span className="ml-3 font-mono text-xs font-bold text-cyan">
+                    <span className="ml-3 text-xs font-semibold text-cyan">
                       PASHA-DEV // ARCHITECTURE-ENGINE
                     </span>
                   </div>
@@ -539,9 +539,9 @@ export function About() {
                             sound.playBlip(1040, 0.03);
                             setActiveCodeTab(tab.id as any);
                           }}
-                          className={`rounded-lg px-3 py-1 font-mono text-xs font-semibold transition-all cursor-pointer ${
+                          className={`rounded-lg px-3 py-1 text-xs font-semibold transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
                             isActive
-                              ? "bg-cyan/20 text-cyan border border-cyan/40 shadow-[0_0_12px_rgba(0,229,255,0.25)]"
+                              ? "bg-cyan/20 text-cyan border border-cyan/40 shadow-sm shadow-cyan/25"
                               : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                           }`}
                         >
@@ -557,18 +557,18 @@ export function About() {
                       type="button"
                       onClick={handleRunDiagnostics}
                       disabled={diagnosticsRunning}
-                      className="flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 cursor-pointer disabled:opacity-50"
+                      className="flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400 transition-colors duration-200 hover:bg-emerald-500/20 cursor-pointer disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                     >
-                      <Play className="size-3" />
+                      <Play className="size-3" aria-hidden="true" />
                       <span>{diagnosticsRunning ? "DIAGNOSING..." : "TEST RUN"}</span>
                     </button>
 
                     <button
                       type="button"
                       onClick={handleCopySnippet}
-                      className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-muted-foreground hover:text-cyan hover:border-cyan/40 transition-colors cursor-pointer"
+                      className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground hover:text-cyan hover:border-cyan/40 transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                     >
-                      {copiedCode ? <Check className="size-3 text-emerald-400" /> : <Copy className="size-3" />}
+                      {copiedCode ? <Check className="size-3 text-emerald-400" aria-hidden="true" /> : <Copy className="size-3" aria-hidden="true" />}
                       <span>{copiedCode ? "COPIED" : "COPY"}</span>
                     </button>
                   </div>
@@ -622,15 +622,15 @@ export function About() {
                 {COMPETENCIES.map((comp) => (
                   <div
                     key={comp.domain}
-                    className="group relative overflow-hidden rounded-3xl border border-white/10 bg-black/70 p-6 shadow-xl backdrop-blur-2xl transition-all duration-300 hover:border-cyan/50 hover:shadow-[0_0_35px_rgba(0,229,255,0.2)]"
+                    className="group relative overflow-hidden rounded-3xl border border-white/10 bg-background/80 p-6 shadow-xl backdrop-blur-2xl transition-colors duration-200 hover:border-cyan/50 hover:shadow-lg hover:shadow-cyan/15"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-[10px] font-bold text-cyan bg-cyan/10 border border-cyan/20 px-2.5 py-0.5 rounded-full">
+                      <span className="text-[10px] font-semibold text-cyan bg-cyan/10 border border-cyan/20 px-2.5 py-0.5 rounded-full">
                         {comp.status}
                       </span>
-                      <span className="flex items-center gap-1 font-mono text-[10px] text-emerald-400 font-semibold">
-                        <CheckCircle2 className="size-3 text-emerald-400" />
-                        VERIFIED
+                      <span className="flex items-center gap-1 text-[10px] text-emerald-400 font-semibold">
+                        <CheckCircle2 className="size-3 text-emerald-400" aria-hidden="true" />
+                        Verified
                       </span>
                     </div>
 
@@ -643,10 +643,10 @@ export function About() {
                     </p>
 
                     <div className="mt-4 border-t border-white/10 pt-3">
-                      <p className="font-mono text-[11px] text-emerald-400 font-semibold">
+                      <p className="text-xs text-emerald-400 font-semibold">
                         Repository Evidence: {comp.evidence}
                       </p>
-                      <p className="mt-1 font-mono text-[10px] text-muted-foreground">
+                      <p className="mt-1 text-[10px] text-muted-foreground">
                         Technologies: {comp.tech}
                       </p>
                     </div>
@@ -663,14 +663,14 @@ export function About() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: EASE }}
-                className="rounded-3xl border border-cyan/30 bg-black/75 p-7 sm:p-9 shadow-2xl backdrop-blur-2xl"
+                className="rounded-3xl border border-cyan/30 bg-background/80 p-7 sm:p-9 shadow-2xl backdrop-blur-2xl"
               >
                 <div className="border-b border-white/10 pb-4 flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-cyan uppercase tracking-widest">
-                    // CHRONOLOGICAL MILESTONES
+                  <span className="text-xs font-semibold text-cyan">
+                    Chronological Milestones
                   </span>
-                  <span className="font-mono text-[11px] text-emerald-400 font-semibold">
-                    100% FACTUAL ROADMAP
+                  <span className="text-xs text-emerald-400 font-semibold">
+                    100% Factual Roadmap
                   </span>
                 </div>
 
@@ -680,17 +680,17 @@ export function About() {
                       <span
                         className={`absolute left-0 top-1 size-3 rounded-full ${
                           item.active
-                            ? "bg-cyan shadow-[0_0_12px_#00e5ff] animate-pulse"
+                            ? "bg-cyan shadow-sm shadow-cyan/50 motion-safe:animate-pulse"
                             : "bg-white/20 border border-white/30"
                         }`}
                       />
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold text-cyan">
+                        <span className="text-xs font-semibold text-cyan">
                           {item.year}
                         </span>
                         {item.active && (
-                          <span className="rounded-full bg-cyan/15 px-2 py-0.2 font-mono text-[9px] font-semibold text-cyan border border-cyan/30">
-                            CURRENT FOCUS
+                          <span className="rounded-full bg-cyan/15 px-2 py-0.5 text-[10px] font-semibold text-cyan border border-cyan/30">
+                            Current Focus
                           </span>
                         )}
                       </div>
@@ -717,15 +717,16 @@ export function About() {
                 key={pillar.title}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ duration: 0.3, ease: EASE }}
-                className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-black/60 p-7 shadow-xl backdrop-blur-xl transition-all duration-500 ${pillar.borderGlow}`}
+                className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-background/80 p-7 shadow-xl backdrop-blur-xl transition-colors duration-300 ${pillar.borderGlow}`}
               >
                 {/* Laser Top Beam */}
                 <div
-                  className={`pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent ${pillar.laser} to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+                  className={`pointer-events-none absolute inset-x-8 top-0 h-[2px] bg-gradient-to-r from-transparent ${pillar.laser} to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                  aria-hidden="true"
                 />
 
-                <div className="mb-5 inline-flex size-14 items-center justify-center rounded-2xl bg-white/5 p-3 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110">
-                  <Icon className={`size-7 ${pillar.accent}`} />
+                <div className="mb-5 inline-flex size-14 items-center justify-center rounded-2xl bg-white/5 p-3 ring-1 ring-white/10 transition-transform duration-200 group-hover:scale-110">
+                  <Icon className={`size-7 ${pillar.accent}`} aria-hidden="true" />
                 </div>
 
                 <h4 className="font-display text-xl font-bold text-foreground">
@@ -737,7 +738,7 @@ export function About() {
                 </p>
 
                 <div className="mt-6 border-t border-white/10 pt-3.5">
-                  <span className="font-mono text-[10px] font-bold tracking-wider text-cyan/90">
+                  <span className="text-xs font-medium text-cyan/90">
                     // {pillar.telemetry}
                   </span>
                 </div>

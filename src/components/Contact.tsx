@@ -34,7 +34,7 @@ import { EASE } from "@/lib/motion";
 const SOCIAL_CONFIG: Record<
   string,
   {
-    icon: React.ComponentType<{ className?: string; size?: number }>;
+    icon: React.ComponentType<{ className?: string; size?: number; "aria-hidden"?: boolean }>;
     color: string;
     borderHover: string;
     status: string;
@@ -44,36 +44,36 @@ const SOCIAL_CONFIG: Record<
   GitHub: {
     icon: GitHubIcon,
     color: "#FFFFFF",
-    borderHover: "hover:border-white/50 hover:shadow-[0_0_30px_rgba(255,255,255,0.18)]",
-    status: "// REPOSITORIES",
+    borderHover: "hover:border-foreground/50 hover:shadow-md hover:shadow-foreground/20",
+    status: "Repositories",
     laser: "via-white",
   },
   LinkedIn: {
     icon: LinkedInIcon,
     color: "#0A66C2",
-    borderHover: "hover:border-[#0A66C2]/70 hover:shadow-[0_0_30px_rgba(10,102,194,0.3)]",
-    status: "// NETWORK",
-    laser: "via-[#0A66C2]",
+    borderHover: "hover:border-cyan/70 hover:shadow-md hover:shadow-cyan/30",
+    status: "Professional network",
+    laser: "via-cyan",
   },
   Instagram: {
     icon: InstagramIcon,
     color: "#E4405F",
-    borderHover: "hover:border-[#E4405F]/70 hover:shadow-[0_0_30px_rgba(228,64,95,0.3)]",
-    status: "// VISUALS",
-    laser: "via-[#E4405F]",
+    borderHover: "hover:border-violet/70 hover:shadow-md hover:shadow-violet/30",
+    status: "Visual work",
+    laser: "via-violet",
   },
   TikTok: {
     icon: TikTokIcon,
     color: "#00F2FE",
-    borderHover: "hover:border-cyan/70 hover:shadow-[0_0_30px_rgba(0,229,255,0.3)]",
-    status: "// DEV_LOGS",
+    borderHover: "hover:border-cyan/70 hover:shadow-md hover:shadow-cyan/30",
+    status: "Dev logs",
     laser: "via-cyan",
   },
   Threads: {
     icon: ThreadsIcon,
     color: "#FFFFFF",
-    borderHover: "hover:border-white/50 hover:shadow-[0_0_30px_rgba(255,255,255,0.18)]",
-    status: "// THOUGHTS",
+    borderHover: "hover:border-foreground/50 hover:shadow-md hover:shadow-foreground/20",
+    status: "Engineering notes",
     laser: "via-white",
   },
 };
@@ -158,19 +158,19 @@ export function Contact() {
     <section id="contact" className="section-shell relative py-16 sm:py-24">
       <div className="mx-auto max-w-6xl">
         {/* Main High-Tech Command Bridge Frame */}
-        <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-cyan/40 bg-[#060911]/95 p-6 sm:p-10 md:p-14 shadow-[0_0_60px_rgba(0,229,255,0.18)] backdrop-blur-3xl transition-all duration-500 hover:border-cyan hover:shadow-[0_0_80px_rgba(0,229,255,0.25)]">
+        <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-cyan/40 bg-background/95 p-6 sm:p-10 md:p-14 shadow-2xl shadow-cyan/20 backdrop-blur-3xl transition-[border-color,box-shadow] duration-500 hover:border-cyan hover:shadow-cyan/30">
           {/* Cyber Corner Marks */}
-          <span className="pointer-events-none absolute top-4 left-4 font-mono text-sm text-cyan select-none font-bold">+</span>
-          <span className="pointer-events-none absolute top-4 right-4 font-mono text-sm text-cyan select-none font-bold">+</span>
-          <span className="pointer-events-none absolute bottom-4 left-4 font-mono text-sm text-cyan select-none font-bold">+</span>
-          <span className="pointer-events-none absolute bottom-4 right-4 font-mono text-sm text-cyan select-none font-bold">+</span>
+          <span className="pointer-events-none absolute top-4 left-4 font-mono text-sm text-cyan select-none font-bold" aria-hidden="true">+</span>
+          <span className="pointer-events-none absolute top-4 right-4 font-mono text-sm text-cyan select-none font-bold" aria-hidden="true">+</span>
+          <span className="pointer-events-none absolute bottom-4 left-4 font-mono text-sm text-cyan select-none font-bold" aria-hidden="true">+</span>
+          <span className="pointer-events-none absolute bottom-4 right-4 font-mono text-sm text-cyan select-none font-bold" aria-hidden="true">+</span>
 
           {/* Top laser beam accent */}
-          <div className="pointer-events-none absolute inset-x-8 top-0 h-[2.5px] bg-gradient-to-r from-transparent via-cyan to-transparent shadow-[0_0_15px_#00e5ff]" />
+          <div className="pointer-events-none absolute inset-x-8 top-0 h-[2.5px] bg-gradient-to-r from-transparent via-cyan to-transparent shadow-sm shadow-cyan/50" />
 
           {/* Ambient Cosmic Radial Glow */}
           <div
-            aria-hidden
+            aria-hidden="true"
             className="pointer-events-none absolute -top-44 left-1/2 h-88 w-[45rem] -translate-x-1/2 rounded-full opacity-30 blur-[130px]"
             style={{
               background: "radial-gradient(circle, rgba(0,229,255,0.6) 0%, rgba(189,52,254,0.4) 60%, transparent 80%)",
@@ -181,23 +181,23 @@ export function Contact() {
           <div className="relative mb-8 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4 font-mono text-[11px]">
             <div className="flex items-center gap-2.5">
               <span className="relative flex size-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
-                <span className="relative inline-flex size-2.5 rounded-full bg-cyan shadow-[0_0_10px_#00e5ff]" />
+                <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-cyan opacity-75" />
+                <span className="relative inline-flex size-2.5 rounded-full bg-cyan shadow-sm shadow-cyan/60" />
               </span>
-              <span className="font-bold tracking-[0.2em] text-cyan uppercase">
-                MISSION_CONTROL // COMMAND_BRIDGE_V6
+              <span className="font-bold text-cyan">
+                Mission Control / Command Bridge
               </span>
             </div>
 
             <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
               <span className="flex items-center gap-1.5 font-mono text-cyan">
-                <Clock className="size-3.5 text-cyan" />
+                <Clock className="size-3.5 text-cyan" aria-hidden="true" />
                 <span>UTC+5 (PKT): </span>
                 <strong className="text-white font-bold">{pktTime || "08:00:00"}</strong>
               </span>
               <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
-                <span className="size-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse" />
-                DIRECT ACCESS OPEN
+                <span className="size-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50 motion-safe:animate-pulse" />
+                Direct access open
               </span>
             </div>
           </div>
@@ -208,15 +208,15 @@ export function Contact() {
             <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
               <div>
                 <div className="flex items-center gap-3">
-                  <span className="bg-gradient-to-r from-cyan to-violet h-px w-10" />
-                  <span className="font-mono text-xs font-bold tracking-[0.25em] text-cyan uppercase">
-                    INITIATE COLLABORATION
+                  <span className="bg-gradient-to-r from-cyan to-cyan/20 h-px w-10" />
+                  <span className="font-mono text-xs font-bold text-cyan">
+                    Initiate Collaboration
                   </span>
                 </div>
 
                 <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
                   Let&apos;s Build <br />
-                  <span className="bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(0,229,255,0.4)]">
+                  <span className="text-cyan drop-shadow">
                     Something Real.
                   </span>
                 </h2>
@@ -228,14 +228,14 @@ export function Contact() {
                 </p>
 
                 {/* Direct Inbox Card with Interactive One-Click Copy */}
-                <div className="mt-6 rounded-2xl border-2 border-cyan/30 bg-[#040810]/80 p-5 backdrop-blur-xl shadow-xl transition-all duration-300 hover:border-cyan hover:shadow-[0_0_30px_rgba(0,229,255,0.25)]">
+                <div className="mt-6 rounded-2xl border-2 border-cyan/30 bg-card/80 p-5 backdrop-blur-xl shadow-xl transition-[border-color,box-shadow] duration-300 hover:border-cyan hover:shadow-lg hover:shadow-cyan/20">
                   <div className="flex items-center justify-between text-xs font-mono text-muted-foreground mb-2">
                     <span className="flex items-center gap-1.5 text-cyan font-bold">
-                      <Mail className="size-4" /> DIRECT DEVELOPER INBOX
+                      <Mail className="size-4" aria-hidden="true" /> Direct Developer Inbox
                     </span>
                     <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                      <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
-                      &lt; 2H RESPONSE
+                      <span className="size-1.5 rounded-full bg-emerald-400 motion-safe:animate-ping" />
+                      &lt; 2h response
                     </span>
                   </div>
 
@@ -246,17 +246,17 @@ export function Contact() {
                     <button
                       type="button"
                       onClick={handleCopyEmail}
-                      className="inline-flex items-center gap-1.5 rounded-xl border border-cyan/40 bg-cyan/15 px-3.5 py-1.5 font-mono text-xs font-bold text-cyan transition-all hover:bg-cyan hover:text-black hover:scale-105 cursor-pointer shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-cyan/40 bg-cyan/15 px-3.5 py-1.5 font-mono text-xs font-bold text-cyan transition-colors hover:bg-cyan hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan cursor-pointer shadow-sm shadow-cyan/30"
                     >
                       {copied ? (
                         <>
-                          <Check className="size-4 text-emerald-400" />
-                          <span>COPIED TO CLIPBOARD!</span>
+                          <Check className="size-4 text-emerald-400" aria-hidden="true" />
+                          <span>Copied to clipboard!</span>
                         </>
                       ) : (
                         <>
-                          <Copy className="size-4" />
-                          <span>COPY EMAIL</span>
+                          <Copy className="size-4" aria-hidden="true" />
+                          <span>Copy Email</span>
                         </>
                       )}
                     </button>
@@ -266,16 +266,16 @@ export function Contact() {
                 {/* Engineering Direct Commitments */}
                 <div className="mt-6 space-y-2.5 font-mono text-xs text-foreground/90">
                   <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] p-2.5 transition-colors hover:border-cyan/30">
-                    <CheckCircle2 className="size-4 text-cyan shrink-0" />
-                    <span>Direct engineering line (No account managers or middle layers)</span>
+                    <CheckCircle2 className="size-4 text-cyan shrink-0" aria-hidden="true" />
+                    <span>Direct engineering line (no account managers or middle layers)</span>
                   </div>
                   <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] p-2.5 transition-colors hover:border-cyan/30">
-                    <CheckCircle2 className="size-4 text-cyan shrink-0" />
+                    <CheckCircle2 className="size-4 text-cyan shrink-0" aria-hidden="true" />
                     <span>Sprint velocity with live continuous staging deployments</span>
                   </div>
                   <div className="flex items-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] p-2.5 transition-colors hover:border-cyan/30">
-                    <CheckCircle2 className="size-4 text-cyan shrink-0" />
-                    <span>Full source code IP ownership &amp; clean repository handover</span>
+                    <CheckCircle2 className="size-4 text-cyan shrink-0" aria-hidden="true" />
+                    <span>Full source code IP ownership and clean repository handover</span>
                   </div>
                 </div>
               </div>
@@ -283,24 +283,24 @@ export function Contact() {
 
             {/* Right 7 Columns: Cyber Interactive Project Directive Dispatcher */}
             <div className="lg:col-span-7">
-              <div className="relative rounded-3xl border border-white/10 bg-[#080d19]/90 p-6 sm:p-8 shadow-2xl backdrop-blur-2xl">
+              <div className="relative rounded-3xl border border-white/10 bg-card/90 p-6 sm:p-8 shadow-2xl backdrop-blur-2xl">
                 {/* Tech Terminal Header */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-2">
-                    <Terminal className="size-4 text-cyan" />
-                    <span className="font-mono text-xs font-bold tracking-wider text-cyan uppercase">
-                      TERMINAL // PROJECT_DISPATCH_PROMPT
+                    <Terminal className="size-4 text-cyan" aria-hidden="true" />
+                    <span className="font-mono text-xs font-bold text-cyan">
+                      Terminal / Project Dispatch Prompt
                     </span>
                   </div>
                   <span className="rounded bg-white/5 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
-                    ENCRYPTION: PROTOCOL_256
+                    Encrypted: Protocol 256
                   </span>
                 </div>
 
                 <form onSubmit={handleDispatch} className="mt-6 space-y-5">
                   {/* Step 1: Select Capability Focus */}
                   <div className="space-y-2">
-                    <label className="flex items-center justify-between font-mono text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    <label className="flex items-center justify-between font-mono text-[11px] font-semibold text-muted-foreground">
                       <span>1. Select Architecture Focus</span>
                       <span className="text-cyan font-bold">{selectedService}</span>
                     </label>
@@ -313,9 +313,9 @@ export function Contact() {
                             type="button"
                             key={cap.id}
                             onClick={() => setSelectedService(cap.label)}
-                            className={`flex flex-col items-start rounded-xl p-3 text-left transition-all duration-200 cursor-pointer ${
+                            className={`flex flex-col items-start rounded-xl p-3 text-left transition-[border-color,background-color,color,transform] duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
                               active
-                                ? "border-2 border-cyan bg-cyan/15 text-white shadow-[0_0_20px_rgba(0,229,255,0.3)] font-bold scale-[1.01]"
+                                ? "border-2 border-cyan bg-cyan/15 text-white shadow-md shadow-cyan/30 font-bold scale-[1.01]"
                                 : "border border-white/10 bg-black/40 text-muted-foreground hover:border-white/20 hover:text-white"
                             }`}
                           >
@@ -333,7 +333,7 @@ export function Contact() {
 
                   {/* Step 2: Target Timeline */}
                   <div className="space-y-2 pt-1">
-                    <label className="flex items-center justify-between font-mono text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    <label className="flex items-center justify-between font-mono text-[11px] font-semibold text-muted-foreground">
                       <span>2. Target Delivery Velocity</span>
                       <span className="text-cyan font-bold">{selectedTimeline}</span>
                     </label>
@@ -345,9 +345,9 @@ export function Contact() {
                             type="button"
                             key={opt.id}
                             onClick={() => setSelectedTimeline(opt.label)}
-                            className={`rounded-xl px-3 py-2 text-center transition-all duration-200 cursor-pointer ${
+                            className={`rounded-xl px-3 py-2 text-center transition-[border-color,background-color,color] duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
                               active
-                                ? "border-2 border-cyan bg-cyan/15 text-cyan shadow-[0_0_15px_rgba(0,229,255,0.3)] font-bold"
+                                ? "border-2 border-cyan bg-cyan/15 text-cyan shadow-sm shadow-cyan/30 font-bold"
                                 : "border border-white/10 bg-black/40 text-muted-foreground hover:border-white/20 hover:text-white"
                             }`}
                           >
@@ -364,7 +364,7 @@ export function Contact() {
                     <div className="space-y-1.5">
                       <label
                         htmlFor="directive-name"
-                        className="block font-mono text-[11px] font-semibold text-muted-foreground uppercase"
+                        className="block font-mono text-[11px] font-semibold text-muted-foreground"
                       >
                         Your Name / Organization
                       </label>
@@ -375,14 +375,14 @@ export function Contact() {
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
                         placeholder="e.g. Alex Morgan"
-                        className="w-full rounded-xl border border-white/15 bg-black/60 px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground/40 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan transition-all"
+                        className="w-full rounded-xl border border-white/15 bg-black/60 px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground/40 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan focus-visible:ring-2 focus-visible:ring-cyan transition-colors"
                       />
                     </div>
 
                     <div className="space-y-1.5">
                       <label
                         htmlFor="directive-email"
-                        className="block font-mono text-[11px] font-semibold text-muted-foreground uppercase"
+                        className="block font-mono text-[11px] font-semibold text-muted-foreground"
                       >
                         Email Address
                       </label>
@@ -393,7 +393,7 @@ export function Contact() {
                         value={clientEmail}
                         onChange={(e) => setClientEmail(e.target.value)}
                         placeholder="e.g. alex@venture.com"
-                        className="w-full rounded-xl border border-white/15 bg-black/60 px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground/40 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan transition-all"
+                        className="w-full rounded-xl border border-white/15 bg-black/60 px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground/40 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan focus-visible:ring-2 focus-visible:ring-cyan transition-colors"
                       />
                     </div>
                   </div>
@@ -402,7 +402,7 @@ export function Contact() {
                   <div className="space-y-1.5">
                     <label
                       htmlFor="directive-message"
-                      className="block font-mono text-[11px] font-semibold text-muted-foreground uppercase"
+                      className="block font-mono text-[11px] font-semibold text-muted-foreground"
                     >
                       Project Specifications / Goals
                     </label>
@@ -413,15 +413,15 @@ export function Contact() {
                       value={projectMessage}
                       onChange={(e) => setProjectMessage(e.target.value)}
                       placeholder="Outline your target features, existing tech stack, or problem statement..."
-                      className="w-full rounded-xl border border-white/15 bg-black/60 p-3.5 text-xs text-foreground placeholder:text-muted-foreground/40 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan transition-all resize-none"
+                      className="w-full rounded-xl border border-white/15 bg-black/60 p-3.5 text-xs text-foreground placeholder:text-muted-foreground/40 focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan focus-visible:ring-2 focus-visible:ring-cyan transition-colors resize-none"
                     />
                   </div>
 
                   {/* Submit Button & Security Protocol */}
                   <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/10">
                     <div className="flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground">
-                      <ShieldCheck className="size-4 text-cyan" />
-                      <span>Direct encrypted dispatch • Instant copy &amp; transmission</span>
+                      <ShieldCheck className="size-4 text-cyan" aria-hidden="true" />
+                      <span>Direct encrypted dispatch / Instant copy and transmission</span>
                     </div>
 
                     <Button
@@ -429,20 +429,20 @@ export function Contact() {
                       variant="neon"
                       size="lg"
                       disabled={transmitting}
-                      className="min-w-[220px] justify-center shadow-[0_0_35px_rgba(0,229,255,0.45)] cursor-pointer"
+                      className="min-w-[220px] justify-center shadow-lg shadow-cyan/40 cursor-pointer focus-visible:ring-2 focus-visible:ring-cyan"
                     >
                       {transmitting ? (
                         <span className="flex items-center gap-2 font-mono text-xs">
-                          <Activity className="size-4 animate-spin text-cyan" />
-                          DISPATCHING DIRECTIVE...
+                          <Activity className="size-4 animate-spin text-cyan" aria-hidden="true" />
+                          Dispatching directive…
                         </span>
                       ) : sent ? (
                         <span className="flex items-center gap-2 text-emerald-300 font-bold">
-                          <CheckCircle className="size-4" /> DIRECTIVE DISPATCHED!
+                          <CheckCircle className="size-4" aria-hidden="true" /> Directive dispatched!
                         </span>
                       ) : (
-                        <span className="flex items-center gap-2 font-display tracking-wider">
-                          <Send className="size-4" /> TRANSMIT PROJECT DIRECTIVE
+                        <span className="flex items-center gap-2 font-display">
+                          <Send className="size-4" aria-hidden="true" /> Transmit Project Directive
                         </span>
                       )}
                     </Button>
@@ -458,8 +458,8 @@ export function Contact() {
               const cfg = SOCIAL_CONFIG[s.label] ?? {
                 icon: GitHubIcon,
                 color: "#FFFFFF",
-                borderHover: "hover:border-cyan/50 hover:shadow-[0_0_30px_rgba(0,229,255,0.2)]",
-                status: "// CONNECT",
+                borderHover: "hover:border-cyan/50 hover:shadow-md hover:shadow-cyan/20",
+                status: "Connect",
                 laser: "via-cyan",
               };
               const Icon = cfg.icon;
@@ -472,11 +472,11 @@ export function Contact() {
                   rel="noreferrer"
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ duration: 0.25, ease: EASE }}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel)_85%,transparent)] p-5 backdrop-blur-xl transition-all duration-300 ${cfg.borderHover}`}
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel)_85%,transparent)] p-5 backdrop-blur-xl transition-[border-color,box-shadow,transform] duration-300 ${cfg.borderHover}`}
                 >
                   {/* Tech corner marks */}
-                  <span className="pointer-events-none absolute top-2.5 left-2.5 font-mono text-[8px] text-cyan/30">+</span>
-                  <span className="pointer-events-none absolute top-2.5 right-2.5 font-mono text-[8px] text-cyan/30">+</span>
+                  <span className="pointer-events-none absolute top-2.5 left-2.5 font-mono text-[8px] text-cyan/30" aria-hidden="true">+</span>
+                  <span className="pointer-events-none absolute top-2.5 right-2.5 font-mono text-[8px] text-cyan/30" aria-hidden="true">+</span>
 
                   {/* Laser top accent line on hover */}
                   <div
@@ -486,17 +486,17 @@ export function Contact() {
                   {/* Top: Icon + Arrow */}
                   <div className="flex items-center justify-between">
                     <div className="relative flex size-11 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110">
-                      <Icon size={24} className="size-6 text-foreground transition-colors group-hover:text-white" />
+                      <Icon size={24} className="size-6 text-foreground transition-colors group-hover:text-white" aria-hidden={true} />
                     </div>
 
-                    <div className="flex size-7 items-center justify-center rounded-full bg-white/5 text-muted-foreground transition-all duration-300 group-hover:bg-cyan/20 group-hover:text-cyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                      <ArrowUpRight className="size-3.5" />
+                    <div className="flex size-7 items-center justify-center rounded-full bg-white/5 text-muted-foreground transition-[background-color,color,transform] duration-300 group-hover:bg-cyan/20 group-hover:text-cyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <ArrowUpRight className="size-3.5" aria-hidden="true" />
                     </div>
                   </div>
 
                   {/* Bottom: Label + Handle + Status */}
                   <div className="mt-6">
-                    <span className="font-mono text-[9px] font-semibold tracking-wider text-muted-foreground/70 uppercase">
+                    <span className="font-mono text-[9px] font-semibold text-muted-foreground/70">
                       {cfg.status}
                     </span>
                     <h3 className="mt-0.5 font-display text-base font-bold text-foreground transition-colors group-hover:text-cyan">

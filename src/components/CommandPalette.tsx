@@ -96,7 +96,7 @@ export function CommandPalette() {
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <div className="relative overflow-hidden rounded-2xl border border-cyan/40 bg-[#060a14]/95 shadow-[0_0_50px_rgba(0,229,255,0.25)] backdrop-blur-2xl">
+      <div className="relative overflow-hidden rounded-2xl border border-cyan/40 bg-background/95 shadow-2xl shadow-cyan/25 backdrop-blur-2xl">
         {/* Top Laser Accent */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent" />
 
@@ -254,7 +254,7 @@ export function CommandPalette() {
                 <div className="mr-2 size-2 rounded-full bg-cyan" />
                 <span>{proj.title}</span>
                 <span className="ml-2 text-[10px] text-muted-foreground">
-                  — {proj.tagline}
+                  : {proj.tagline}
                 </span>
                 <CommandShortcut>{proj.category}</CommandShortcut>
               </CommandItem>

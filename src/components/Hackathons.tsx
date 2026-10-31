@@ -86,14 +86,14 @@ export function Hackathons() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-              <span className="size-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse" />
+              <span className="size-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50 motion-safe:animate-pulse" />
               Verified Submissions
             </span>
-            <span className="hidden sm:inline text-white/20">•</span>
+            <span className="hidden sm:inline text-white/20" aria-hidden="true">•</span>
             <span className="flex items-center gap-1.5 text-cyan">
-              <Sparkles className="size-3.5" />
+              <Sparkles className="size-3.5" aria-hidden="true" />
               Autonomous Agents Specialist
             </span>
           </div>
@@ -105,39 +105,32 @@ export function Hackathons() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="mt-10 relative overflow-hidden rounded-3xl border border-cyan/40 bg-[color-mix(in_oklab,var(--panel-strong)_95%,transparent)] p-6 sm:p-8 md:p-10 shadow-2xl backdrop-blur-2xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(0,229,255,0.22)]"
+          className="mt-10 relative overflow-hidden rounded-3xl border border-cyan/40 bg-[color-mix(in_oklab,var(--panel-strong)_95%,transparent)] p-6 sm:p-8 md:p-10 shadow-2xl backdrop-blur-2xl transition-[border-color,box-shadow] duration-300 hover:shadow-xl hover:shadow-cyan/20"
         >
           {/* Cyber Corner Marks */}
-          <span className="pointer-events-none absolute top-3 left-3 font-mono text-xs text-cyan/50 select-none">+</span>
-          <span className="pointer-events-none absolute top-3 right-3 font-mono text-xs text-cyan/50 select-none">+</span>
-          <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-xs text-cyan/50 select-none">+</span>
-          <span className="pointer-events-none absolute bottom-3 right-3 font-mono text-xs text-cyan/50 select-none">+</span>
+          <span className="pointer-events-none absolute top-3 left-3 text-xs text-cyan/50 select-none" aria-hidden="true">+</span>
+          <span className="pointer-events-none absolute top-3 right-3 text-xs text-cyan/50 select-none" aria-hidden="true">+</span>
+          <span className="pointer-events-none absolute bottom-3 left-3 text-xs text-cyan/50 select-none" aria-hidden="true">+</span>
+          <span className="pointer-events-none absolute bottom-3 right-3 text-xs text-cyan/50 select-none" aria-hidden="true">+</span>
 
           {/* Glowing laser top accent */}
-          <div className="pointer-events-none absolute inset-x-12 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent" />
-
-          {/* Ambient Glow */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-32 right-10 size-80 rounded-full opacity-20 blur-[100px]"
-            style={{ background: "radial-gradient(circle, #00e5ff 0%, #bd34fe 60%, transparent 80%)" }}
-          />
+          <div className="pointer-events-none absolute inset-x-12 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan to-transparent" aria-hidden="true" />
 
           {/* Top Event Header */}
           <div className="relative flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 font-mono text-[11px] font-bold text-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.3)]">
-                <Trophy className="size-3" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold text-amber-300 shadow-sm shadow-amber-400/30">
+                <Trophy className="size-3" aria-hidden="true" />
                 {featured.badge}
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan/40 bg-cyan/10 px-3 py-1 font-mono text-[11px] font-semibold text-cyan">
-                <Cpu className="size-3" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan/40 bg-cyan/10 px-3 py-1 text-xs font-semibold text-cyan">
+                <Cpu className="size-3" aria-hidden="true" />
                 {featured.hostBadge}
               </span>
             </div>
 
-            <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-              <Calendar className="size-3.5 text-cyan" />
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <Calendar className="size-3.5 text-cyan" aria-hidden="true" />
               <span>{featured.date}</span>
             </div>
           </div>
@@ -147,7 +140,7 @@ export function Hackathons() {
             {/* Left 7 Cols: Project Overview */}
             <div className="lg:col-span-7 space-y-6">
               <div>
-                <span className="font-mono text-xs font-semibold tracking-wider text-cyan uppercase">
+                <span className="text-xs font-semibold text-cyan">
                   {featured.event} • {featured.host}
                 </span>
                 <h3 className="mt-2 font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">
@@ -168,10 +161,10 @@ export function Hackathons() {
                     key={m.label}
                     className="rounded-xl border border-white/5 bg-white/[0.03] p-3 text-center backdrop-blur-md"
                   >
-                    <p className="font-mono text-sm sm:text-base font-bold text-foreground">
+                    <p className="text-sm sm:text-base font-bold text-foreground">
                       {m.value}
                     </p>
-                    <p className="mt-0.5 font-mono text-[10px] text-muted-foreground uppercase">
+                    <p className="mt-0.5 text-[10px] text-muted-foreground">
                       {m.label}
                     </p>
                   </div>
@@ -179,10 +172,10 @@ export function Hackathons() {
               </div>
 
               {/* Key Architectural Highlights */}
-              <div className="space-y-2 pt-1 font-mono text-xs text-foreground/90">
+              <div className="space-y-2 pt-1 text-xs text-foreground/90">
                 {featured.highlights.map((h, i) => (
                   <div key={i} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="size-3.5 text-cyan shrink-0 mt-0.5" />
+                    <CheckCircle2 className="size-3.5 text-cyan shrink-0 mt-0.5" aria-hidden="true" />
                     <span>{h}</span>
                   </div>
                 ))}
@@ -190,14 +183,14 @@ export function Hackathons() {
 
               {/* Tech Stack Chips */}
               <div className="pt-2">
-                <span className="block font-mono text-[11px] font-semibold text-muted-foreground uppercase mb-2">
+                <span className="block text-xs font-semibold text-muted-foreground mb-2">
                   Sprint Technologies
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {featured.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[11px] text-foreground/80 transition-colors hover:border-cyan hover:text-cyan"
+                      className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-foreground/80 transition-colors hover:border-cyan hover:text-cyan"
                     >
                       {tech}
                     </span>
@@ -211,9 +204,9 @@ export function Hackathons() {
                   variant="neon"
                   size="sm"
                   onClick={() => setSelectedCert(featured.certificate)}
-                  className="shadow-[0_0_20px_rgba(0,229,255,0.4)] cursor-pointer"
+                  className="shadow-sm shadow-cyan/40 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                 >
-                  <Award className="size-4" />
+                  <Award className="size-4" aria-hidden="true" />
                   <span>Inspect Official Certificate</span>
                 </Button>
 
@@ -222,10 +215,10 @@ export function Hackathons() {
                     href={featured.links.event}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5"
+                    className="flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                   >
                     <span>Lablab Event Page</span>
-                    <ArrowUpRight className="size-3.5" />
+                    <ArrowUpRight className="size-3.5" aria-hidden="true" />
                   </a>
                 </Button>
               </div>
@@ -236,32 +229,32 @@ export function Hackathons() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelectedCert(featured.certificate)}
-                className="group relative w-full overflow-hidden rounded-2xl border-2 border-cyan/40 bg-black/60 p-2 shadow-2xl backdrop-blur-xl cursor-pointer transition-all duration-300 hover:border-cyan hover:shadow-[0_0_40px_rgba(0,229,255,0.4)]"
+                className="group relative w-full overflow-hidden rounded-2xl border-2 border-cyan/40 bg-card/60 p-2 shadow-2xl backdrop-blur-xl cursor-pointer transition-[border-color,box-shadow] duration-300 hover:border-cyan hover:shadow-xl hover:shadow-cyan/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
                 {/* Certificate Image Preview */}
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
                   <img
                     src={featured.certificate.image}
                     alt={featured.certificate.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
                   />
                   {/* Subtle Sheen Overlay */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" aria-hidden="true" />
 
                   {/* Hover Inspect Prompt */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 backdrop-blur-xs transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="flex items-center gap-2 rounded-full border border-cyan/50 bg-cyan/20 px-4 py-2 font-mono text-xs font-bold text-cyan shadow-[0_0_20px_rgba(0,229,255,0.5)]">
-                      <Maximize2 className="size-3.5" /> CLICK TO EXPAND CERTIFICATE
+                    <span className="flex items-center gap-2 rounded-full border border-cyan/50 bg-cyan/20 px-4 py-2 text-xs font-bold text-cyan shadow-sm shadow-cyan/50">
+                      <Maximize2 className="size-3.5" aria-hidden="true" /> Click to Expand Certificate
                     </span>
                   </div>
                 </div>
 
                 {/* Micro info bar under certificate */}
                 <div className="p-3">
-                  <div className="flex items-center justify-between font-mono text-[10px]">
+                  <div className="flex items-center justify-between text-xs">
                     <span className="text-cyan font-semibold flex items-center gap-1">
-                      <ShieldCheck className="size-3 text-cyan" />
-                      VERIFIED ON LABLAB.AI
+                      <ShieldCheck className="size-3 text-cyan" aria-hidden="true" />
+                      Verified on Lablab.ai
                     </span>
                     <span className="text-muted-foreground">{featured.certificate.date}</span>
                   </div>
@@ -283,18 +276,18 @@ export function Hackathons() {
               initial="hidden"
               whileInView="show"
               viewport={viewportOnce}
-              className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel)_85%,transparent)] p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,229,255,0.15)]"
+              className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[var(--border)] bg-[color-mix(in_oklab,var(--panel)_85%,transparent)] p-6 backdrop-blur-xl transition-colors duration-200 hover:border-cyan/40 hover:shadow-md hover:shadow-cyan/15"
             >
               <div>
                 <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-cyan uppercase">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-semibold text-cyan">
                     {item.badge}
                   </span>
-                  <span className="font-mono text-xs text-muted-foreground">{item.date}</span>
+                  <span className="text-xs text-muted-foreground">{item.date}</span>
                 </div>
 
                 <div className="mt-4">
-                  <span className="font-mono text-[11px] text-muted-foreground uppercase">
+                  <span className="text-xs text-muted-foreground">
                     {item.event} • {item.host}
                   </span>
                   <h4 className="mt-1 font-display text-xl font-bold text-foreground">
@@ -307,10 +300,10 @@ export function Hackathons() {
                 </div>
 
                 {/* Highlights */}
-                <div className="mt-4 space-y-1.5 font-mono text-xs text-foreground/80">
+                <div className="mt-4 space-y-1.5 text-xs text-foreground/80">
                   {item.highlights.map((h, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <span className="text-cyan font-bold">•</span>
+                      <span className="text-cyan font-bold" aria-hidden="true">•</span>
                       <span>{h}</span>
                     </div>
                   ))}
@@ -321,7 +314,7 @@ export function Hackathons() {
                   {item.technologies.map((t) => (
                     <span
                       key={t}
-                      className="rounded border border-white/5 bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
+                      className="rounded border border-white/5 bg-white/[0.03] px-2 py-0.5 text-[10px] text-muted-foreground"
                     >
                       {t}
                     </span>
@@ -334,9 +327,9 @@ export function Hackathons() {
                 <button
                   type="button"
                   onClick={() => setSelectedCert(item.certificate)}
-                  className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-cyan hover:underline cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan hover:underline cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                 >
-                  <Award className="size-3.5" />
+                  <Award className="size-3.5" aria-hidden="true" />
                   <span>Inspect Credentials</span>
                 </button>
 
@@ -344,10 +337,10 @@ export function Hackathons() {
                   href={item.links.event}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                 >
                   <span>Event Info</span>
-                  <ArrowUpRight className="size-3" />
+                  <ArrowUpRight className="size-3" aria-hidden="true" />
                 </a>
               </div>
             </motion.div>
@@ -370,7 +363,7 @@ export function Hackathons() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedCert(null)}
-              className="absolute inset-0 bg-black/85 backdrop-blur-md"
+              className="absolute inset-0 bg-background/85 backdrop-blur-md"
             />
 
             {/* Modal Dialog Card */}
@@ -379,29 +372,29 @@ export function Hackathons() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 20 }}
               transition={{ duration: 0.3, ease: EASE }}
-              className="relative z-10 max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-3xl border border-cyan/40 bg-[#070b12] p-5 sm:p-7 shadow-[0_0_60px_rgba(0,229,255,0.35)] backdrop-blur-2xl"
+              className="relative z-10 max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-3xl border border-cyan/40 bg-background/98 p-5 sm:p-7 shadow-2xl backdrop-blur-2xl"
             >
               {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setSelectedCert(null)}
                 aria-label="Close Certificate modal"
-                className="absolute right-5 top-5 z-20 flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all hover:border-cyan/40 hover:bg-cyan/20 hover:text-cyan cursor-pointer"
+                className="absolute right-5 top-5 z-20 flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-colors duration-200 hover:border-cyan/40 hover:bg-cyan/20 hover:text-cyan cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
-                <X className="size-4" />
+                <X className="size-4" aria-hidden="true" />
               </button>
 
               {/* Modal Header */}
-              <div className="flex items-center gap-2 font-mono text-xs text-cyan">
-                <ShieldCheck className="size-4" />
-                <span className="font-bold tracking-widest uppercase">
+              <div className="flex items-center gap-2 text-xs text-cyan">
+                <ShieldCheck className="size-4" aria-hidden="true" />
+                <span className="font-semibold">
                   {selectedCert.sealLabel}
                 </span>
               </div>
               <h3 className="mt-1 font-display text-xl sm:text-2xl font-bold text-foreground">
                 {selectedCert.title}
               </h3>
-              <p className="mt-0.5 text-xs text-muted-foreground font-mono">
+              <p className="mt-0.5 text-xs text-muted-foreground">
                 Issued by {selectedCert.issuer} • {selectedCert.date}
               </p>
 
@@ -417,24 +410,24 @@ export function Hackathons() {
               {/* Cryptographic Verification Footer */}
               <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-4">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs text-muted-foreground">CREDENTIAL ID:</span>
-                  <code className="rounded bg-white/5 px-2.5 py-1 font-mono text-xs font-semibold text-cyan">
+                  <span className="text-xs text-muted-foreground">Credential ID:</span>
+                  <code className="rounded bg-white/5 px-2.5 py-1 text-xs font-semibold text-cyan">
                     {selectedCert.credentialId}
                   </code>
                   <button
                     type="button"
                     onClick={() => handleCopyId(selectedCert.credentialId)}
-                    className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 font-mono text-[11px] text-muted-foreground transition-colors hover:text-cyan cursor-pointer"
+                    className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-muted-foreground transition-colors duration-200 hover:text-cyan cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
                   >
                     {copiedId ? (
                       <>
-                        <Check className="size-3 text-emerald-400" />
-                        <span className="text-emerald-400">COPIED</span>
+                        <Check className="size-3 text-emerald-400" aria-hidden="true" />
+                        <span className="text-emerald-400">Copied</span>
                       </>
                     ) : (
                       <>
-                        <Copy className="size-3" />
-                        <span>COPY</span>
+                        <Copy className="size-3" aria-hidden="true" />
+                        <span>Copy</span>
                       </>
                     )}
                   </button>
