@@ -84,7 +84,7 @@ export function Hero({ introFinished = true }: { introFinished?: boolean }) {
             </span>
           </div>
 
-          <h1 className="mt-3.5 font-display text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-foreground leading-[1.15]">
+          <h1 className="mt-3.5 font-display text-2xl sm:text-3xl lg:text-[40px] xl:text-[42px] font-extrabold tracking-tight text-foreground leading-[1.18]">
             I Build Intelligent <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-cyan via-white to-violet bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,229,255,0.4)]">
               Digital Experiences.

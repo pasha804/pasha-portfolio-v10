@@ -9,8 +9,6 @@ import {
   VolumeX,
   Terminal,
   FileText,
-  Layers,
-  Code2,
 } from "lucide-react";
 import portrait from "@/assets/developer-portrait.png";
 import { Button } from "@/components/ui/button";
@@ -283,32 +281,6 @@ export function Navbar() {
                   )}
                 </a>
               ))}
-
-              {/* Quick links to full catalog & about */}
-              <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-white/10">
-                <a
-                  href="#projects"
-                  onClick={() => {
-                    sound.playBlip();
-                    setOpen(false);
-                  }}
-                  className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-mono text-muted-foreground hover:text-cyan hover:border-cyan/40"
-                >
-                  <Layers className="size-3 text-cyan" />
-                  <span>Projects</span>
-                </a>
-                <a
-                  href="#about"
-                  onClick={() => {
-                    sound.playBlip();
-                    setOpen(false);
-                  }}
-                  className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-mono text-muted-foreground hover:text-cyan hover:border-cyan/40"
-                >
-                  <Code2 className="size-3 text-cyan" />
-                  <span>About Bio</span>
-                </a>
-              </div>
 
               <div className="mt-2 pt-3 border-t border-white/10 flex flex-col gap-2">
                 <button
